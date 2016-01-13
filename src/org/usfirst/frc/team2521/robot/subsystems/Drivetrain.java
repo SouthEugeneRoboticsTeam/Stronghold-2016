@@ -43,8 +43,8 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void tankDrive() {
-		double left = OI.getInstance().getTranslateStick().getY();
-		double right = OI.getInstance().getRotateStick().getY();
+		double left = OI.getInstance().getLeftStick().getY();
+		double right = OI.getInstance().getRightStick().getY();
 		drive.tankDrive(left, right);
 	}
 

@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class OI {
 
-	private Joystick translate;
-	private Joystick rotate;
+	private Joystick left;
+	private Joystick right;
 	private static OI instance;
 
 	public OI() {
-		translate = new Joystick(RobotMap.TRANSLATE_PORT);
-		rotate = new Joystick(RobotMap.ROTATE_PORT);
+		left = new Joystick(RobotMap.LEFT_STICK_PORT);
+		right = new Joystick(RobotMap.RIGHT_STICK_PORT);
 	}
 
 	public static OI getInstance() {
@@ -26,11 +26,11 @@ public class OI {
 		return instance;
 	}
 
-	public Joystick getTranslateStick() {
-		return translate;
+	public Joystick getLeftStick() {
+		return left;
 	}
 
-	public Joystick getRotateStick() {
-		return rotate;
+	public Joystick getRightStick() {
+		return right;
 	}
 }

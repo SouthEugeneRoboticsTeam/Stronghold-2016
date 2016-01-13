@@ -9,8 +9,8 @@ package org.usfirst.frc.team2521.robot;
  */
 public class RobotMap {
 
-	public static final int TRANSLATE_PORT = 0;
-	public static final int ROTATE_PORT = 1;
+	public static final int LEFT_STICK_PORT = 0;
+	public static final int RIGHT_STICK_PORT = 1;
 
 	public static final int FRONT_LEFT_MOTOR = 50;
 	public static final int FRONT_RIGHT_MOTOR = 51;
