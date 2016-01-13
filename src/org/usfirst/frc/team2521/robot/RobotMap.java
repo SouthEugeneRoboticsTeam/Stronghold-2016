@@ -8,12 +8,12 @@ package org.usfirst.frc.team2521.robot;
  * floating around.
  */
 public class RobotMap {
-	
+
 	public static final int TRANSLATE_PORT = 0;
 	public static final int ROTATE_PORT = 1;
-	
-    public static final int FRONT_LEFT_MOTOR = 50;
-    public static final int FRONT_RIGHT_MOTOR = 51;
-    public static final int REAR_LEFT_MOTOR = 52;
-    public static final int REAR_RIGHT_MOTOR = 53;
+
+	public static final int FRONT_LEFT_MOTOR = 50;
+	public static final int FRONT_RIGHT_MOTOR = 51;
+	public static final int REAR_LEFT_MOTOR = 52;
+	public static final int REAR_RIGHT_MOTOR = 53;
 }
