@@ -22,19 +22,15 @@ public class Drivetrain extends Subsystem {
 
 	public Drivetrain() {
 		frontLeft = new CANTalon(RobotMap.FRONT_LEFT_MOTOR);
-		frontLeft.enableBrakeMode(true);
 		frontLeft.enableControl();
 
 		rearLeft = new CANTalon(RobotMap.REAR_LEFT_MOTOR);
-		rearLeft.enableBrakeMode(true);
 		rearLeft.enableControl();
 
 		frontRight = new CANTalon(RobotMap.FRONT_RIGHT_MOTOR);
-		frontRight.enableBrakeMode(true);
 		frontRight.enableControl();
 
 		rearRight = new CANTalon(RobotMap.REAR_RIGHT_MOTOR);
-		rearRight.enableBrakeMode(true);
 		rearRight.enableControl();
 
 		drive = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
