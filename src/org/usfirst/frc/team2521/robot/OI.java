@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team2521.robot;
 
+import org.usfirst.frc.team2521.robot.commands.IntakeControl;
 import org.usfirst.frc.team2521.robot.commands.StartSpinUp;
 import org.usfirst.frc.team2521.robot.commands.StopSpinUp;
 
@@ -16,10 +17,11 @@ public class OI {
 	private Joystick left;
 	private Joystick right;
 	private Joystick secondary;
-	
+
 	private JoystickButton startSpinButton;
 	private JoystickButton stopSpinButton;
-	
+	private JoystickButton intakeButton;
+
 	private static OI instance;
 
 	public OI() {
@@ -32,7 +34,7 @@ public class OI {
 		if (instance == null) {
 			instance = new OI();
 		}
-		
+
 		return instance;
 	}
 
@@ -43,18 +45,22 @@ public class OI {
 	public Joystick getRightStick() {
 		return right;
 	}
-	
-	public Joystick getSecondaryStick(){
+
+	public Joystick getSecondaryStick() {
 		return secondary;
 	}
-	
-	public void initButtons(){
+
+	public void initButtons() {
 		startSpinButton = new JoystickButton(secondary, RobotMap.START_SPIN_BUTTON);
 		stopSpinButton = new JoystickButton(secondary, RobotMap.STOP_SPIN_BUTTON);
+
+		intakeButton = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON);
 	}
-	
-	public void tieButtons(){
+
+	public void tieButtons() {
 		startSpinButton.whenPressed(new StartSpinUp());
 		stopSpinButton.whenPressed(new StopSpinUp());
+
+		intakeButton.whileHeld(new IntakeControl());
 	}
 }
