@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class StopSpinUp extends Command {
 
-    public StopSpinUp() {
 	public StopSpinUp() {
 		requires(Robot.shooter);
 	}
