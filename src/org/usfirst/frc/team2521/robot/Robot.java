@@ -1,8 +1,10 @@
 
 package org.usfirst.frc.team2521.robot;
 
+//Subsystems. 
 import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2521.robot.subsystems.Shooter;
+import org.usfirst.frc.team2521.robot.subsystems.Intake;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -20,9 +22,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
+	
+	//Subsystems.
 	public static Drivetrain drivetrain;
+	public static Intake intake; 
 	public static Shooter shooter;
+	
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -33,8 +38,12 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
+		
+		//Subsystems.
 		drivetrain = new Drivetrain();
+		intake = new Intake();
 		shooter = new Shooter();
+		
 		oi = new OI();
 		// chooser = new SendableChooser();
 		// chooser.addDefault("Default Auto", new ExampleCommand());
