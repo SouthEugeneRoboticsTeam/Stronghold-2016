@@ -12,18 +12,16 @@ import edu.wpi.first.wpilibj.CANTalon;;
 public class Shooter extends Subsystem {
 
 	private CANTalon shooter;
-	
+
 	public void initDefaultCommand() {
 		shooter = new CANTalon(RobotMap.FLY_WHEEL_MOTOR);
-		
-		
 	}
-	
-	public void stopSpinUp(){
-		shooter.set(0);
-	}
-	
-	public void startSpinUp(){
+
+	public void startSpinUp() {
 		shooter.set(1);
+	}
+
+	public void stopSpinUp() {
+		shooter.set(0);
 	}
 }
