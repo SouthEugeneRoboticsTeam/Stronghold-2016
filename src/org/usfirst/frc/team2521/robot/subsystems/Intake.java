@@ -1,13 +1,22 @@
 package org.usfirst.frc.team2521.robot.subsystems;
 
+import org.usfirst.frc.team2521.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+/** 
+ * 
+ */
 public class Intake extends Subsystem {
-	/** 
-	 * Test
-	 */
+
+	private CANTalon intake;
+
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		intake = new CANTalon(RobotMap.INTAKE_WHEEL_MOTOR);
+	}
+
+	public void startIntake() {
+		intake.set(1);
 	}
 }
