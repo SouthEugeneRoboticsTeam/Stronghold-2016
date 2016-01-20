@@ -19,4 +19,7 @@ public class Intake extends Subsystem {
 	public void startIntake() {
 		intake.set(1);
 	}
+	public void ReleaseBall(){
+		intake.set(-1);
+	}
 }
