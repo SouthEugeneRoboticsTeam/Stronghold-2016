@@ -24,4 +24,17 @@ public class Shooter extends Subsystem {
 	public void stopSpinUp() {
 		shooter.set(0);
 	}
+	public void PitchUp(){
+		
+	}
+	public void PitchDown(){
+		
+	}
+    public void YawRight(){
+    	
+    }
+    public void YawLeft(){
+    	
+    }
+
 }
