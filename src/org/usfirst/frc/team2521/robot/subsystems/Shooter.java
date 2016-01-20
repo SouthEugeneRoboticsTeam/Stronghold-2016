@@ -12,9 +12,16 @@ import edu.wpi.first.wpilibj.CANTalon;;
 public class Shooter extends Subsystem {
 
 	private CANTalon shooter;
-
+	
+	//The targeting motors. 
+	private CANTalon YawMotor;
+	private CANTalon PitchMotor;
+	
 	public void initDefaultCommand() {
 		shooter = new CANTalon(RobotMap.FLY_WHEEL_MOTOR);
+		YawMotor = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
+		PitchMotor = new CANTalon(RobotMap.TARGETING_PITCH_MOTOR);
+	
 	}
 
 	public void startSpinUp() {
@@ -24,4 +31,17 @@ public class Shooter extends Subsystem {
 	public void stopSpinUp() {
 		shooter.set(0);
 	}
+	public void PitchUp(){
+		PitchMotor.set(1);
+	}
+	public void PitchDown(){
+		PitchMotor.set(-1);
+	}
+    public void YawRight(){
+    	YawMotor.set(1);
+    }
+    public void YawLeft(){
+    	YawMotor.set(-1);
+    }
+
 }
