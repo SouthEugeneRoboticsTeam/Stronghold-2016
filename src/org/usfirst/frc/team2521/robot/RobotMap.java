@@ -25,4 +25,8 @@ public class RobotMap {
 
 	public static final int FLY_WHEEL_MOTOR = 54;
 	public static final int INTAKE_WHEEL_MOTOR = 55;
+
+	public static final int TARGETING_YAW_MOTOR = 42;
+	public static final int TARGETING_PITCH_MOTOR = 69;
+	//Find actual numbers later. 
 }
