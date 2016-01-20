@@ -12,7 +12,7 @@ public class RobotMap {
 	public static final int START_SPIN_BUTTON = 3;
 	public static final int STOP_SPIN_BUTTON = 2;
 	public static final int INTAKE_BUTTON = 6;
-
+	public static final int FIRE_BUTTON = 2000; //Real Button later.
 	// Ports
 	public static final int LEFT_STICK_PORT = 0;
 	public static final int RIGHT_STICK_PORT = 1;
