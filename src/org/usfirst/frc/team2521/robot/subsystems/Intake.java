@@ -11,9 +11,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Intake extends Subsystem {
 
 	private CANTalon intake;
-
+	
+	private boolean ballheld; 
+	
 	public void initDefaultCommand() {
 		intake = new CANTalon(RobotMap.INTAKE_WHEEL_MOTOR);
+		ballheld = false; 
 	}
 
 	public void startIntake() {
@@ -21,5 +24,10 @@ public class Intake extends Subsystem {
 	}
 	public void ReleaseBall(){
 		intake.set(-1);
+		ballheld = false; 
+	}
+	public boolean BallHeld(){
+		ballheld = true; 
+		return ballheld; 
 	}
 }
