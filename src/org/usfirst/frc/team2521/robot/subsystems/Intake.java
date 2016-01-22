@@ -34,4 +34,8 @@ public class Intake extends Subsystem {
 	public void ballHeld() {
 		isBallHeld = true;
 	}
+	
+	public boolean getBallHeld() {
+		return isBallHeld;
+	}
 }
