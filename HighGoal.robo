@@ -9,7 +9,7 @@
   <compression_index>5</compression_index>
   <contrast_value>50</contrast_value>
   <exposure_value>50</exposure_value>
-  <ip_address>169.254.222.189</ip_address>
+  <ip_address>10.25.21.30</ip_address>
   <is_active>TRUE</is_active>
   <mirrot>FALSE</mirrot>
   <password>FRC</password>
@@ -22,7 +22,7 @@
   <channel>2</channel>
   <hue_value>5</hue_value>
   <hysteresis>0</hysteresis>
-  <min_value>100</min_value>
+  <min_value>/SmartDashboard/RGB_VAL</min_value>
 </RGB_Filter>
 <Adaptive_Threshold>
   <channel_type>2</channel_type>
@@ -118,3 +118,13 @@
 <Watch_Variables>
   <on_top>FALSE</on_top>
 </Watch_Variables>
+<NetworkTables>
+  <delay>100</delay>
+  <filter_type_index>0</filter_type_index>
+  <hostname>roborio-2521-FRC.local</hostname>
+  <port>1735</port>
+  <prefix>/SmartDashboard/</prefix>
+  <variables_to_send>BLOBS
+CLOCK_TIME</variables_to_send>
+  <variable_type_index>0</variable_type_index>
+</NetworkTables>
