@@ -21,15 +21,19 @@ public class Drivetrain extends Subsystem {
 	
 	public Drivetrain() {
 		frontLeft = new CANTalon(RobotMap.FRONT_LEFT_MOTOR);
+		frontLeft.changeControlMode(CANTalon.TalonControlMode.Position);
 		frontLeft.enableControl();
 		
 		rearLeft = new CANTalon(RobotMap.REAR_LEFT_MOTOR);
+		rearLeft.changeControlMode(CANTalon.TalonControlMode.Position);
 		rearLeft.enableControl();
 		
 		frontRight = new CANTalon(RobotMap.FRONT_RIGHT_MOTOR);
+		frontRight.changeControlMode(CANTalon.TalonControlMode.Position);
 		frontRight.enableControl();
 		
 		rearRight = new CANTalon(RobotMap.REAR_RIGHT_MOTOR);
+		rearRight.changeControlMode(CANTalon.TalonControlMode.Position);
 		rearRight.enableControl();
 		
 		drive = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
@@ -49,5 +53,12 @@ public class Drivetrain extends Subsystem {
 	
 	public void initDefaultCommand() {
 		setDefaultCommand(new TeleoperatedDrive());
+	}
+	
+	public void setEncPosition(int encoderPosition) {
+		frontLeft.setEncPosition(encoderPosition);
+		rearLeft.setEncPosition(encoderPosition);
+		frontRight.setEncPosition(encoderPosition);
+		rearRight.setEncPosition(encoderPosition);
 	}
 }

@@ -9,11 +9,15 @@ package org.usfirst.frc.team2521.robot;
  */
 public class RobotMap {
 	
+	// Autonomous
+	public static final int AUTONOMOUS_DISTANCE = 150;
+	
 	// Buttons
 	public static final int START_SPIN_BUTTON = 3;
 	public static final int STOP_SPIN_BUTTON = 2;
 	public static final int INTAKE_BUTTON = 6;
-	public static final int FIRE_BUTTON = 2000; // Real Button later.
+	public static final int FIRE_BUTTON = 7;
+	
 	// Ports
 	public static final int LEFT_STICK_PORT = 0;
 	public static final int RIGHT_STICK_PORT = 1;
@@ -29,5 +33,4 @@ public class RobotMap {
 	
 	public static final int TARGETING_YAW_MOTOR = 42;
 	public static final int TARGETING_PITCH_MOTOR = 69;
-	// Find actual numbers later.
 }
