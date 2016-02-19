@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -36,14 +35,9 @@ public class FlyWheels extends Subsystem {
 		right.reverseOutput(true);
 		
 		pitch = new CANTalon(RobotMap.TARGETING_PITCH_MOTOR);
-		pitch = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
+		yaw = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
 		
 		pusher = new DoubleSolenoid(RobotMap.PUSHER_OUT_PORT, RobotMap.PUSHER_IN_PORT);
-	}
-	
-	public void in(){
-		left.set(-1);
-		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
 	
 	public void out() {
@@ -53,6 +47,11 @@ public class FlyWheels extends Subsystem {
 	
 	public void stop() {
 		left.set(0);
+		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
+	}
+	
+	public void in() {
+		left.set(-1);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
 	
@@ -82,6 +81,14 @@ public class FlyWheels extends Subsystem {
 	
 	public void changeYaw(double speed) {
 		yaw.set(speed);
+	}
+	
+	public double getLeftSpeed() {
+		return left.getEncVelocity();
+	}
+	
+	public double getRightSpeed() {
+		return right.getEncVelocity();
 	}
 	
 	public void initDefaultCommand() {
