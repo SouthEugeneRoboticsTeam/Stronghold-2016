@@ -34,8 +34,8 @@ public class RobotMap {
 	
 	public static final int INTAKE_WHEEL_MOTOR = 30; //Real
 	
-	public static final int TARGETING_YAW_MOTOR = 42;
-	public static final int TARGETING_PITCH_MOTOR = 69;
+	public static final int TARGETING_YAW_MOTOR = 31; //Real
+	public static final int TARGETING_PITCH_MOTOR = 40; //Real
 	
 	public static final int PUSHER_IN_PORT = 0;
 	public static final int PUSHER_OUT_PORT = 1;
