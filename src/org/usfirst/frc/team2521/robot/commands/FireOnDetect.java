@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2521.robot.commands;
 
+import org.usfirst.frc.team2521.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -11,7 +13,7 @@ public class FireOnDetect extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.flyWheels);
-    	requires(Sensors);
+    	requires(Robot.sensors);
     }
 
     // Called just before this Command runs the first time
