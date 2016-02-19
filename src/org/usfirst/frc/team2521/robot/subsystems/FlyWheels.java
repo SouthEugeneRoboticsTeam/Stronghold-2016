@@ -41,13 +41,18 @@ public class FlyWheels extends Subsystem {
 		pusher = new DoubleSolenoid(RobotMap.PUSHER_OUT_PORT, RobotMap.PUSHER_IN_PORT);
 	}
 	
-	public void startSpinUp() {
+	public void in(){
+		left.set(-1);
+		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
+	}
+	
+	public void out() {
 		left.set(1);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
 	
-	public void stopSpinUp() {
-		left.set(1);
+	public void stop() {
+		left.set(0);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
 	

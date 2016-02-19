@@ -2,7 +2,7 @@
 package org.usfirst.frc.team2521.robot;
 
 import org.usfirst.frc.team2521.robot.commands.FireBall;
-import org.usfirst.frc.team2521.robot.commands.IntakeControl;
+import org.usfirst.frc.team2521.robot.commands.IntakeIn;
 import org.usfirst.frc.team2521.robot.commands.SpinFlyWheelsOut;
 import org.usfirst.frc.team2521.robot.commands.SpinFlyWheelIn;
 
@@ -64,7 +64,7 @@ public class OI {
 		startSpinButton.whenPressed(new SpinFlyWheelsOut());
 		stopSpinButton.whenPressed(new SpinFlyWheelIn());
 		
-		intakeButton.whileHeld(new IntakeControl());
+		intakeButton.whileHeld(new IntakeIn());
 		fireButton.whenPressed(new FireBall());
 	}
 }

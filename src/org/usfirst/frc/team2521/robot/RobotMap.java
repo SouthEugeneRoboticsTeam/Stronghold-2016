@@ -13,22 +13,22 @@ public class RobotMap {
 	public static final int START_SPIN_BUTTON = 3;
 	public static final int STOP_SPIN_BUTTON = 2;
 	public static final int INTAKE_BUTTON = 6;
-	public static final int FIRE_BUTTON = 2000; // Real Button later.
+	public static final int FIRE_BUTTON = 1; // Real
 	
 	// Ports
 	public static final int LEFT_STICK_PORT = 0;
 	public static final int RIGHT_STICK_PORT = 1;
 	public static final int SECONDARY_STICK_PORT = 2;
 	
-	public static final int FRONT_LEFT_MOTOR = 50;
-	public static final int FRONT_RIGHT_MOTOR = 51;
-	public static final int REAR_LEFT_MOTOR = 52;
-	public static final int REAR_RIGHT_MOTOR = 53;
+	public static final int FRONT_LEFT_MOTOR = 46; //Real
+	public static final int FRONT_RIGHT_MOTOR = 48; //Real
+	public static final int REAR_LEFT_MOTOR = 47; //Real
+	public static final int REAR_RIGHT_MOTOR = 49; //Real
 	
-	public static final int LEFT_SHOOTER_MOTOR = 54;
-	public static final int RIGHT_SHOOTER_MOTOR = 55;
+	public static final int LEFT_SHOOTER_MOTOR = 50; //Either this or 41 is the real value
+	public static final int RIGHT_SHOOTER_MOTOR = 41; //Either this or 50 is the real value
 	
-	public static final int INTAKE_WHEEL_MOTOR = 55;
+	public static final int INTAKE_WHEEL_MOTOR = 30; //Real
 	
 	public static final int TARGETING_YAW_MOTOR = 42;
 	public static final int TARGETING_PITCH_MOTOR = 69;

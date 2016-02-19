@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IntakeControl extends Command {
+public class IntakeIn extends Command {
 	
-	public IntakeControl() {
+	public IntakeIn() {
 		requires(Robot.intake);
 	}
 	
@@ -20,7 +20,7 @@ public class IntakeControl extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.intake.startIntake();
+		Robot.intake.in();
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()

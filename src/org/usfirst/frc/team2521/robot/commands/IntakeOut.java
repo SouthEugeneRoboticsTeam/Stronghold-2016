@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class FireBall extends Command {
+public class IntakeOut extends Command {
 	
-	public FireBall() {
-		requires(Robot.flyWheels);
+	public IntakeOut() {
+		requires(Robot.intake);
 	}
 	
 	// Called just before this Command runs the first time
@@ -20,18 +20,16 @@ public class FireBall extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.flyWheels.setPusher(true);
+		Robot.intake.out();
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		// return true when lidar stops detecting ball
 		return false;
 	}
 	
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.flyWheels.setPusher(false);
 	}
 	
 	// Called when another command which requires one or more of the same

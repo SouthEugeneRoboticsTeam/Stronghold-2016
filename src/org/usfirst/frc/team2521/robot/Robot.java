@@ -21,7 +21,7 @@ public class Robot extends IterativeRobot {
 	
 	public static Drivetrain drivetrain;
 	public static Intake intake;
-	public static FlyWheels shooter;
+	public static FlyWheels flyWheels;
 	
 	public static OI oi;
 	
@@ -34,7 +34,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		drivetrain = new Drivetrain();
 		intake = new Intake();
-		shooter = new FlyWheels();
+		flyWheels = new FlyWheels();
 		
 		oi = new OI();
 	}

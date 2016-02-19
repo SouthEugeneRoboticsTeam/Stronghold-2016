@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class SpinFlyWheelIn extends Command {
 	
 	public SpinFlyWheelIn() {
-		requires(Robot.shooter);
+		requires(Robot.flyWheels);
 	}
 	
 	// Called just before this Command runs the first time
@@ -20,7 +20,7 @@ public class SpinFlyWheelIn extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.stopSpinUp();
+		Robot.flyWheels.stop();
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()

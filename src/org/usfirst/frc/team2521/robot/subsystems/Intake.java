@@ -15,13 +15,17 @@ public class Intake extends Subsystem {
 	private CANTalon intake;
 	private AnalogInput lidar;
 	
-	private boolean isBallHeld;
-	
 	public Intake(){
 		intake = new CANTalon(RobotMap.INTAKE_WHEEL_MOTOR);
 		lidar = new AnalogInput(RobotMap.LIDAR_PORT);
-		
-		isBallHeld = false;
+	}
+	
+	public boolean ballInBot(){ //get if we have the ball in the bot
+		return getDistance() < RobotMap.LIDAR_IN_BOT_THRESHOLD;
+	}
+	
+	public boolean ballInShooter(){ //get if we have the ball in the shooter
+		return getDistance() < RobotMap.LIDAR_IN_SHOOTER_THRESHOLD;
 	}
 	
 	public double getDistance(){
@@ -32,17 +36,16 @@ public class Intake extends Subsystem {
 	public void initDefaultCommand() {
 	}
 	
-	public void startIntake() {
+	public void in() {
 		intake.set(1);
 	}
 	
-	public void releaseBall() {
+	public void out() {
 		intake.set(-1);
-		
-		isBallHeld = false;
 	}
 	
-	public boolean getBallHeld() {
-		return isBallHeld;
+	public void stop(){
+		intake.set(0);
 	}
+	
 }
