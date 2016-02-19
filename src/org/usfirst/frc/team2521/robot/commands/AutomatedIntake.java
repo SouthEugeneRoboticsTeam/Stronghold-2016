@@ -25,7 +25,7 @@ public class AutomatedIntake extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		ballInBot = Robot.intake.ballInBot();
+		ballInBot = Robot.sensors.ballInBot();
 		
 		if (ballInBot) {
 			Robot.intake.in();
@@ -35,7 +35,7 @@ public class AutomatedIntake extends Command {
 	
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.intake.ballInShooter();
+		return Robot.sensors.ballInShooter();
 	}
 	
 	// Called once after isFinished returns true
