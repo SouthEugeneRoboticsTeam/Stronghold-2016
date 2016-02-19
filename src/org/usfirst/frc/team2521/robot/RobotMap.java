@@ -25,11 +25,16 @@ public class RobotMap {
 	public static final int REAR_LEFT_MOTOR = 52;
 	public static final int REAR_RIGHT_MOTOR = 53;
 	
-	public static final int FLY_WHEEL_MOTOR = 54;
+	public static final int LEFT_SHOOTER_MOTOR = 54;
+	public static final int RIGHT_SHOOTER_MOTOR = 55;
+	
 	public static final int INTAKE_WHEEL_MOTOR = 55;
 	
 	public static final int TARGETING_YAW_MOTOR = 42;
 	public static final int TARGETING_PITCH_MOTOR = 69;
+	
+	public static final int PUSHER_IN_PORT = 0;
+	public static final int PUSHER_OUT_PORT = 1;
 	// Find actual numbers later.
 	
 	public static final int LIDAR_PORT = 0;
@@ -39,4 +44,9 @@ public class RobotMap {
 	public static final double LIDAR_OFFSET = 145.2; //Calculated
 	public static final double LIDAR_IN_BOT_THRESHOLD = 9;
 	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 2;
+	
+	public static final double AIM_P = 1;
+	public static final double AIM_I = 0;
+	public static final double AIM_D = 0;
+	
 }

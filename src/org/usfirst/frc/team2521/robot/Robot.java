@@ -3,7 +3,7 @@ package org.usfirst.frc.team2521.robot;
 
 import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2521.robot.subsystems.Intake;
-import org.usfirst.frc.team2521.robot.subsystems.Shooter;
+import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,7 +21,7 @@ public class Robot extends IterativeRobot {
 	
 	public static Drivetrain drivetrain;
 	public static Intake intake;
-	public static Shooter shooter;
+	public static FlyWheels shooter;
 	
 	public static OI oi;
 	
@@ -34,7 +34,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		drivetrain = new Drivetrain();
 		intake = new Intake();
-		shooter = new Shooter();
+		shooter = new FlyWheels();
 		
 		oi = new OI();
 	}

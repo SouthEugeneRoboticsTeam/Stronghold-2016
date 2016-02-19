@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class StopSpinUp extends Command {
+public class SpinFlyWheelsOut extends Command {
 	
-	public StopSpinUp() {
+	public SpinFlyWheelsOut() {
 		requires(Robot.shooter);
 	}
 	
@@ -20,7 +20,7 @@ public class StopSpinUp extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.stopSpinUp();
+		Robot.shooter.startSpinUp();
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()

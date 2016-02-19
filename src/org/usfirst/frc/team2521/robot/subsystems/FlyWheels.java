@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class Shooter extends Subsystem {
+public class FlyWheels extends Subsystem {
 	
 	private CANTalon left;
 	private CANTalon right;
@@ -25,7 +25,7 @@ public class Shooter extends Subsystem {
 	
 	private DoubleSolenoid pusher;
 	
-	public Shooter() {
+	public FlyWheels() {
 		left = new CANTalon(RobotMap.LEFT_SHOOTER_MOTOR);
 		right = new CANTalon(RobotMap.RIGHT_SHOOTER_MOTOR);
 		
