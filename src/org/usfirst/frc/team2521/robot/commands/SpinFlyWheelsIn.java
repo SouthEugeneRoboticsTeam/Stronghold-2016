@@ -24,14 +24,6 @@ public class SpinFlyWheelsIn extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		Robot.flyWheels.out();
-		
-		if (Robot.flyWheels.getLeftSpeed() > RobotMap.FINISHED_SPIN_UP_THRESHOLD && Robot.flyWheels.getRightSpeed() > RobotMap.FINISHED_SPIN_UP_THRESHOLD) {
-			SmartDashboard.putBoolean("Up to speed", true);
-			System.out.println("Up to speed!");
-		} else {
-			SmartDashboard.putBoolean("Up to speed", false);
-			System.out.println("Not up to speed!");
-		}
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
