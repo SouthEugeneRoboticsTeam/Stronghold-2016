@@ -48,9 +48,17 @@ public class RobotMap {
 	public static final double LIDAR_OFFSET = 145.2; //Calculated
 	public static final double LIDAR_IN_BOT_THRESHOLD = 9;
 	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 2;
+	public static final double HEIGHT_TO_DISTANCE_FACTOR = 4138.375054; //calculated from measured data
+	public static final double ENC_COUNTS_PER_RADIAN = 121/(0.5*Math.PI);//measured
 	
-	public static final double AIM_P = 1;
-	public static final double AIM_I = 0;
-	public static final double AIM_D = 0;
+	public static final double YAW_P = 1;
+	public static final double YAW_I = 0;
+	public static final double YAW_D = 0;
+	
+	public static final double PITCH_P = 1;
+	public static final double PITCH_I = 0;
+	public static final double PITCH_D = 0;
+	
+	public static final int CAMERA_HEIGHT = 38; //in inches; needs to be fixed
 	
 }
