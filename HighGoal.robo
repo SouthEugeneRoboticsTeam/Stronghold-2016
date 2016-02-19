@@ -18,26 +18,40 @@
   <sharpness_value>50</sharpness_value>
   <username>FRC</username>
 </Axis_Internet_Camera>
-<RGB_Filter>
+<Radial_Distortion>
+  <center_x>0.5</center_x>
+  <center_y>0.5</center_y>
+  <coeff_a>-1121</coeff_a>
+  <coeff_b>0.525</coeff_b>
+  <coeff_c>0.0</coeff_c>
+  <coeff_d>0.0</coeff_d>
+  <coeff_e>0.0</coeff_e>
+  <crop_image>FALSE</crop_image>
+  <grayscale>FALSE</grayscale>
+  <image_height>240</image_height>
+  <image_width>320</image_width>
+  <scale>1000.0</scale>
+</Radial_Distortion>
+<RGB_Filter disabled>
   <channel>2</channel>
-  <hue_value>5</hue_value>
+  <hue_value>50</hue_value>
   <hysteresis>0</hysteresis>
-  <min_value>/SmartDashboard/RGB_VAL</min_value>
+  <min_value>10</min_value>
 </RGB_Filter>
 <Adaptive_Threshold>
   <channel_type>2</channel_type>
   <filter_size>50</filter_size>
   <max_threshold>255</max_threshold>
-  <mean_offset>-65</mean_offset>
-  <min_threshold>10</min_threshold>
+  <mean_offset>0</mean_offset>
+  <min_threshold>200</min_threshold>
 </Adaptive_Threshold>
 <Marker>
   <include_graphics>0</include_graphics>
   <name>Thresholded</name>
   <revert_to>Current</revert_to>
 </Marker>
-<Convex_Hull/>
-<Math>
+<Convex_Hull disabled/>
+<Math disabled>
   <all_channels>TRUE</all_channels>
   <bias>0</bias>
   <divisor>1</divisor>
@@ -52,28 +66,20 @@
       <filter>
         <count_threshold>0</count_threshold>
         <create_array>0</create_array>
-        <filter_id>56</filter_id>
-        <invert_count>0</invert_count>
-        <invert_threshold>0</invert_threshold>
-        <weight_threshold>0.4</weight_threshold>
-      </filter>
-      <filter:2>
-        <count_threshold>0</count_threshold>
-        <create_array>0</create_array>
         <filter_id>21</filter_id>
         <invert_count>0</invert_count>
         <invert_threshold>0</invert_threshold>
         <weight_threshold>1</weight_threshold>
-      </filter:2>
-      <filter:3>
+      </filter>
+      <filter:2>
         <count_threshold>0</count_threshold>
         <create_array>0</create_array>
         <filter_id>8</filter_id>
         <invert_count>0</invert_count>
         <invert_threshold>0</invert_threshold>
-        <minimum_size>200</minimum_size>
+        <minimum_size>100</minimum_size>
         <weight_threshold>0.5</weight_threshold>
-      </filter:3>
+      </filter:2>
     </tab>
     <tab:2/>
     <tab:3/>
@@ -87,6 +93,20 @@
   <sort_array_on_x>FALSE</sort_array_on_x>
   <sort_array_on_y>FALSE</sort_array_on_y>
 </Blob_Filter>
+<Geometric_Statistics>
+  <basic_statistics>FALSE</basic_statistics>
+  <scope>1</scope>
+</Geometric_Statistics>
+<CScript_Program>
+  <auto_reload>TRUE</auto_reload>
+  <continue_on_errors>FALSE</continue_on_errors>
+  <script>double DIST_FACTOR = 4138.375054;
+int height = getArrayVariable("HEIGHT", &amp;height);
+double distance = DIST_FACTOR/distance;
+setDoubleVariable(distance);</script>
+  <source_mode>gui</source_mode>
+  <tab_size_index>1</tab_size_index>
+</CScript_Program>
 <Colorize>
   <rgb>#FF0000</rgb>
 </Colorize>
@@ -102,18 +122,18 @@
   <clear_image>0</clear_image>
   <color>green</color>
   <display_as_annotation>0</display_as_annotation>
-  <display_mode_index>0</display_mode_index>
+  <display_mode_index>1</display_mode_index>
   <head_thickness>20</head_thickness>
   <line_thickness>5</line_thickness>
   <xy_list/>
   <x_end>[blobs:0]</x_end>
-  <x_end_map/>
+  <x_end_map>BLOBS:0</x_end_map>
   <x_start>[image_width/2]</x_start>
-  <x_start_map/>
+  <x_start_map>0</x_start_map>
   <y_end>[blobs:1]</y_end>
-  <y_end_map/>
+  <y_end_map>BLOBS:1</y_end_map>
   <y_start>[image_height/2]</y_start>
-  <y_start_map/>
+  <y_start_map>0</y_start_map>
 </Display_Arrow>
 <Watch_Variables>
   <on_top>FALSE</on_top>
@@ -124,7 +144,9 @@
   <hostname>roborio-2521-FRC.local</hostname>
   <port>1735</port>
   <prefix>/SmartDashboard/</prefix>
+  <variables_to_receive>/SmartDashboard/BlobVal</variables_to_receive>
   <variables_to_send>BLOBS
-CLOCK_TIME</variables_to_send>
+HEIGHT
+IMAGE_WIDTH</variables_to_send>
   <variable_type_index>0</variable_type_index>
 </NetworkTables>

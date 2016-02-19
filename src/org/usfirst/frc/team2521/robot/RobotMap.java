@@ -14,6 +14,7 @@ public class RobotMap {
 	public static final int STOP_SPIN_BUTTON = 2;
 	public static final int INTAKE_BUTTON = 6;
 	public static final int FIRE_BUTTON = 2000; // Real Button later.
+	
 	// Ports
 	public static final int LEFT_STICK_PORT = 0;
 	public static final int RIGHT_STICK_PORT = 1;
@@ -30,4 +31,12 @@ public class RobotMap {
 	public static final int TARGETING_YAW_MOTOR = 42;
 	public static final int TARGETING_PITCH_MOTOR = 69;
 	// Find actual numbers later.
+	
+	public static final int LIDAR_PORT = 0;
+	
+	//Other constants
+	public static final double LIDAR_FACTOR = 10940; //Calculated
+	public static final double LIDAR_OFFSET = 145.2; //Calculated
+	public static final double LIDAR_IN_BOT_THRESHOLD = 9;
+	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 2;
 }
