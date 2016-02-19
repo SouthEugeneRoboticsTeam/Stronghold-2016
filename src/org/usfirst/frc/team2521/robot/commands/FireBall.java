@@ -20,16 +20,18 @@ public class FireBall extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.fireBall();
+		Robot.shooter.setPusher(true);
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
+		// return true when lidar stops detecting ball
 		return false;
 	}
 	
 	// Called once after isFinished returns true
 	protected void end() {
+		Robot.shooter.setPusher(false);
 	}
 	
 	// Called when another command which requires one or more of the same
