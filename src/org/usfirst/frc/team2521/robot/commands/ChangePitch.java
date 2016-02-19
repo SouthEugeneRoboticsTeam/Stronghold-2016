@@ -12,6 +12,7 @@ public class ChangePitch extends Command {
 	
 	// Up = true - Down = false
 	double position;
+	public static boolean changePitchIsFinished = false;
 	
 	public ChangePitch(double position) {
 		requires(Robot.intake);
@@ -30,7 +31,7 @@ public class ChangePitch extends Command {
 	
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return changePitchIsFinished;
 	}
 	
 	// Called once after isFinished returns true

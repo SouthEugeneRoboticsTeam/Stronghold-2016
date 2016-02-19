@@ -7,14 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class StartSpinUp extends Command {
+public class SpinUp extends Command {
+	
+	public static boolean stopSpin = false;
 
-	public StartSpinUp() {
+	public SpinUp() {
 		requires(Robot.shooter);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		FileManager.currentCommand = getClass().toString();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -24,11 +27,12 @@ public class StartSpinUp extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return stopSpin;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
+		Robot.shooter.stopSpinUp();
 	}
 
 	// Called when another command which requires one or more of the same

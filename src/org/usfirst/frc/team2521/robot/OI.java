@@ -3,8 +3,7 @@ package org.usfirst.frc.team2521.robot;
 
 import org.usfirst.frc.team2521.robot.commands.FireBall;
 import org.usfirst.frc.team2521.robot.commands.IntakeControl;
-import org.usfirst.frc.team2521.robot.commands.StartSpinUp;
-import org.usfirst.frc.team2521.robot.commands.StopSpinUp;
+import org.usfirst.frc.team2521.robot.commands.SpinUp;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -54,15 +53,15 @@ public class OI {
 	
 	public void initButtons() {
 		startSpinButton = new JoystickButton(secondary, RobotMap.START_SPIN_BUTTON);
-		stopSpinButton = new JoystickButton(secondary, RobotMap.STOP_SPIN_BUTTON);
+//		stopSpinButton = new JoystickButton(secondary, RobotMap.STOP_SPIN_BUTTON);
 		
 		intakeButton = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON);
 		fireButton = new JoystickButton(secondary, RobotMap.FIRE_BUTTON);
 	}
 	
 	public void tieButtons() {
-		startSpinButton.whenPressed(new StartSpinUp());
-		stopSpinButton.whenPressed(new StopSpinUp());
+		startSpinButton.whenPressed(new SpinUp());
+//		stopSpinButton.whenPressed(new StopSpinUp());
 		
 		intakeButton.whileHeld(new IntakeControl());
 		fireButton.whenPressed(new FireBall());

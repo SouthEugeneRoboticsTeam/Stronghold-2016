@@ -1,7 +1,11 @@
 
 package org.usfirst.frc.team2521.robot.subsystems;
 
+import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
+import org.usfirst.frc.team2521.robot.commands.ChangePitch;
+import org.usfirst.frc.team2521.robot.commands.ChangeYaw;
+import org.usfirst.frc.team2521.robot.commands.FireBall;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;;
@@ -40,6 +44,7 @@ public class Shooter extends Subsystem {
 		// A redundancy added to avoid misfires.
 		if (onTarget) {
 			intake.releaseBall();
+			FireBall.fireBallEnded = true;
 		}
 		
 		else if (!onTarget) {
@@ -62,6 +67,7 @@ public class Shooter extends Subsystem {
 	public void changePitch(double position) {
 		if (onTarget) {
 			pitchMotor.set(0);
+			ChangePitch.changePitchIsFinished = true;
 		} else if (!onTarget) {
 			// Add PID code to change position
 			pitchMotor.set(1);
@@ -71,6 +77,7 @@ public class Shooter extends Subsystem {
 	public void changeYaw(double position) {
 		if (onTarget) {
 			yawMotor.set(0);
+			ChangeYaw.changeYawIsFinished = true;
 		} else if (!onTarget) {
 			// Add PID code to change position
 			yawMotor.set(-1);

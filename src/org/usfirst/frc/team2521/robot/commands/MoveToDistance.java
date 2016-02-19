@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class MoveToDistance extends Command {
 	
 	private int distance;
-	boolean first = true;
+	boolean isFinished = false;
 	
 	public MoveToDistance(int distance) {
 		requires(Robot.drivetrain);
@@ -21,16 +21,17 @@ public class MoveToDistance extends Command {
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		Robot.drivetrain.setEncPosition(distance);
+		isFinished = true;
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.drivetrain.setEncPosition(distance);
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return isFinished;
 	}
 	
 	// Called once after isFinished returns true
