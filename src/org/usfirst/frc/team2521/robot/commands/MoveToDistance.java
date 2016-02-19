@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team2521.robot.commands;
 
 import org.usfirst.frc.team2521.robot.Robot;
@@ -6,26 +5,32 @@ import org.usfirst.frc.team2521.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Move the robot to a certain encoder location
  */
-public class SpinFlyWheelIn extends Command {
+public class MoveToDistance extends Command {
 	
-	public SpinFlyWheelIn() {
-		requires(Robot.flyWheels);
+	private int distance;
+	boolean isFinished = false;
+	
+	public MoveToDistance(int distance) {
+		requires(Robot.drivetrain);
+		
+		this.distance = distance;
 	}
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		Robot.drivetrain.setEncPosition(distance);
+		isFinished = true;
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.flyWheels.stop();
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return isFinished;
 	}
 	
 	// Called once after isFinished returns true

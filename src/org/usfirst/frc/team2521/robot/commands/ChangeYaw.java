@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ChangeYaw extends Command {
 	
 	double position;
+	public static boolean changeYawIsFinished = false;
 	
 	public ChangeYaw(double position) {
 		requires(Robot.intake);
@@ -29,7 +30,7 @@ public class ChangeYaw extends Command {
 	
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return changeYawIsFinished;
 	}
 	
 	// Called once after isFinished returns true
