@@ -2,8 +2,10 @@
 package org.usfirst.frc.team2521.robot.commands;
 
 import org.usfirst.frc.team2521.robot.Robot;
+import org.usfirst.frc.team2521.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -16,11 +18,16 @@ public class StartSpinUp extends Command {
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		SmartDashboard.putBoolean("Up to speed", false);
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.startSpinUp();
+		Robot.shooter.spinUp();
+		
+		if (Robot.shooter.getLeftSpeed() > RobotMap.FINISHED_SPIN_UP_THRESHOLD && Robot.shooter.getRightSpeed() > RobotMap.FINISHED_SPIN_UP_THRESHOLD) {
+			SmartDashboard.putBoolean("Up to speed", true);
+		}
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()

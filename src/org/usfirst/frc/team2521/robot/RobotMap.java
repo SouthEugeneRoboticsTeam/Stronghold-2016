@@ -15,6 +15,9 @@ public class RobotMap {
 	public static final int INTAKE_BUTTON = 6;
 	public static final int FIRE_BUTTON = 1;
 	
+	// Thresholds
+	public static final int FINISHED_SPIN_UP_THRESHOLD = 100;
+	
 	// Ports
 	public static final int LEFT_STICK_PORT = 0;
 	public static final int RIGHT_STICK_PORT = 1;
