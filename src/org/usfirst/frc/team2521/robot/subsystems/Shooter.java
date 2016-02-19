@@ -1,84 +1,85 @@
 
 package org.usfirst.frc.team2521.robot.subsystems;
 
+import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.RobotMap;
+import org.usfirst.frc.team2521.robot.commands.ShooterControl;
 
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.command.Subsystem;;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * 
+ *
  */
 public class Shooter extends Subsystem {
 	
-	private Intake intake;
+	private CANTalon left;
+	private CANTalon right;
 	
-	private CANTalon shooter;
+	private CANTalon pitch;
+	private CANTalon yaw;
 	
-	private CANTalon yawMotor;
-	private CANTalon pitchMotor;
+	private DoubleSolenoid pusher;
 	
-	// If we're on target
-	private boolean onTarget;
-	
-	public void initDefaultCommand() {
-		shooter = new CANTalon(RobotMap.FLY_WHEEL_MOTOR);
-		yawMotor = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
-		pitchMotor = new CANTalon(RobotMap.TARGETING_PITCH_MOTOR);
+	public Shooter() {
+		left = new CANTalon(RobotMap.LEFT_SHOOTER_MOTOR);
+		right = new CANTalon(RobotMap.RIGHT_SHOOTER_MOTOR);
 		
-		intake = new Intake();
-		onTarget = false;
+		left.enableBrakeMode(true);
+		right.enableBrakeMode(true);
+		
+		right.changeControlMode(CANTalon.TalonControlMode.Follower);
+		right.reverseOutput(true);
+		
+		pitch = new CANTalon(RobotMap.TARGETING_PITCH_MOTOR);
+		pitch = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
+		
+		pusher = new DoubleSolenoid(RobotMap.PUSHER_OUT_PORT, RobotMap.PUSHER_IN_PORT);
 	}
 	
 	public void startSpinUp() {
-		// Preparing the motor for firing.
-		shooter.set(1);
-	}
-	
-	public void fireBall() {
-		// If the ball is on the target, it will fire. If not, it will not fire.
-		// A redundancy added to avoid misfires.
-		if (onTarget) {
-			intake.releaseBall();
-		}
-		
-		else if (!onTarget) {
-			// Sends a console message. Note to self: Figure out how to send
-			// console messages in wpilibj library.
-		}
+		left.set(1);
+		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
 	
 	public void stopSpinUp() {
-		shooter.set(0);
-		// Reset down the flywheel.
+		left.set(1);
+		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
 	
-	/**
-	 * It should work out that the next four methods activate the motors that
-	 * adjust aiming depending on input from vision. Positive is up and right.
-	 * Negative is down and left.
-	 */
+	public void pitchControl() {
+		Joystick secondary = OI.getInstance().getSecondaryStick();
+		
+		changePitch(secondary.getY());
+	}
 	
-	public void changePitch(double position) {
-		if (onTarget) {
-			pitchMotor.set(0);
-		} else if (!onTarget) {
-			// Add PID code to change position
-			pitchMotor.set(1);
+	public void yawControl() {
+		Joystick secondary = OI.getInstance().getSecondaryStick();
+		
+		changeYaw(secondary.getX());
+	}
+	
+	public void setPusher(boolean on) {
+		if (on) {
+			pusher.set(Value.kForward);
+		} else {
+			pusher.set(Value.kReverse);
 		}
 	}
 	
-	public void changeYaw(double position) {
-		if (onTarget) {
-			yawMotor.set(0);
-		} else if (!onTarget) {
-			// Add PID code to change position
-			yawMotor.set(-1);
-		}
+	public void changePitch(double speed) {
+		pitch.set(speed);
 	}
 	
-	// The method that will be invoked by vision when target is on sight.
-	public void onTarget(boolean isOn) {
-		onTarget = isOn;
+	public void changeYaw(double speed) {
+		yaw.set(speed);
+	}
+	
+	public void initDefaultCommand() {
+		setDefaultCommand(new ShooterControl());
 	}
 }
