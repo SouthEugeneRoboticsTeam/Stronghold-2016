@@ -5,6 +5,7 @@ import org.usfirst.frc.team2521.robot.commands.FileManager;
 import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2521.robot.subsystems.Intake;
 import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
+import org.usfirst.frc.team2521.robot.subsystems.*;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -23,6 +24,7 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain drivetrain;
 	public static Intake intake;
 	public static FlyWheels flyWheels;
+	public static Sensors sensors;
 	
 	public static OI oi;
 	
