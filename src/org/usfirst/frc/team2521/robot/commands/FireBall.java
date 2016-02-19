@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class FireBall extends Command {
 	
+	public static boolean fireBallEnded = false;
+	
 	public FireBall() {
 		requires(Robot.flyWheels);
 	}
@@ -25,12 +27,12 @@ public class FireBall extends Command {
 	
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		// return true when lidar stops detecting ball
-		return false;
+		return fireBallEnded;
 	}
 	
 	// Called once after isFinished returns true
 	protected void end() {
+		SpinFlyWheels.stopSpin = true;
 		Robot.flyWheels.setPusher(false);
 	}
 	

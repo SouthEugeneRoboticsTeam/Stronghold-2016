@@ -3,6 +3,9 @@ package org.usfirst.frc.team2521.robot.subsystems;
 
 import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.RobotMap;
+import org.usfirst.frc.team2521.robot.commands.ChangePitch;
+import org.usfirst.frc.team2521.robot.commands.ChangeYaw;
+import org.usfirst.frc.team2521.robot.commands.FireBall;
 import org.usfirst.frc.team2521.robot.commands.ShooterControl;
 
 import edu.wpi.first.wpilibj.CANTalon;
@@ -43,6 +46,7 @@ public class FlyWheels extends Subsystem {
 	public void out() {
 		left.set(1);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
+		FireBall.fireBallEnded = true;
 	}
 	
 	public void stop() {
@@ -77,10 +81,12 @@ public class FlyWheels extends Subsystem {
 	
 	public void changePitch(double speed) {
 		pitch.set(speed);
+		ChangePitch.changePitchIsFinished = true;
 	}
 	
 	public void changeYaw(double speed) {
 		yaw.set(speed);
+		ChangeYaw.changeYawIsFinished = true;
 	}
 	
 	public double getLeftSpeed() {

@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team2521.robot;
 
+import org.usfirst.frc.team2521.robot.commands.FileManager;
 import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2521.robot.subsystems.Intake;
 import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
@@ -37,6 +38,8 @@ public class Robot extends IterativeRobot {
 		flyWheels = new FlyWheels();
 		
 		oi = new OI();
+		
+		new FileManager();
 	}
 	
 	/**
