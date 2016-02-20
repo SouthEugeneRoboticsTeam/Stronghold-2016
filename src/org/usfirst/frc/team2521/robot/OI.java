@@ -21,6 +21,7 @@ public class OI {
 	private JoystickButton intakeButton;
 	private JoystickButton fireButton;
 	private JoystickButton autoIntakeButton;
+	private JoystickButton toggleAutoFireButton;
 	
 	private static OI instance;
 	
@@ -54,11 +55,13 @@ public class OI {
 		intakeButton = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON);
 		fireButton = new JoystickButton(secondary, RobotMap.FIRE_BUTTON);
 		autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
+		toggleAutoFireButton = new JoystickButton(secondary, RobotMap.AUTO_FIRE_TOGGLE_BUTTON);
 	}
 	
 	public void tieButtons() {
 		fireButton.whenPressed(new ShootBall());
 		intakeButton.whileHeld(new IntakeIn());
 		autoIntakeButton.whenPressed(new AutomatedIntake());
+		
 	}
 }
