@@ -20,15 +20,14 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	//Github test comment
+	
 	public static Drivetrain drivetrain;
 	public static Intake intake;
 	public static FlyWheels flyWheels;
 	public static Sensors sensors;
+	public static Turret turret;
 	
 	public static OI oi;
-	
-	Command autonomousCommand;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -38,6 +37,7 @@ public class Robot extends IterativeRobot {
 		drivetrain = new Drivetrain();
 		intake = new Intake();
 		flyWheels = new FlyWheels();
+		turret = new Turret();
 		
 		oi = new OI();
 		
@@ -67,9 +67,6 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
 	}
 	
 	/**
@@ -84,8 +81,6 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
-			autonomousCommand.cancel();
 	}
 	
 	/**
@@ -102,5 +97,3 @@ public class Robot extends IterativeRobot {
 		LiveWindow.run();
 	}
 }
-
-//test comment
