@@ -1,8 +1,11 @@
 
 package org.usfirst.frc.team2521.robot;
 
-import org.usfirst.frc.team2521.robot.commands.FileManager;
-import org.usfirst.frc.team2521.robot.subsystems.*;
+import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
+import org.usfirst.frc.team2521.robot.subsystems.Intake;
+import org.usfirst.frc.team2521.robot.subsystems.Sensors;
+import org.usfirst.frc.team2521.robot.subsystems.Turret;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
