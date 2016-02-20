@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2521.robot.subsystems;
 
 import org.usfirst.frc.team2521.robot.RobotMap;
+import org.usfirst.frc.team2521.robot.commands.DisplaySensors;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -28,6 +29,13 @@ public class Sensors extends Subsystem {
 	
 	public boolean ballInShooter(){ //get if we have the ball in the shooter
 		return getLidarDistance() < RobotMap.LIDAR_IN_SHOOTER_THRESHOLD;
+	}
+	
+	public void display(){
+		SmartDashboard.putNumber("Cam distance", getCameraDistance());
+		SmartDashboard.putNumber("Lidar distance", getLidarDistance());
+		SmartDashboard.putBoolean("Ball in bot", ballInBot());
+		SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
 	}
 	
 	public double getCameraDistance(){
@@ -68,7 +76,7 @@ public class Sensors extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new DisplaySensors());
     }
 }
 
