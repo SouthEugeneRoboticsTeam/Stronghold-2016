@@ -1,15 +1,11 @@
 
 package org.usfirst.frc.team2521.robot.subsystems;
 
-import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.RobotMap;
-import org.usfirst.frc.team2521.robot.commands.ChangePitch;
-import org.usfirst.frc.team2521.robot.commands.ChangeYaw;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -48,8 +44,6 @@ public class FlyWheels extends Subsystem {
 		left.set(-1);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
-<<<<<<< HEAD
-=======
 	
 	public void out() {
 		left.set(1);
@@ -62,7 +56,6 @@ public class FlyWheels extends Subsystem {
 	}
 
 	
->>>>>>> master
 	public void setPusher(boolean on) {
 		if (on) {
 			pusher.set(Value.kForward);
@@ -71,19 +64,10 @@ public class FlyWheels extends Subsystem {
 		}
 	}
 	
-<<<<<<< HEAD
-	public double getLeftSpeed() {
-		return left.getEncVelocity();
-	}
-	
-	public double getRightSpeed() {
-		return right.getEncVelocity();
-=======
 	public boolean upToSpeed(){
 		double leftSpeed = left.getEncVelocity();
 		double rightSpeed = right.getEncVelocity();
 		return (Math.abs(leftSpeed) > RobotMap.FINISHED_SPIN_UP_THRESHOLD) && (Math.abs(rightSpeed) > RobotMap.FINISHED_SPIN_UP_THRESHOLD);
->>>>>>> master
 	}
 	
 	public void initDefaultCommand() {
