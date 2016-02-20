@@ -24,9 +24,11 @@ public class SetFlyWheels extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if(out){
+		if (out) {
 			Robot.flyWheels.out();
-		}else Robot.flyWheels.in();
+		} else {
+			Robot.flyWheels.in();
+		}
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
