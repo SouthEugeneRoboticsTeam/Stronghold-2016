@@ -1,8 +1,12 @@
 
 package org.usfirst.frc.team2521.robot;
 
-import org.usfirst.frc.team2521.robot.commands.FileManager;
-import org.usfirst.frc.team2521.robot.subsystems.*;
+import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
+import org.usfirst.frc.team2521.robot.subsystems.Intake;
+import org.usfirst.frc.team2521.robot.subsystems.Sensors;
+import org.usfirst.frc.team2521.robot.subsystems.Yaw;
+import org.usfirst.frc.team2521.robot.subsystems.Pitch;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -21,7 +25,8 @@ public class Robot extends IterativeRobot {
 	public static Intake intake;
 	public static FlyWheels flyWheels;
 	public static Sensors sensors;
-	public static Turret turret;
+	public static Pitch pitch;
+	public static Yaw yaw;
 	
 	public static OI oi;
 	
@@ -33,7 +38,8 @@ public class Robot extends IterativeRobot {
 		drivetrain = new Drivetrain();
 		intake = new Intake();
 		flyWheels = new FlyWheels();
-		turret = new Turret();
+		pitch = new Pitch();
+		yaw = new Yaw();
 		
 		oi = new OI();
 	}

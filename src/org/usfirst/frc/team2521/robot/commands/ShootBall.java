@@ -1,7 +1,5 @@
 package org.usfirst.frc.team2521.robot.commands;
 
-import org.usfirst.frc.team2521.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -11,13 +9,9 @@ public class ShootBall extends CommandGroup {
     
     public  ShootBall() { 
     	addParallel(new SetFlyWheels(true));
-    	if(Robot.flyWheels.upToSpeed()){
-    		addParallel(new PusherOut());
-    	}
-    	if(!Robot.sensors.ballInBot()){
-    		addParallel(new PusherIn());
-    	}
-    	addSequential(new SetFlyWheels(true));
+    	addSequential(new SetPusher(true));
+    	addSequential(new SetPusher(false));
+    	end();
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

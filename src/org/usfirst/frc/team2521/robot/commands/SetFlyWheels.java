@@ -1,9 +1,9 @@
-
 package org.usfirst.frc.team2521.robot.commands;
 
 import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -11,8 +11,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class SetFlyWheels extends Command {
+	
 	boolean out;
-	public SetFlyWheels(boolean out) {//true means shoot, fasle means intake
+	
+	public SetFlyWheels(boolean out  /** true means shoot, fasle means intake **/) {
 		requires(Robot.flyWheels);
 		this.out = out;
 	}
@@ -28,16 +30,18 @@ public class SetFlyWheels extends Command {
 			Robot.flyWheels.out();
 		} else {
 			Robot.flyWheels.in();
+			out = false;
 		}
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return !out;
 	}
 	
 	// Called once after isFinished returns true
 	protected void end() {
+		Timer.delay(1);
 		Robot.flyWheels.stop();
 	}
 	

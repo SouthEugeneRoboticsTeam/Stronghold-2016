@@ -7,9 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class PusherOut extends Command {
-
-    public PusherOut() {
+public class SetPusher extends Command {
+	boolean out;
+    public SetPusher(boolean out) {
+    	this.out = out;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -24,12 +25,20 @@ public class PusherOut extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+    	if (out) {
+    		return Robot.sensors.ballInShooter();
+    	} else {
+    		return !Robot.sensors.ballInBot();
+    	}
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.flyWheels.setPusher(false);
+    	if (out) {
+    		Robot.flyWheels.setPusher(true);
+    	} else {
+    		Robot.flyWheels.setPusher(false);
+    	}
     }
 
     // Called when another command which requires one or more of the same

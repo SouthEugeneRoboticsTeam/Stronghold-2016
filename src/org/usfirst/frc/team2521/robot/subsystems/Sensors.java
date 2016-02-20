@@ -14,6 +14,8 @@ public class Sensors extends Subsystem {
 	private AnalogInput lidar;
 	private NetworkTable table;
 	private double[] blobs_default = {-1};
+	private double deltaX = 0;
+	private double lastDeltaX = 0;
 	
 	public Sensors(){
 		lidar = new AnalogInput(RobotMap.LIDAR_PORT);
@@ -32,6 +34,15 @@ public class Sensors extends Subsystem {
     	return RobotMap.HEIGHT_TO_DISTANCE_FACTOR/(getHeight());
     }
 	
+	/*public double getDeltaX(){
+		double[] blobs = getBlobs();
+		if(blobs.length > 0){ //makes sure that there is a blob, then calculates distance off center
+			deltaX = blobs[1] - RobotMap.IMAGE_WIDTH/2;
+			lastDeltaX = deltaX;
+		} else deltaX = RobotMap.VISION_SETPOINT;
+		return deltaX;
+	}*/
+	
 	private double getHeight(){
     	double height = table.getNumber("HEIGHT", 0);
     	if(height != 0){
@@ -39,6 +50,7 @@ public class Sensors extends Subsystem {
     	}
     	return height;
     }
+	
 	
 	public double getLidarDistance(){
 		double raw = lidar.getValue();
@@ -48,6 +60,10 @@ public class Sensors extends Subsystem {
 	private double[] getBlobs(){
 		double[] blobs = table.getNumberArray("BLOBS", blobs_default);
 		return blobs;
+	}
+	
+	public double getWidth(){
+		return 0; //needs to be updated with SmartDashboard -- right now I just wanted to make it so it wouldn't throw an error
 	}
 
     public void initDefaultCommand() {
