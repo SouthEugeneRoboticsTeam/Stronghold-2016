@@ -13,7 +13,7 @@ public class ChangeYaw extends Command {
 	double position;
 	
 	public ChangeYaw(double position) {
-		requires(Robot.turret);
+		requires(Robot.pitch);
 		this.position = position;
 	}
 	
@@ -32,7 +32,7 @@ public class ChangeYaw extends Command {
 	
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.turret.setYaw(position);
+		//Robot.turret.setYaw(position);
 	}
 	
 	// Called when another command which requires one or more of the same

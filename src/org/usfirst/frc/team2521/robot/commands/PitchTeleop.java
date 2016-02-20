@@ -8,23 +8,23 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TurretTeleop extends Command {
+public class PitchTeleop extends Command {
 
-    public TurretTeleop() {
-    	requires(Robot.turret);
+    public PitchTeleop() {
+    	requires(Robot.pitch);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.turret.teleopInit();
+    	Robot.pitch.teleopInit();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.turret.setPitch(OI.getInstance().getSecondaryStick().getY());
-    	Robot.turret.setYaw(OI.getInstance().getSecondaryStick().getX());
+    	Robot.pitch.set(OI.getInstance().getSecondaryStick().getY());
+    	//Robot.turret.setYaw(OI.getInstance().getSecondaryStick().getX());
     }
 
     // Make this return true when this Command no longer needs to run execute()

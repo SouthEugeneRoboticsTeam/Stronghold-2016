@@ -44,6 +44,9 @@ public class RobotMap {
 	public static final double LIDAR_OFFSET = 145.2; //Calculated
 	public static final double HEIGHT_TO_DISTANCE_FACTOR = 4138.375054; //calculated from measured data
 	public static final double ENC_COUNTS_PER_RADIAN = 121/(0.5*Math.PI);//measured
+	public static final double VISION_SETPOINT = 0;
+	
+	public static final int IMAGE_WIDTH = 320;
 	
 	// Thresholds
 	public static final int FINISHED_SPIN_UP_THRESHOLD = 100;
