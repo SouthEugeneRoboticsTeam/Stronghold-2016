@@ -10,10 +10,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class FlyWheelsIn extends Command {
-	
-	public FlyWheelsIn() {
+public class SetFlyWheels extends Command {
+	boolean out;
+	public SetFlyWheels(boolean out) {//true means shoot, fasle means intake
 		requires(Robot.flyWheels);
+		this.out = out;
 	}
 	
 	// Called just before this Command runs the first time
@@ -23,7 +24,9 @@ public class FlyWheelsIn extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.flyWheels.in();
+		if(out){
+			Robot.flyWheels.out();
+		}else Robot.flyWheels.in();
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
@@ -33,12 +36,12 @@ public class FlyWheelsIn extends Command {
 	
 	// Called once after isFinished returns true
 	protected void end() {
-		
-		
+		Robot.flyWheels.stop();
 	}
 	
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		Robot.flyWheels.stop();
 	}
 }
