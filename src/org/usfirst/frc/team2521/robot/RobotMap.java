@@ -42,13 +42,16 @@ public class RobotMap {
 	//Other constants
 	public static final double LIDAR_FACTOR = 10940; //Calculated
 	public static final double LIDAR_OFFSET = 145.2; //Calculated
-	public static final double LIDAR_IN_BOT_THRESHOLD = 9;
-	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 2;
 	public static final double HEIGHT_TO_DISTANCE_FACTOR = 4138.375054; //calculated from measured data
 	public static final double ENC_COUNTS_PER_RADIAN = 121/(0.5*Math.PI);//measured
 	
 	// Thresholds
-		public static final int FINISHED_SPIN_UP_THRESHOLD = 100;
+	public static final int FINISHED_SPIN_UP_THRESHOLD = 100;
+	public static final int YAW_ERROR_THRESHOLD = 10;
+	public static final int PITCH_ERROR_THRESHOLD = 10;
+	
+	public static final double LIDAR_IN_BOT_THRESHOLD = 9;
+	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 2;
 	
 	public static final double YAW_P = 1;
 	public static final double YAW_I = 0;

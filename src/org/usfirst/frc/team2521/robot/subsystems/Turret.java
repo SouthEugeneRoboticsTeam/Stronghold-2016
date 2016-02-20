@@ -17,8 +17,6 @@ public class Turret extends Subsystem {
 	private CANTalon yaw;
 	private CANTalon pitch;
 	
-	private boolean onTarget;
-	
 	public Turret(){
 		yaw = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
 		pitch = new CANTalon(RobotMap.TARGETING_PITCH_MOTOR);
@@ -40,7 +38,7 @@ public class Turret extends Subsystem {
     }
     
     public boolean getOnTarget() {
-    	return onTarget;
+    	return (Math.abs(yaw.getError()) < RobotMap.YAW_ERROR_THRESHOLD) && (Math.abs(pitch.getError()) < RobotMap.PITCH_ERROR_THRESHOLD);
     }
 	
 	public void setPitch(double value){
