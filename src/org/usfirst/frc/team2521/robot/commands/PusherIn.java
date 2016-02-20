@@ -7,13 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class FireOnDetect extends Command {
+public class PusherIn extends Command {
 
-    public FireOnDetect() {
+    public PusherIn() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.flyWheels);
-    	requires(Robot.sensors);
     }
 
     // Called just before this Command runs the first time
@@ -26,11 +24,12 @@ public class FireOnDetect extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.flyWheels.setPusher(true);
     }
 
     // Called when another command which requires one or more of the same

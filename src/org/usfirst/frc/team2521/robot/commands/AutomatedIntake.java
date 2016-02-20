@@ -10,8 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AutomatedIntake extends Command {
 	
-	boolean ballInBot = false;
-	
 	public AutomatedIntake() {
 		requires(Robot.intake);
 		requires(Robot.flyWheels);
@@ -25,9 +23,7 @@ public class AutomatedIntake extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		ballInBot = Robot.sensors.ballInBot();
-		
-		if (ballInBot) {
+		if (Robot.sensors.ballInBot()) {
 			Robot.intake.in();
 			Robot.flyWheels.in();
 		}

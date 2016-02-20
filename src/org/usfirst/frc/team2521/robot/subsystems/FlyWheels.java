@@ -5,8 +5,6 @@ import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.RobotMap;
 import org.usfirst.frc.team2521.robot.commands.ChangePitch;
 import org.usfirst.frc.team2521.robot.commands.ChangeYaw;
-import org.usfirst.frc.team2521.robot.commands.FireBall;
-import org.usfirst.frc.team2521.robot.commands.ShooterControl;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -22,9 +20,6 @@ public class FlyWheels extends Subsystem {
 	private CANTalon left;
 	private CANTalon right;
 	
-	private CANTalon pitch;
-	private CANTalon yaw;
-	
 	private DoubleSolenoid pusher;
 	
 	public FlyWheels() {
@@ -37,21 +32,16 @@ public class FlyWheels extends Subsystem {
 		right.changeControlMode(CANTalon.TalonControlMode.Follower);
 		right.reverseOutput(true);
 		
-		pitch = new CANTalon(RobotMap.TARGETING_PITCH_MOTOR);
-		yaw = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
-		
 		pusher = new DoubleSolenoid(RobotMap.PUSHER_OUT_PORT, RobotMap.PUSHER_IN_PORT);
 	}
 	
-	public void out() {
-		left.set(1);
-		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
-		FireBall.fireBallEnded = true;
+	
+	private double getLeftSpeed() {
+		return left.getEncVelocity();
 	}
 	
-	public void stop() {
-		left.set(0);
-		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
+	private double getRightSpeed() {
+		return right.getEncVelocity();
 	}
 	
 	public void in() {
@@ -59,17 +49,16 @@ public class FlyWheels extends Subsystem {
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
 	
-	public void pitchControl() {
-		Joystick secondary = OI.getInstance().getSecondaryStick();
-		
-		changePitch(secondary.getY());
+	public void out() {
+		left.set(1);
+		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
 	
-	public void yawControl() {
-		Joystick secondary = OI.getInstance().getSecondaryStick();
-		
-		changeYaw(secondary.getX());
+	public void stop() {
+		left.set(0);
+		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
+
 	
 	public void setPusher(boolean on) {
 		if (on) {
@@ -79,25 +68,12 @@ public class FlyWheels extends Subsystem {
 		}
 	}
 	
-	public void changePitch(double speed) {
-		pitch.set(speed);
-		ChangePitch.changePitchIsFinished = true;
-	}
-	
-	public void changeYaw(double speed) {
-		yaw.set(speed);
-		ChangeYaw.changeYawIsFinished = true;
-	}
-	
-	public double getLeftSpeed() {
-		return left.getEncVelocity();
-	}
-	
-	public double getRightSpeed() {
-		return right.getEncVelocity();
+	public boolean upToSpeed(){
+		double leftSpeed = left.getEncVelocity();
+		double rightSpeed = right.getEncVelocity();
+		return (Math.abs(leftSpeed) > RobotMap.FINISHED_SPIN_UP_THRESHOLD) && (Math.abs(rightSpeed) > RobotMap.FINISHED_SPIN_UP_THRESHOLD);
 	}
 	
 	public void initDefaultCommand() {
-		setDefaultCommand(new ShooterControl());
 	}
 }
