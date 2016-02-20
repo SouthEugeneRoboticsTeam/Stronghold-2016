@@ -3,7 +3,7 @@ package org.usfirst.frc.team2521.robot;
 
 import org.usfirst.frc.team2521.robot.commands.AutomatedIntake;
 import org.usfirst.frc.team2521.robot.commands.IntakeIn;
-import org.usfirst.frc.team2521.robot.commands.FlyWheelsOut;
+import org.usfirst.frc.team2521.robot.commands.ShootBall;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -18,8 +18,6 @@ public class OI {
 	private Joystick right;
 	private Joystick secondary;
 	
-	private JoystickButton startSpinButton;
-	private JoystickButton stopSpinButton;
 	private JoystickButton intakeButton;
 	private JoystickButton fireButton;
 	private JoystickButton autoIntakeButton;
@@ -53,17 +51,13 @@ public class OI {
 	}
 	
 	public void initButtons() {
-		startSpinButton = new JoystickButton(secondary, RobotMap.START_SPIN_BUTTON);
-		stopSpinButton = new JoystickButton(secondary, RobotMap.STOP_SPIN_BUTTON);
-		
 		intakeButton = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON);
 		fireButton = new JoystickButton(secondary, RobotMap.FIRE_BUTTON);
 		autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
 	}
 	
 	public void tieButtons() {
-		stopSpinButton.whenPressed(new FlyWheelsOut());
-		
+		fireButton.whenPressed(new ShootBall());
 		intakeButton.whileHeld(new IntakeIn());
 		autoIntakeButton.whenPressed(new AutomatedIntake());
 	}

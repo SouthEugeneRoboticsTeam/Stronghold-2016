@@ -35,7 +35,6 @@ public class RobotMap {
 	
 	// Buttons
 	public static final int START_SPIN_BUTTON = 3;
-	public static final int STOP_SPIN_BUTTON = 2;
 	public static final int INTAKE_BUTTON = 6;
 	public static final int FIRE_BUTTON = 1; // Real
 	public static final int AUTO_INTAKE_BUTTON = 7; //Tester
