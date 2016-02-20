@@ -22,9 +22,6 @@ public class FlyWheels extends Subsystem {
 	private CANTalon left;
 	private CANTalon right;
 	
-	private CANTalon pitch;
-	private CANTalon yaw;
-	
 	private DoubleSolenoid pusher;
 	
 	public FlyWheels() {
@@ -58,35 +55,12 @@ public class FlyWheels extends Subsystem {
 		left.set(-1);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
-	
-	public void pitchControl() {
-		Joystick secondary = OI.getInstance().getSecondaryStick();
-		
-		changePitch(secondary.getY());
-	}
-	
-	public void yawControl() {
-		Joystick secondary = OI.getInstance().getSecondaryStick();
-		
-		changeYaw(secondary.getX());
-	}
-	
 	public void setPusher(boolean on) {
 		if (on) {
 			pusher.set(Value.kForward);
 		} else {
 			pusher.set(Value.kReverse);
 		}
-	}
-	
-	public void changePitch(double speed) {
-		pitch.set(speed);
-		ChangePitch.changePitchIsFinished = true;
-	}
-	
-	public void changeYaw(double speed) {
-		yaw.set(speed);
-		ChangeYaw.changeYawIsFinished = true;
 	}
 	
 	public double getLeftSpeed() {
