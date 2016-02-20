@@ -8,10 +8,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-<<<<<<< HEAD
-=======
 import java.lang.Math;
->>>>>>> master
 
 /**
  *
@@ -19,6 +16,8 @@ import java.lang.Math;
 public class Turret extends Subsystem {
 	private CANTalon yaw;
 	private CANTalon pitch;
+	
+	private boolean onTarget;
 	
 	public Turret(){
 		yaw = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
@@ -38,6 +37,10 @@ public class Turret extends Subsystem {
     	double opp = 85 - RobotMap.CAMERA_HEIGHT;
     	double angle = Math.atan(opp/adj);
     	return angle*RobotMap.ENC_COUNTS_PER_RADIAN;
+    }
+    
+    public boolean getOnTarget() {
+    	return onTarget;
     }
 	
 	public void setPitch(double value){
