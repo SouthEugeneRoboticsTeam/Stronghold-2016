@@ -17,6 +17,8 @@ public class Turret extends Subsystem {
 	private CANTalon yaw;
 	private CANTalon pitch;
 	
+	private boolean onTarget;
+	
 	public Turret(){
 		yaw = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
 		pitch = new CANTalon(RobotMap.TARGETING_PITCH_MOTOR);
@@ -35,6 +37,10 @@ public class Turret extends Subsystem {
     	double opp = 85 - RobotMap.CAMERA_HEIGHT;
     	double angle = Math.atan(opp/adj);
     	return angle*RobotMap.ENC_COUNTS_PER_RADIAN;
+    }
+    
+    public boolean getOnTarget() {
+    	return onTarget;
     }
 	
 	public void setPitch(double value){
