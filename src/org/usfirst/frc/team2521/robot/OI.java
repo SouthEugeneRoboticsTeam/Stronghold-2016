@@ -4,8 +4,11 @@ package org.usfirst.frc.team2521.robot;
 import org.usfirst.frc.team2521.robot.commands.AutomatedIntake;
 import org.usfirst.frc.team2521.robot.commands.IntakeIn;
 import org.usfirst.frc.team2521.robot.commands.IntakeOut;
+import org.usfirst.frc.team2521.robot.commands.IntakeStop;
 import org.usfirst.frc.team2521.robot.commands.SetFlyWheels;
+import org.usfirst.frc.team2521.robot.commands.SetPusher;
 import org.usfirst.frc.team2521.robot.commands.ShootBall;
+import org.usfirst.frc.team2521.robot.commands.StopFlyWheels;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -29,12 +32,15 @@ public class OI {
 	private JoystickButton fireButton;
 	private JoystickButton autoIntakeButton;
 	
+	private JoystickButton pusherButton;
+	
 	private static OI instance;
 	
 	public OI() {
 		left = new Joystick(RobotMap.LEFT_STICK_PORT);
 		right = new Joystick(RobotMap.RIGHT_STICK_PORT);
 		secondary = new Joystick(RobotMap.SECONDARY_STICK_PORT);
+		initButtons();
 	}
 	
 	public static OI getInstance() {
@@ -64,14 +70,23 @@ public class OI {
 		shooterButtonOut = new JoystickButton(secondary, RobotMap.SHOOTER_BUTTON_OUT);
 		fireButton = new JoystickButton(secondary, RobotMap.FIRE_BUTTON);
 		autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
+		pusherButton = new JoystickButton(secondary, RobotMap.PUSHER_BUTTON);
+		
+		tieButtons();
 	}
 	
 	public void tieButtons() {
 		fireButton.whenPressed(new ShootBall());
 		intakeButtonIn.whenPressed(new IntakeIn());
-		intakeButtonOut.whenReleased(new IntakeOut());
+		intakeButtonIn.whenReleased(new IntakeStop());
+		intakeButtonOut.whenPressed(new IntakeOut());
+		intakeButtonOut.whenReleased(new IntakeStop());
 		autoIntakeButton.whenPressed(new AutomatedIntake());
 		shooterButtonIn.whenPressed(new SetFlyWheels(false));
 		shooterButtonOut.whenPressed(new SetFlyWheels(true));
+		shooterButtonIn.whenReleased(new StopFlyWheels());
+		shooterButtonOut.whenReleased(new StopFlyWheels());
+		pusherButton.whenPressed(new SetPusher(true));
+		pusherButton.whenReleased(new SetPusher(false));
 	}
 }

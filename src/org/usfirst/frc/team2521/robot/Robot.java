@@ -6,6 +6,7 @@ import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
 import org.usfirst.frc.team2521.robot.subsystems.Intake;
 import org.usfirst.frc.team2521.robot.subsystems.Sensors;
 import org.usfirst.frc.team2521.robot.subsystems.Yaw;
+import org.usfirst.frc.team2521.robot.subsystems.YawNoPID;
 import org.usfirst.frc.team2521.robot.subsystems.Pitch;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -26,7 +27,7 @@ public class Robot extends IterativeRobot {
 	public static FlyWheels flyWheels;
 	public static Sensors sensors;
 	public static Pitch pitch;
-	public static Yaw yaw;
+	public static YawNoPID yaw;
 	
 	public static OI oi;
 	
@@ -39,7 +40,7 @@ public class Robot extends IterativeRobot {
 		intake = new Intake();
 		flyWheels = new FlyWheels();
 		pitch = new Pitch();
-		yaw = new Yaw();
+		yaw = new YawNoPID();
 		
 		oi = new OI();
 	}

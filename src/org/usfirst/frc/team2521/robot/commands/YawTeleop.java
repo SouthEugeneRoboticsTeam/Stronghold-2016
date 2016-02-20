@@ -4,6 +4,7 @@ import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -18,12 +19,13 @@ public class YawTeleop extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.yaw.teleopInit();
+    	//Robot.yaw.teleopInit();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.yaw.set(OI.getInstance().getSecondaryStick().getX());
+    	//SmartDashboard.putBoolean("Yaw called", true);
     }
 
     // Make this return true when this Command no longer needs to run execute()

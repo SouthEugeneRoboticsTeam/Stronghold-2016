@@ -21,7 +21,8 @@ public class SetFlyWheels extends Command {
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		FileManager.currentCommand = getClass().toString();
+		SmartDashboard.putBoolean("Set fly wheels", true);
+		//FileManager.currentCommand = getClass().toString();
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
@@ -30,13 +31,12 @@ public class SetFlyWheels extends Command {
 			Robot.flyWheels.out();
 		} else {
 			Robot.flyWheels.in();
-			out = false;
 		}
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return !out;
+		return false;
 	}
 	
 	// Called once after isFinished returns true

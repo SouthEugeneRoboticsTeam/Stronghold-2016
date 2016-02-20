@@ -20,15 +20,15 @@ public class RobotMap {
 	public static final int REAR_RIGHT_MOTOR = 49; //Real
 	
 	public static final int LEFT_SHOOTER_MOTOR = 50; //Either this or 41 is the real value
-	public static final int RIGHT_SHOOTER_MOTOR = 41; //Either this or 50 is the real value
+	public static final int RIGHT_SHOOTER_MOTOR = 40; //Either this or 50 is the real value
 	
 	public static final int INTAKE_WHEEL_MOTOR = 30; //Real
 	
 	public static final int TARGETING_YAW_MOTOR = 31; //Real
-	public static final int TARGETING_PITCH_MOTOR = 40; //Real
+	public static final int TARGETING_PITCH_MOTOR = 41; //Real
 	
-	public static final int PUSHER_IN_PORT = 0;
-	public static final int PUSHER_OUT_PORT = 1;
+	public static final int PUSHER_IN_PORT = 1;
+	public static final int PUSHER_OUT_PORT = 0;
 	// Find actual numbers later.
 	
 	public static final int LIDAR_PORT = 0;
@@ -38,7 +38,8 @@ public class RobotMap {
 	public static final int INTAKE_BUTTON_OUT = 3;
 	public static final int SHOOTER_BUTTON_IN = 4;
 	public static final int SHOOTER_BUTTON_OUT = 5;
-	public static final int FIRE_BUTTON = 1; // Real
+	public static final int PUSHER_BUTTON = 1;
+	public static final int FIRE_BUTTON = 6; // Real
 	public static final int AUTO_INTAKE_BUTTON = 7; //Tester
 	
 	//Other constants
@@ -55,8 +56,8 @@ public class RobotMap {
 	public static final int YAW_ERROR_THRESHOLD = 10;
 	public static final int PITCH_ERROR_THRESHOLD = 10;
 	
-	public static final double LIDAR_IN_BOT_THRESHOLD = 9;
-	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 2;
+	public static final double LIDAR_IN_BOT_THRESHOLD = 20;
+	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 4;
 	
 	public static final double YAW_P = 1;
 	public static final double YAW_I = 0;

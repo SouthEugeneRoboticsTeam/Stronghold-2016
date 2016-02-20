@@ -19,8 +19,8 @@ public class Pitch extends Subsystem {
 	int encYawZero = 0;
 	
 	public Pitch(){
-		pitch = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
-		encYawZero = pitch.getEncPosition();
+		pitch = new CANTalon(RobotMap.TARGETING_PITCH_MOTOR);
+		pitch.enableControl();
 	}
 	
 	public void autoInit(){

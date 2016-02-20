@@ -18,7 +18,7 @@ public class Yaw extends PIDSubsystem {
     public Yaw() {
     	super(RobotMap.YAW_P, RobotMap.YAW_I, RobotMap.YAW_D);
     	yaw = new CANTalon(RobotMap.TARGETING_PITCH_MOTOR);
-    	yaw.changeControlMode(TalonControlMode.Position);
+    	//yaw.changeControlMode(TalonControlMode.Position);
         // Use these to get going:
         // setSetpoint() -  Sets where the PID controller should move the system
         //                  to
