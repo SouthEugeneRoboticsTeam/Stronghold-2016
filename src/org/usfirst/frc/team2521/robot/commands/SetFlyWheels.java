@@ -14,7 +14,7 @@ public class SetFlyWheels extends Command {
 	
 	boolean out;
 	
-	public SetFlyWheels(boolean out  /** true means shoot, fasle means intake **/) {
+	public SetFlyWheels(boolean out  /** true means shoot, false means intake **/) {
 		requires(Robot.flyWheels);
 		this.out = out;
 	}

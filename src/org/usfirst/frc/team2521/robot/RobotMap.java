@@ -34,8 +34,10 @@ public class RobotMap {
 	public static final int LIDAR_PORT = 0;
 	
 	// Buttons
-	public static final int START_SPIN_BUTTON = 3;
-	public static final int INTAKE_BUTTON = 6;
+	public static final int INTAKE_BUTTON_IN = 2;
+	public static final int INTAKE_BUTTON_OUT = 3;
+	public static final int SHOOTER_BUTTON_IN = 4;
+	public static final int SHOOTER_BUTTON_OUT = 5;
 	public static final int FIRE_BUTTON = 1; // Real
 	public static final int AUTO_INTAKE_BUTTON = 7; //Tester
 	

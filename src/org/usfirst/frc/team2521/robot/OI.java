@@ -3,6 +3,8 @@ package org.usfirst.frc.team2521.robot;
 
 import org.usfirst.frc.team2521.robot.commands.AutomatedIntake;
 import org.usfirst.frc.team2521.robot.commands.IntakeIn;
+import org.usfirst.frc.team2521.robot.commands.IntakeOut;
+import org.usfirst.frc.team2521.robot.commands.SetFlyWheels;
 import org.usfirst.frc.team2521.robot.commands.ShootBall;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -18,7 +20,12 @@ public class OI {
 	private Joystick right;
 	private Joystick secondary;
 	
-	private JoystickButton intakeButton;
+	private JoystickButton intakeButtonIn;
+	private JoystickButton intakeButtonOut;
+	
+	private JoystickButton shooterButtonIn;
+	private JoystickButton shooterButtonOut;
+	
 	private JoystickButton fireButton;
 	private JoystickButton autoIntakeButton;
 	
@@ -51,14 +58,20 @@ public class OI {
 	}
 	
 	public void initButtons() {
-		intakeButton = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON);
+		intakeButtonIn = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON_IN);
+		intakeButtonOut = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON_OUT);
+		shooterButtonIn = new JoystickButton(secondary, RobotMap.SHOOTER_BUTTON_IN);
+		shooterButtonOut = new JoystickButton(secondary, RobotMap.SHOOTER_BUTTON_OUT);
 		fireButton = new JoystickButton(secondary, RobotMap.FIRE_BUTTON);
 		autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
 	}
 	
 	public void tieButtons() {
 		fireButton.whenPressed(new ShootBall());
-		intakeButton.whileHeld(new IntakeIn());
+		intakeButtonIn.whenPressed(new IntakeIn());
+		intakeButtonOut.whenReleased(new IntakeOut());
 		autoIntakeButton.whenPressed(new AutomatedIntake());
+		shooterButtonIn.whenPressed(new SetFlyWheels(false));
+		shooterButtonOut.whenPressed(new SetFlyWheels(true));
 	}
 }
