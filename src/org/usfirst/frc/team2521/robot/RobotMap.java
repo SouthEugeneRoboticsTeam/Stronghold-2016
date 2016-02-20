@@ -38,7 +38,6 @@ public class RobotMap {
 	public static final int INTAKE_BUTTON = 6;
 	public static final int FIRE_BUTTON = 1; // Real
 	public static final int AUTO_INTAKE_BUTTON = 7; //Tester
-	public static final int AUTO_FIRE_TOGGLE_BUTTON = 8; //later
 	
 	//Other constants
 	public static final double LIDAR_FACTOR = 10940; //Calculated

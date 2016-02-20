@@ -18,7 +18,6 @@ public class Turret extends Subsystem {
 	private CANTalon pitch;
 	
 	private boolean onTarget;
-	private boolean autoShootActive;
 	
 	public Turret(){
 		yaw = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
@@ -43,10 +42,6 @@ public class Turret extends Subsystem {
     public boolean getOnTarget() {
     	return onTarget;
     }
-    
-    public boolean getAutoShootActive(){
-    	return autoShootActive;
-    }
 	
 	public void setPitch(double value){
 		pitch.set(value);
@@ -54,10 +49,6 @@ public class Turret extends Subsystem {
 	
 	public void setYaw(double value){
 		yaw.set(value);
-	}
-	
-	public void setAutoShootActive(boolean value) {
-		autoShootActive = value;
 	}
 	
 	public void teleopInit(){

@@ -1,17 +1,13 @@
 package org.usfirst.frc.team2521.robot.commands;
 
-import org.usfirst.frc.team2521.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class FireOnDetect extends CommandGroup 
-{
+public class FireOnDetect extends CommandGroup {
     
-    public  FireOnDetect() 
-    {
+    public  FireOnDetect() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -28,10 +24,7 @@ public class FireOnDetect extends CommandGroup
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	requires(Robot.turret);
-    	if(Robot.turret.getAutoShootActive() && Robot.turret.getOnTarget())
-    	{
-    		addSequential(new ShootBall());
-    	}
+    	double dx;
+    	double dy;
     }
 }
