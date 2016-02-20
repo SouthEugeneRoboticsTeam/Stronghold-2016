@@ -10,14 +10,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ShootBall extends CommandGroup {
     
     public  ShootBall() { 
-    	addParallel(new FlyWheelsOut());
+    	addParallel(new SetFlyWheels(true));
     	if(Robot.flyWheels.upToSpeed()){
     		addParallel(new PusherOut());
     	}
     	if(!Robot.sensors.ballInBot()){
     		addParallel(new PusherIn());
     	}
-    	addSequential(new FlyWheelsOut());
+    	addSequential(new SetFlyWheels(true));
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());
