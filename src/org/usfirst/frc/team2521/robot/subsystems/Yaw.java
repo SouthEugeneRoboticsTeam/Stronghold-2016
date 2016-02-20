@@ -2,6 +2,7 @@ package org.usfirst.frc.team2521.robot.subsystems;
 
 import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
+import org.usfirst.frc.team2521.robot.commands.YawTeleop;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
@@ -24,8 +25,12 @@ public class Yaw extends PIDSubsystem {
         // enable() - Enables the PID controller.
     }
     
+    public void autoInit(){
+    	yaw.changeControlMode(TalonControlMode.Position);
+    }
+    
     public boolean getOnTarget(){
-    	return (Math.abs(getSetpoint() - Robot.sensors.getDeltaX()) < RobotMap.YAW_ERROR_THRESHOLD);
+    	return (Math.abs(getSetpoint() - Robot.sensors.getWidth()) < RobotMap.YAW_ERROR_THRESHOLD);
     }
     
     public void set(double position){
@@ -34,14 +39,18 @@ public class Yaw extends PIDSubsystem {
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new YawTeleop());
     }
     
     protected double returnPIDInput() {
         // Return your input value for the PID loop
         // e.g. a sensor, like a potentiometer:
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
-    	return Robot.sensors.getDeltaX();
+    	return Robot.sensors.getWidth();
+    }
+    
+    public void teleopInit(){
+    	yaw.changeControlMode(TalonControlMode.PercentVbus);
     }
     
     protected void usePIDOutput(double output) {
