@@ -10,13 +10,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ChangePitch extends Command {
 	
-	// Up = true - Down = false
 	double position;
-	public static boolean changePitchIsFinished = false;
-	
 	public ChangePitch(double position) {
-		requires(Robot.intake);
-		
+		requires(Robot.turret);
 		this.position = position;
 	}
 	
@@ -26,16 +22,16 @@ public class ChangePitch extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.flyWheels.changePitch(this.position);
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return changePitchIsFinished;
+		return true;
 	}
 	
 	// Called once after isFinished returns true
 	protected void end() {
+		Robot.turret.setPitch(position);
 	}
 	
 	// Called when another command which requires one or more of the same

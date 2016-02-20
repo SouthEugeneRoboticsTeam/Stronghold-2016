@@ -9,16 +9,6 @@ package org.usfirst.frc.team2521.robot;
  */
 public class RobotMap {
 	
-	// Buttons
-	public static final int START_SPIN_BUTTON = 3;
-	public static final int STOP_SPIN_BUTTON = 2;
-	public static final int INTAKE_BUTTON = 6;
-	public static final int FIRE_BUTTON = 1; // Real
-	public static final int AUTO_INTAKE_BUTTON = 7; //Tester
-	
-	// Thresholds
-	public static final int FINISHED_SPIN_UP_THRESHOLD = 100;
-	
 	// Ports
 	public static final int LEFT_STICK_PORT = 0;
 	public static final int RIGHT_STICK_PORT = 1;
@@ -43,6 +33,13 @@ public class RobotMap {
 	
 	public static final int LIDAR_PORT = 0;
 	
+	// Buttons
+	public static final int START_SPIN_BUTTON = 3;
+	public static final int STOP_SPIN_BUTTON = 2;
+	public static final int INTAKE_BUTTON = 6;
+	public static final int FIRE_BUTTON = 1; // Real
+	public static final int AUTO_INTAKE_BUTTON = 7; //Tester
+	
 	//Other constants
 	public static final double LIDAR_FACTOR = 10940; //Calculated
 	public static final double LIDAR_OFFSET = 145.2; //Calculated
@@ -50,6 +47,9 @@ public class RobotMap {
 	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 2;
 	public static final double HEIGHT_TO_DISTANCE_FACTOR = 4138.375054; //calculated from measured data
 	public static final double ENC_COUNTS_PER_RADIAN = 121/(0.5*Math.PI);//measured
+	
+	// Thresholds
+		public static final int FINISHED_SPIN_UP_THRESHOLD = 100;
 	
 	public static final double YAW_P = 1;
 	public static final double YAW_I = 0;

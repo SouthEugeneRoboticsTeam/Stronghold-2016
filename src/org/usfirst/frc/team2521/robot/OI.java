@@ -2,9 +2,8 @@
 package org.usfirst.frc.team2521.robot;
 
 import org.usfirst.frc.team2521.robot.commands.AutomatedIntake;
-import org.usfirst.frc.team2521.robot.commands.FireBall;
 import org.usfirst.frc.team2521.robot.commands.IntakeIn;
-import org.usfirst.frc.team2521.robot.commands.SpinFlyWheels;
+import org.usfirst.frc.team2521.robot.commands.FlyWheelsOut;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -63,11 +62,9 @@ public class OI {
 	}
 	
 	public void tieButtons() {
-//		startSpinButton.whenPressed(new SpinFlyWheelsOut());
-		stopSpinButton.whenPressed(new SpinFlyWheels());
+		stopSpinButton.whenPressed(new FlyWheelsOut());
 		
 		intakeButton.whileHeld(new IntakeIn());
-		fireButton.whenPressed(new FireBall());
 		autoIntakeButton.whenPressed(new AutomatedIntake());
 	}
 }

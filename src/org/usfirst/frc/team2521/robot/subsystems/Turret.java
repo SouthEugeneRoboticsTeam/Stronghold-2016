@@ -8,6 +8,10 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+<<<<<<< HEAD
+=======
+import java.lang.Math;
+>>>>>>> master
 
 /**
  *
@@ -28,7 +32,6 @@ public class Turret extends Subsystem {
 		yaw.setPID(RobotMap.YAW_P, RobotMap.YAW_I, RobotMap.YAW_D);
 		pitch.setPID(RobotMap.PITCH_P, RobotMap.PITCH_I, RobotMap.PITCH_D);
 	}
-	
 	
 	private double getTargetAngle(){
     	double adj = Robot.sensors.getLidarDistance();
