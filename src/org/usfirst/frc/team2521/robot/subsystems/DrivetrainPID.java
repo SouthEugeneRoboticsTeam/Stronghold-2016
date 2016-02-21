@@ -94,7 +94,7 @@ public class DrivetrainPID extends PIDSubsystem {
 	
 	public void set(double value) {
 		frontRight.set(value);
-		frontLeft.set(value);
+		frontLeft.set(-value);
 		
 		SmartDashboard.putNumber("Front right", frontRight.get());
 		rearRight.changeControlMode(TalonControlMode.Follower);
@@ -118,8 +118,8 @@ public class DrivetrainPID extends PIDSubsystem {
     }
     
     protected void usePIDOutput(double output) {
-    	setRight(traverseOffset + output);
-    	setLeft(traverseOffset + output);
+    	setRight(output);
+    	setLeft(output);
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
     }

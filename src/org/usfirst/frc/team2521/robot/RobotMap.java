@@ -50,8 +50,8 @@ public class RobotMap {
 	public static final double ENC_COUNTS_PER_RADIAN = 121/(0.5*Math.PI);//measured
 	public static final double VISION_SETPOINT = 0;
 	public static final double YAW_SENSITIVITY = 0.5;
-	public static final double AUTO_SPEED = 0.25;
-	public static final double AUTO_TIME = 5;
+	public static final double AUTO_SPEED = 0.5;
+	public static final double AUTO_TIME = 2;
 	
 	public static final int AUTO_DISTANCE = 700;
 	public static final int IMAGE_WIDTH = 320;
@@ -72,13 +72,13 @@ public class RobotMap {
 	public static final double PITCH_I = 0;
 	public static final double PITCH_D = 0;
 	
-	public static final double DRIVE_P = 1;
+	public static final double DRIVE_P = 0.01;
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;
 	
 	public static final int CAMERA_HEIGHT = 38; //in inches; needs to be fixed
 	
-	public static final float TRAVERSE_DEGREES = 12;
+	public static final float MOAT_TRAVERSE_DEGREES = 12;
 	
 	
 }

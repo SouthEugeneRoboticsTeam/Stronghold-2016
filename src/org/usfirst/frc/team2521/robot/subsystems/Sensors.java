@@ -29,7 +29,7 @@ public class Sensors extends Subsystem {
 	
 	private double[] blobs_default = { -1 };
 	
-	public boolean isTraversing = false;
+	private boolean isTraversing = false;
 	
 	public Sensors() {
 		ahrs = new AHRS(SPI.Port.kMXP);
@@ -52,6 +52,10 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
 		SmartDashboard.putNumber("Yaw", getYaw());
 		SmartDashboard.putString("Defense", OI.getInstance().getDefense().toString());
+		SmartDashboard.putNumber("Setpoint", Robot.drivetrain.getSetpoint());
+		SmartDashboard.putBoolean("Is traversing", isTraversing());
+		SmartDashboard.putNumber("Pitch", ahrs.getPitch());
+		System.out.println("Pitch" + ahrs.getPitch());
 	}
 	
 	public double getYaw(){
@@ -99,10 +103,16 @@ public class Sensors extends Subsystem {
 	}
 	
 	public void updateTraversing() {
-		if (ahrs.getPitch() >= RobotMap.TRAVERSE_DEGREES) {
-			isTraversing = true;
-		} else if (ahrs.getPitch() <= -RobotMap.TRAVERSE_DEGREES) {
-			isTraversing = false;
+		switch(OI.getInstance().getDefense()){
+		case moat:
+			if (ahrs.getPitch() >= RobotMap.MOAT_TRAVERSE_DEGREES) {
+				isTraversing = true;
+			} else if (ahrs.getPitch() <= -RobotMap.MOAT_TRAVERSE_DEGREES) {
+				isTraversing = false;
+			}
+			break;
+		default: isTraversing = false;
+			break;
 		}
 	}
 	
