@@ -74,5 +74,7 @@ public class RobotMap {
 	
 	public static final int CAMERA_HEIGHT = 38; //in inches; needs to be fixed
 	
+	public static final float TRAVERSE_DEGREES = 12;
+	
 	
 }

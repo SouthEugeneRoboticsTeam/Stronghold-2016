@@ -6,9 +6,9 @@ import org.usfirst.frc.team2521.robot.RobotMap;
 import org.usfirst.frc.team2521.robot.commands.TeleoperatedDrive;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class Drivetrain extends Subsystem {
-	//Configured for rhino
+	// Configured for rhino
 	
 	private RobotDrive frontDrive;
 	private RobotDrive rearDrive;
@@ -42,7 +42,7 @@ public class Drivetrain extends Subsystem {
 		double left = OI.getInstance().getLeftStick().getY();
 		double right = OI.getInstance().getRightStick().getY();
 		
-		frontDrive.tankDrive(right, left); //Switched to make it work
+		frontDrive.tankDrive(right, left); // Switched to make it work
 		rearDrive.tankDrive(right, left);
 	}
 	
@@ -74,14 +74,14 @@ public class Drivetrain extends Subsystem {
 		rearRight.set(encoderPosition);
 	}
 	
-	public void set(double value) {	
+	public void set(double value) {
 		frontRight.set(value);
 		frontLeft.set(value);
 		
 		SmartDashboard.putNumber("Front right", frontRight.get());
 		rearRight.changeControlMode(TalonControlMode.Follower);
 		rearRight.set(RobotMap.FRONT_RIGHT_MOTOR);
-	
+		
 		SmartDashboard.putNumber("Front left", frontLeft.get());
 		rearLeft.changeControlMode(TalonControlMode.Follower);
 		rearLeft.set(RobotMap.FRONT_LEFT_MOTOR);
