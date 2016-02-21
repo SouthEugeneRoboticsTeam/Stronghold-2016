@@ -13,6 +13,7 @@ import org.usfirst.frc.team2521.robot.commands.ShootBall;
 import org.usfirst.frc.team2521.robot.commands.StopFlyWheels;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -20,6 +21,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+	private Preferences prefs;
 	
 	private Joystick left;
 	private Joystick right;
@@ -41,11 +43,59 @@ public class OI {
 	
 	private static OI instance;
 	
+	private int fieldPosition;
+	private Defense defense;
+	
 	public OI() {
 		left = new Joystick(RobotMap.LEFT_STICK_PORT);
 		right = new Joystick(RobotMap.RIGHT_STICK_PORT);
 		secondary = new Joystick(RobotMap.SECONDARY_STICK_PORT);
+		setPrefs();
 		initButtons();
+	}
+	
+	public void setPrefs(){
+		prefs = Preferences.getInstance();
+		fieldPosition = prefs.getInt("Field Position", 1);
+		switch(prefs.getInt("Defense", 0)){
+		case 1: defense = Defense.portcullis;
+			break;
+		case 2: defense = Defense.chevalDeFrise;
+			break;
+		case 3: defense = Defense.moat;
+			break;
+		case 4: defense = Defense.ramparts;
+			break;
+		case 5: defense = Defense.drawbridge;
+			break;
+		case 6: defense = Defense.sallyPort;
+			break;
+		case 7: defense = Defense.roughTerrain;
+			break;
+		case 8: defense = Defense.rockWall;
+			break;
+		default: defense = Defense.lowBar;
+		}
+	}
+	
+	public enum Defense {
+		portcullis,
+		chevalDeFrise,
+		moat,
+		ramparts,
+		drawbridge,
+		sallyPort,
+		rockWall,
+		roughTerrain,
+		lowBar
+	}
+	
+	public Defense getDefense(){
+		return defense;
+	}
+	
+	public int getFieldPosition(){
+		return fieldPosition;
 	}
 	
 	public static OI getInstance() {
