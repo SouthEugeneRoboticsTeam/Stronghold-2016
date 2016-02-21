@@ -58,6 +58,7 @@ public class Drivetrain extends Subsystem {
 		frontRight.changeControlMode(TalonControlMode.PercentVbus);
 		rearLeft.changeControlMode(TalonControlMode.PercentVbus);
 		rearRight.changeControlMode(TalonControlMode.PercentVbus);
+		
 		tankDrive();
 	}
 	
@@ -73,18 +74,17 @@ public class Drivetrain extends Subsystem {
 		rearRight.set(encoderPosition);
 	}
 	
-	public void set(double value){	
+	public void set(double value) {	
 		frontRight.set(value);
+		frontLeft.set(value);
+		
 		SmartDashboard.putNumber("Front right", frontRight.get());
 		rearRight.changeControlMode(TalonControlMode.Follower);
 		rearRight.set(RobotMap.FRONT_RIGHT_MOTOR);
-		frontLeft.set(-value);
+	
 		SmartDashboard.putNumber("Front left", frontLeft.get());
 		rearLeft.changeControlMode(TalonControlMode.Follower);
-		rearLeft.reverseOutput(true);
-		rearLeft.set(RobotMap.FRONT_RIGHT_MOTOR);
-		//frontDrive.tankDrive(value, value);
-		//rearDrive.tankDrive(value, value);
+		rearLeft.set(RobotMap.FRONT_LEFT_MOTOR);
 	}
 	
 	public void initDefaultCommand() {
