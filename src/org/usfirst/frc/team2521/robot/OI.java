@@ -5,6 +5,8 @@ import org.usfirst.frc.team2521.robot.commands.AutomatedIntake;
 import org.usfirst.frc.team2521.robot.commands.IntakeIn;
 import org.usfirst.frc.team2521.robot.commands.IntakeOut;
 import org.usfirst.frc.team2521.robot.commands.IntakeStop;
+import org.usfirst.frc.team2521.robot.commands.LinkedIntake;
+import org.usfirst.frc.team2521.robot.commands.LinkedIntakeStop;
 import org.usfirst.frc.team2521.robot.commands.SetFlyWheels;
 import org.usfirst.frc.team2521.robot.commands.SetPusher;
 import org.usfirst.frc.team2521.robot.commands.ShootBall;
@@ -25,6 +27,7 @@ public class OI {
 	
 	private JoystickButton intakeButtonIn;
 	private JoystickButton intakeButtonOut;
+	private JoystickButton driveIntakeOut;
 	
 	private JoystickButton shooterButtonIn;
 	private JoystickButton shooterButtonOut;
@@ -33,6 +36,8 @@ public class OI {
 	private JoystickButton autoIntakeButton;
 	
 	private JoystickButton pusherButton;
+	
+	private JoystickButton linkedIntakeButton;
 	
 	private static OI instance;
 	
@@ -71,6 +76,8 @@ public class OI {
 		fireButton = new JoystickButton(secondary, RobotMap.FIRE_BUTTON);
 		autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
 		pusherButton = new JoystickButton(secondary, RobotMap.PUSHER_BUTTON);
+		linkedIntakeButton = new JoystickButton(right, RobotMap.LINKED_INTAKE_BUTTON);
+		driveIntakeOut = new JoystickButton(right, RobotMap.INTAKE_BUTTON_OUT);
 		
 		tieButtons();
 	}
@@ -88,5 +95,9 @@ public class OI {
 		shooterButtonOut.whenReleased(new StopFlyWheels());
 		pusherButton.whenPressed(new SetPusher(true));
 		pusherButton.whenReleased(new SetPusher(false));
+		linkedIntakeButton.whenPressed(new LinkedIntake());
+		linkedIntakeButton.whenReleased(new LinkedIntakeStop());
+		driveIntakeOut.whenPressed(new IntakeOut());
+		driveIntakeOut.whenReleased(new IntakeStop());
 	}
 }

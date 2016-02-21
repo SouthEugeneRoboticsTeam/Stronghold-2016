@@ -34,13 +34,14 @@ public class RobotMap {
 	public static final int LIDAR_PORT = 0;
 	
 	// Buttons
-	public static final int INTAKE_BUTTON_IN = 2;
+	public static final int INTAKE_BUTTON_IN = 8;
 	public static final int INTAKE_BUTTON_OUT = 3;
 	public static final int SHOOTER_BUTTON_IN = 4;
 	public static final int SHOOTER_BUTTON_OUT = 5;
 	public static final int PUSHER_BUTTON = 1;
 	public static final int FIRE_BUTTON = 6; // Real
 	public static final int AUTO_INTAKE_BUTTON = 7; //Tester
+	public static final int LINKED_INTAKE_BUTTON = 2;
 	
 	//Other constants
 	public static final double LIDAR_FACTOR = 10940; //Calculated
@@ -48,7 +49,11 @@ public class RobotMap {
 	public static final double HEIGHT_TO_DISTANCE_FACTOR = 4138.375054; //calculated from measured data
 	public static final double ENC_COUNTS_PER_RADIAN = 121/(0.5*Math.PI);//measured
 	public static final double VISION_SETPOINT = 0;
+	public static final double YAW_SENSITIVITY = 0.5;
+	public static final double AUTO_SPEED = 0.25;
+	public static final double AUTO_TIME = 5;
 	
+	public static final int AUTO_DISTANCE = 700;
 	public static final int IMAGE_WIDTH = 320;
 	
 	// Thresholds
@@ -68,5 +73,6 @@ public class RobotMap {
 	public static final double PITCH_D = 0;
 	
 	public static final int CAMERA_HEIGHT = 38; //in inches; needs to be fixed
+	
 	
 }

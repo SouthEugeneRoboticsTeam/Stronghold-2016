@@ -8,7 +8,9 @@ import org.usfirst.frc.team2521.robot.commands.TeleoperatedDrive;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -40,8 +42,8 @@ public class Drivetrain extends Subsystem {
 		double left = OI.getInstance().getLeftStick().getY();
 		double right = OI.getInstance().getRightStick().getY();
 		
-		frontDrive.tankDrive(left, right);
-		rearDrive.tankDrive(left, right);
+		frontDrive.tankDrive(right, left); //Switched to make it work
+		rearDrive.tankDrive(right, left);
 	}
 	
 	public void arcadeDrive() {
@@ -52,14 +54,37 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public void teleoperatedDrive() {
+		frontLeft.changeControlMode(TalonControlMode.PercentVbus);
+		frontRight.changeControlMode(TalonControlMode.PercentVbus);
+		rearLeft.changeControlMode(TalonControlMode.PercentVbus);
+		rearRight.changeControlMode(TalonControlMode.PercentVbus);
 		tankDrive();
 	}
 	
-	public void setEncPosition(int encoderPosition) {
-		frontLeft.setEncPosition(encoderPosition);
-		frontRight.setEncPosition(encoderPosition);
-		rearLeft.setEncPosition(encoderPosition);
-		rearRight.setEncPosition(encoderPosition);
+	public void setPosition(int encoderPosition) {
+		frontLeft.changeControlMode(TalonControlMode.Position);
+		frontRight.changeControlMode(TalonControlMode.Position);
+		rearLeft.changeControlMode(TalonControlMode.Position);
+		rearRight.changeControlMode(TalonControlMode.Position);
+		
+		frontLeft.set(encoderPosition);
+		frontRight.set(encoderPosition);
+		rearLeft.set(encoderPosition);
+		rearRight.set(encoderPosition);
+	}
+	
+	public void set(double value){	
+		frontRight.set(value);
+		SmartDashboard.putNumber("Front right", frontRight.get());
+		rearRight.changeControlMode(TalonControlMode.Follower);
+		rearRight.set(RobotMap.FRONT_RIGHT_MOTOR);
+		frontLeft.set(-value);
+		SmartDashboard.putNumber("Front left", frontLeft.get());
+		rearLeft.changeControlMode(TalonControlMode.Follower);
+		rearLeft.reverseOutput(true);
+		rearLeft.set(RobotMap.FRONT_RIGHT_MOTOR);
+		//frontDrive.tankDrive(value, value);
+		//rearDrive.tankDrive(value, value);
 	}
 	
 	public void initDefaultCommand() {

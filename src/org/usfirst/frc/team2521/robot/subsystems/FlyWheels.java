@@ -29,6 +29,7 @@ public class FlyWheels extends Subsystem {
 		right.reverseOutput(true);
 		
 		pusher = new DoubleSolenoid(RobotMap.PUSHER_OUT_PORT, RobotMap.PUSHER_IN_PORT);
+		
 	}
 	
 	

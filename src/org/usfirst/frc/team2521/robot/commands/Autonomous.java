@@ -1,20 +1,16 @@
 package org.usfirst.frc.team2521.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
+import org.usfirst.frc.team2521.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class ShootBall extends CommandGroup {
+public class Autonomous extends CommandGroup {
     
-    public  ShootBall() { 
-    	addParallel(new SetFlyWheels(true));
-    	addSequential(new SetPusher(true));
-    	addSequential(new SetPusher(false));
-    	Timer.delay(1);
-    	end();
-    	
+    public  Autonomous() {
+    	addSequential(new MoveForTime(RobotMap.AUTO_SPEED), RobotMap.AUTO_TIME);
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

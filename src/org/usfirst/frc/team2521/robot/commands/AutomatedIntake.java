@@ -23,7 +23,7 @@ public class AutomatedIntake extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (Robot.sensors.ballInBot()) {
+		if (!Robot.sensors.ballInBot()) {
 			Robot.intake.in();
 			Robot.flyWheels.in();
 		}

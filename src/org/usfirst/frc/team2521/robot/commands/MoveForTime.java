@@ -1,37 +1,33 @@
 package org.usfirst.frc.team2521.robot.commands;
 
 import org.usfirst.frc.team2521.robot.Robot;
-import org.usfirst.frc.team2521.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Move the robot to a certain encoder location
  */
-public class SetFlyWheels extends Command {
+public class MoveForTime extends Command {
 	
-	boolean out;
+	private double time;
+	private double value;
 	
-	public SetFlyWheels(boolean out  /** true means shoot, false means intake **/) {
-		requires(Robot.flyWheels);
-		this.out = out;
+	public MoveForTime(double value) {
+		requires(Robot.drivetrain);
+		this.value = value;
+		//this.time = time;
 	}
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		SmartDashboard.putBoolean("Set fly wheels", true);
-		//FileManager.currentCommand = getClass().toString();
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (out) {
-			Robot.flyWheels.out();
-		} else {
-			Robot.flyWheels.in();
-		}
+		Robot.drivetrain.set(value);
+		SmartDashboard.putBoolean("Auto running", true);
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
@@ -41,13 +37,16 @@ public class SetFlyWheels extends Command {
 	
 	// Called once after isFinished returns true
 	protected void end() {
-		Timer.delay(1);
-		Robot.flyWheels.stop();
+		SmartDashboard.putBoolean("Auto running", false);
+		Robot.drivetrain.set(0);
+		
+		//Timer.delay(time);
+		//Robot.drivetrain.set(0);
 	}
 	
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		//Robot.flyWheels.stop();
+		Robot.drivetrain.set(0);
 	}
 }
