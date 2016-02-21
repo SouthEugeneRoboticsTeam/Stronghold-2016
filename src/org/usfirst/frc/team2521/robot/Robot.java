@@ -5,6 +5,7 @@ import org.usfirst.frc.team2521.robot.commands.Autonomous;
 import org.usfirst.frc.team2521.robot.commands.MoveForTime;
 import org.usfirst.frc.team2521.robot.commands.MoveToDistance;
 import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team2521.robot.subsystems.DrivetrainPID;
 import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
 import org.usfirst.frc.team2521.robot.subsystems.Intake;
 import org.usfirst.frc.team2521.robot.subsystems.Sensors;
@@ -26,7 +27,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 	
-	public static Drivetrain drivetrain;
+	public static DrivetrainPID drivetrain;
 	public static Intake intake;
 	public static FlyWheels flyWheels;
 	public static Sensors sensors;
@@ -42,7 +43,7 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-		drivetrain = new Drivetrain();
+		drivetrain = new DrivetrainPID();
 		intake = new Intake();
 		flyWheels = new FlyWheels();
 		pitch = new Pitch();

@@ -72,6 +72,10 @@ public class RobotMap {
 	public static final double PITCH_I = 0;
 	public static final double PITCH_D = 0;
 	
+	public static final double DRIVE_P = 1;
+	public static final double DRIVE_I = 0;
+	public static final double DRIVE_D = 0;
+	
 	public static final int CAMERA_HEIGHT = 38; //in inches; needs to be fixed
 	
 	public static final float TRAVERSE_DEGREES = 12;

@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team2521.robot.subsystems;
 
+import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
 import org.usfirst.frc.team2521.robot.commands.DisplaySensors;
 
@@ -47,6 +48,10 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putNumber("Lidar distance", getLidarDistance());
 		SmartDashboard.putBoolean("Ball in bot", ballInBot());
 		SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
+	}
+	
+	public double getYaw(){
+		return ahrs.getYaw();
 	}
 	
 	public double getCameraDistance() {
