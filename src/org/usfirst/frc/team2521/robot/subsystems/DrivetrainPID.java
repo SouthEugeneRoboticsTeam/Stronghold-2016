@@ -19,7 +19,7 @@ public class DrivetrainPID extends PIDSubsystem {
 	private RobotDrive frontDrive;
 	private RobotDrive rearDrive;
 	
-	private double traverseOffset;
+	private final double traverseOffset = 0.1;
 	
 	private CANTalon frontLeft, frontRight, rearLeft, rearRight;
 	
@@ -80,6 +80,18 @@ public class DrivetrainPID extends PIDSubsystem {
 		rearRight.set(encoderPosition);
 	}
 	
+	private void setLeft(double value){
+		frontLeft.set(value);
+		rearLeft.changeControlMode(TalonControlMode.Follower);
+		rearLeft.set(RobotMap.FRONT_LEFT_MOTOR);
+	}
+	
+	private void setRight(double value){
+		frontRight.set(value);
+		rearRight.changeControlMode(TalonControlMode.Follower);
+		rearRight.set(RobotMap.FRONT_RIGHT_MOTOR);
+	}
+	
 	public void set(double value) {
 		frontRight.set(value);
 		frontLeft.set(value);
@@ -106,7 +118,8 @@ public class DrivetrainPID extends PIDSubsystem {
     }
     
     protected void usePIDOutput(double output) {
-    	set(traverseOffset + output);
+    	setRight(traverseOffset + output);
+    	setLeft(traverseOffset + output);
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
     }

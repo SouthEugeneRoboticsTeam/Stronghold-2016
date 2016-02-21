@@ -48,6 +48,7 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putNumber("Lidar distance", getLidarDistance());
 		SmartDashboard.putBoolean("Ball in bot", ballInBot());
 		SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
+		SmartDashboard.putNumber("Yaw", getYaw());
 	}
 	
 	public double getYaw(){

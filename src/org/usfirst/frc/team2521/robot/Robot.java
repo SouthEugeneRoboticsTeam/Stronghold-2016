@@ -4,6 +4,7 @@ package org.usfirst.frc.team2521.robot;
 import org.usfirst.frc.team2521.robot.commands.Autonomous;
 import org.usfirst.frc.team2521.robot.commands.MoveForTime;
 import org.usfirst.frc.team2521.robot.commands.MoveToDistance;
+import org.usfirst.frc.team2521.robot.commands.TraverseObstacle;
 import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2521.robot.subsystems.DrivetrainPID;
 import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
@@ -14,6 +15,7 @@ import org.usfirst.frc.team2521.robot.subsystems.YawNoPID;
 import org.usfirst.frc.team2521.robot.subsystems.Pitch;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -36,7 +38,7 @@ public class Robot extends IterativeRobot {
 	
 	public static OI oi;
 	
-	Autonomous auto;
+	Command auto;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -76,8 +78,8 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		auto = new Autonomous();
-		//auto.start();
+		auto = new TraverseObstacle();
+		auto.start();
 		SmartDashboard.putString("Mode", "auto");
 	}
 	
