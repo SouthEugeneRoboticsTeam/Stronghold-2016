@@ -9,7 +9,7 @@
   <compression_index>5</compression_index>
   <contrast_value>50</contrast_value>
   <exposure_value>50</exposure_value>
-  <ip_address>10.25.21.30</ip_address>
+  <ip_address>10.25.21.11</ip_address>
   <is_active>TRUE</is_active>
   <mirrot>FALSE</mirrot>
   <password>FRC</password>
@@ -118,7 +118,7 @@ setDoubleVariable(distance);</script>
   <image1>Source</image1>
   <image2>Current</image2>
 </Math>
-<Display_Arrow>
+<Display_Arrow disabled>
   <clear_image>0</clear_image>
   <color>green</color>
   <display_as_annotation>0</display_as_annotation>
@@ -135,6 +135,20 @@ setDoubleVariable(distance);</script>
   <y_start>[image_height/2]</y_start>
   <y_start_map>0</y_start_map>
 </Display_Arrow>
+<Display_Point>
+  <clear_image>0</clear_image>
+  <data_source_index>2</data_source_index>
+  <display_as_annotation>1</display_as_annotation>
+  <shape_color>green</shape_color>
+  <shape_index>2</shape_index>
+  <shape_size>10</shape_size>
+  <thickness>1</thickness>
+  <xy_variable/>
+  <x_coord>160</x_coord>
+  <x_variable/>
+  <y_coord>120</y_coord>
+  <y_variable/>
+</Display_Point>
 <Watch_Variables>
   <on_top>FALSE</on_top>
 </Watch_Variables>
