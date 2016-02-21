@@ -9,7 +9,11 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class TraverseObstacle extends Command {
 	boolean hasTraversed = false;
+	
+	double initYaw;
+	
     public TraverseObstacle() {
+    	initYaw = Robot.sensors.getYaw();
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

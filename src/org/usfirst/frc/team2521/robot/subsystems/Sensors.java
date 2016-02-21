@@ -1,8 +1,10 @@
 
 package org.usfirst.frc.team2521.robot.subsystems;
 
+import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
+import org.usfirst.frc.team2521.robot.OI.Defense;
 import org.usfirst.frc.team2521.robot.commands.DisplaySensors;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -49,6 +51,7 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putBoolean("Ball in bot", ballInBot());
 		SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
 		SmartDashboard.putNumber("Yaw", getYaw());
+		SmartDashboard.putString("Defense", OI.getInstance().getDefense().toString());
 	}
 	
 	public double getYaw(){
