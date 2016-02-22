@@ -4,7 +4,6 @@ package org.usfirst.frc.team2521.robot;
 import org.usfirst.frc.team2521.robot.commands.Autonomous;
 import org.usfirst.frc.team2521.robot.commands.MoveForTime;
 import org.usfirst.frc.team2521.robot.commands.MoveToDistance;
-import org.usfirst.frc.team2521.robot.commands.TraverseObstacle;
 import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2521.robot.subsystems.DrivetrainPID;
 import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
@@ -84,7 +83,7 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		auto = new TraverseObstacle();
+		auto = new Autonomous();
 		auto.start();
 		SmartDashboard.putString("Mode", "auto");
 	}
