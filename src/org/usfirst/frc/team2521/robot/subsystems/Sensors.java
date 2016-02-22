@@ -26,10 +26,13 @@ public class Sensors extends Subsystem {
 	
 	private double deltaX = 0;
 	private double lastDeltaX = 0;
+	private double maxPitch = 0;
 	
 	private double[] blobs_default = { -1 };
 	
 	private boolean isTraversing = false;
+	
+	private double initYaw = 0;
 	
 	public Sensors() {
 		ahrs = new AHRS(SPI.Port.kMXP);
@@ -56,10 +59,16 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putBoolean("Is traversing", isTraversing());
 		SmartDashboard.putNumber("Pitch", ahrs.getPitch());
 		System.out.println("Pitch" + ahrs.getPitch());
+		if (Math.abs(maxPitch) < Math.abs(ahrs.getPitch())) maxPitch = ahrs.getPitch();
+		SmartDashboard.putNumber("Max pitch", maxPitch);
 	}
 	
 	public double getYaw(){
 		return ahrs.getYaw();
+	}
+	
+	public double getInitYaw(){
+		return initYaw;
 	}
 	
 	public double getCameraDistance() {
@@ -102,18 +111,26 @@ public class Sensors extends Subsystem {
 		return 0; //needs to be updated with SmartDashboard -- right now I just wanted to make it so it wouldn't throw an error
 	}
 	
+	public double getPitch(){
+		return ahrs.getPitch();
+	}
+	
 	public void updateTraversing() {
-		switch(OI.getInstance().getDefense()){
-		case moat:
+		//switch(OI.getInstance().getDefense()){
+		//case moat:
 			if (ahrs.getPitch() >= RobotMap.MOAT_TRAVERSE_DEGREES) {
 				isTraversing = true;
-			} else if (ahrs.getPitch() <= -RobotMap.MOAT_TRAVERSE_DEGREES) {
+			} else if (ahrs.getPitch() <= /*-RobotMap.MOAT_TRAVERSE_DEGREES*/ 0) {
 				isTraversing = false;
 			}
-			break;
-		default: isTraversing = false;
-			break;
-		}
+			//break;
+		//default: isTraversing = false;
+		//	break;
+		//}
+	}
+	
+	public void setInitYaw(){
+		initYaw = ahrs.getYaw();
 	}
 	
 	public boolean isTraversing() {

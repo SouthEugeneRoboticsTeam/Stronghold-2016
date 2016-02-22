@@ -27,12 +27,10 @@ public class TeleoperatedDrive extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		Robot.drivetrain.teleoperatedDrive();
-		if(Robot.sensors.isTraversing() && !lastTraverseState) traverseCount++;
-		hasTraversed = traverseCount >= 2;
-		SmartDashboard.putNumber("Traverse count", traverseCount);
-		SmartDashboard.putBoolean("Last traverse state", lastTraverseState);
+    	if(Robot.sensors.isTraversing()) hasTraversed = true;
 		SmartDashboard.putBoolean("Has traversed", hasTraversed);
-		lastTraverseState = Robot.sensors.isTraversing();
+		Robot.sensors.updateTraversing();
+		SmartDashboard.putString("Current command", "Traverse moat");
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()

@@ -56,7 +56,11 @@ public class Robot extends IterativeRobot {
 		talonLeft = new TalonLeft();
 		talonRight = new TalonRight();
 		
+		sensors = new Sensors();
+		
 		oi = new OI();
+		
+		auto = new Autonomous();
 	}
 	
 	/**
@@ -66,6 +70,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void disabledInit() {
 		flyWheels.stop();
+		auto.cancel();
 	}
 	
 	public void disabledPeriodic() {
@@ -83,7 +88,7 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		auto = new Autonomous();
+		sensors.setInitYaw();
 		auto.start();
 		SmartDashboard.putString("Mode", "auto");
 	}

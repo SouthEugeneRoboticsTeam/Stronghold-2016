@@ -77,7 +77,7 @@ public class RobotMap {
 	public static final double PITCH_I = 0;
 	public static final double PITCH_D = 0;
 	
-	public static final double DRIVE_TURN_P = 1;
+	public static final double DRIVE_TURN_P = 0.1;
 	public static final double DRIVE_TURN_I = 0;
 	public static final double DRIVE_TURN_D = 0;
 	

@@ -29,7 +29,7 @@ public class Autonomous extends CommandGroup {
     	
     	addSequential(new TraverseMoat());
     	
-    	//addSequential(new MoveForTime(0.5),1);
+    	//addSequential(new MoveForTime(0.5),5);
     	
     	//addSequential(new AlignRight(),1);
         // Add Commands here:
