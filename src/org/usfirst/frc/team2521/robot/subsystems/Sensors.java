@@ -41,16 +41,17 @@ public class Sensors extends Subsystem {
 	}
  
 	public boolean ballInBot() { //get if we have the ball in the bot
-		return getLidarDistance() < RobotMap.LIDAR_IN_BOT_THRESHOLD;
+		return lidar.getValue() > RobotMap.LIDAR_IN_BOT_THRESHOLD;
 	}
 	
 	public boolean ballInShooter() { //get if we have the ball in the shooter
-		return getLidarDistance() < RobotMap.LIDAR_IN_SHOOTER_THRESHOLD;
+		return lidar.getValue() > RobotMap.LIDAR_IN_SHOOTER_THRESHOLD;
 	}
 	
 	public void display() {
 		SmartDashboard.putNumber("Cam distance", getCameraDistance());
 		SmartDashboard.putNumber("Lidar distance", getLidarDistance());
+		SmartDashboard.putNumber("Lidar value", lidar.getValue());
 		SmartDashboard.putBoolean("Ball in bot", ballInBot());
 		SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
 		SmartDashboard.putNumber("Yaw", getYaw());

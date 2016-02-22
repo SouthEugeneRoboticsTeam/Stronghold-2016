@@ -6,6 +6,7 @@ import org.usfirst.frc.team2521.robot.RobotMap;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /** 
  * 
@@ -23,10 +24,12 @@ public class Intake extends Subsystem {
 	
 	public void in() {
 		intake.set(1);
+		SmartDashboard.putNumber("Intake val", intake.get());
 	}
 	
 	public void out() {
 		intake.set(-1);
+		SmartDashboard.putNumber("Intake val", intake.get());
 	}
 	
 	public void stop(){

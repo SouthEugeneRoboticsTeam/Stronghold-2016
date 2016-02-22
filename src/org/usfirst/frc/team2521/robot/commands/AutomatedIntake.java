@@ -4,6 +4,7 @@ package org.usfirst.frc.team2521.robot.commands;
 import org.usfirst.frc.team2521.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -23,10 +24,8 @@ public class AutomatedIntake extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (!Robot.sensors.ballInBot()) {
-			Robot.intake.in();
-			Robot.flyWheels.in();
-		}
+		Robot.flyWheels.in();
+		Robot.intake.in();
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()

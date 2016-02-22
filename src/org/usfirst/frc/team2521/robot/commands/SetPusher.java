@@ -3,6 +3,7 @@ package org.usfirst.frc.team2521.robot.commands;
 import org.usfirst.frc.team2521.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -38,8 +39,10 @@ public class SetPusher extends Command {
     protected void end() {
     	if (out) {
     		Robot.flyWheels.setPusher(true);
+    		SmartDashboard.putBoolean("Pusher", true);
     	} else {
     		Robot.flyWheels.setPusher(false);
+    		SmartDashboard.putBoolean("Pusher", false);
     	}
     }
 

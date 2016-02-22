@@ -126,7 +126,7 @@ public class OI {
 		fireButton = new JoystickButton(secondary, RobotMap.FIRE_BUTTON);
 		autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
 		pusherButton = new JoystickButton(secondary, RobotMap.PUSHER_BUTTON);
-		linkedIntakeButton = new JoystickButton(right, RobotMap.LINKED_INTAKE_BUTTON);
+		linkedIntakeButton = new JoystickButton(secondary, RobotMap.LINKED_INTAKE_BUTTON);
 		driveIntakeOut = new JoystickButton(right, RobotMap.INTAKE_BUTTON_OUT);
 		
 		tieButtons();
