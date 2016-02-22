@@ -33,6 +33,11 @@ public class RobotMap {
 	
 	public static final int LIDAR_PORT = 0;
 	
+	public static final int LEFT_ENCODER_A = 0;
+	public static final int LEFT_ENCODER_B = 1;
+	public static final int RIGHT_ENCODER_A = 2;
+	public static final int RIGHT_ENCODER_B = 3;
+	
 	// Buttons
 	public static final int INTAKE_BUTTON_IN = 8;
 	public static final int INTAKE_BUTTON_OUT = 3;
@@ -71,6 +76,10 @@ public class RobotMap {
 	public static final double PITCH_P = 1;
 	public static final double PITCH_I = 0;
 	public static final double PITCH_D = 0;
+	
+	public static final double DRIVE_TURN_P = 1;
+	public static final double DRIVE_TURN_I = 0;
+	public static final double DRIVE_TURN_D = 0;
 	
 	public static final double DRIVE_P = 1;
 	public static final double DRIVE_I = 0;

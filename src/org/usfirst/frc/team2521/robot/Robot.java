@@ -10,6 +10,8 @@ import org.usfirst.frc.team2521.robot.subsystems.DrivetrainPID;
 import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
 import org.usfirst.frc.team2521.robot.subsystems.Intake;
 import org.usfirst.frc.team2521.robot.subsystems.Sensors;
+import org.usfirst.frc.team2521.robot.subsystems.TalonLeft;
+import org.usfirst.frc.team2521.robot.subsystems.TalonRight;
 import org.usfirst.frc.team2521.robot.subsystems.Yaw;
 import org.usfirst.frc.team2521.robot.subsystems.YawNoPID;
 import org.usfirst.frc.team2521.robot.subsystems.Pitch;
@@ -35,6 +37,8 @@ public class Robot extends IterativeRobot {
 	public static Sensors sensors;
 	public static Pitch pitch;
 	public static YawNoPID yaw;
+	public static TalonLeft talonLeft;
+	public static TalonRight talonRight;
 	
 	public static OI oi;
 	
@@ -50,6 +54,8 @@ public class Robot extends IterativeRobot {
 		flyWheels = new FlyWheels();
 		pitch = new Pitch();
 		yaw = new YawNoPID();
+		talonLeft = new TalonLeft();
+		talonRight = new TalonRight();
 		
 		oi = new OI();
 	}

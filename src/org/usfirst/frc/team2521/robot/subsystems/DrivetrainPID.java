@@ -25,7 +25,7 @@ public class DrivetrainPID extends PIDSubsystem {
 	
     // Initialize your subsystem here
     public DrivetrainPID() {
-    	super(RobotMap.DRIVE_P, RobotMap.DRIVE_I, RobotMap.DRIVE_D);
+    	super(RobotMap.DRIVE_TURN_P, RobotMap.DRIVE_TURN_I, RobotMap.DRIVE_TURN_D);
     	frontLeft = new CANTalon(RobotMap.FRONT_LEFT_MOTOR);
 		frontRight = new CANTalon(RobotMap.FRONT_RIGHT_MOTOR);
 		rearLeft = new CANTalon(RobotMap.REAR_LEFT_MOTOR);
@@ -38,10 +38,6 @@ public class DrivetrainPID extends PIDSubsystem {
 		
 		frontDrive = new RobotDrive(rearLeft, rearRight);
 		rearDrive = new RobotDrive(rearLeft, rearRight);
-        // Use these to get going:
-        // setSetpoint() -  Sets where the PID controller should move the system
-        //                  to
-        // enable() - Enables the PID controller.
     }
     
     public void tankDrive() {
@@ -69,24 +65,17 @@ public class DrivetrainPID extends PIDSubsystem {
 	}
 	
 	public void setPosition(int encoderPosition) {
-		frontLeft.changeControlMode(TalonControlMode.Position);
-		frontRight.changeControlMode(TalonControlMode.Position);
-		rearLeft.changeControlMode(TalonControlMode.Position);
-		rearRight.changeControlMode(TalonControlMode.Position);
-		
-		frontLeft.set(encoderPosition);
-		frontRight.set(encoderPosition);
-		rearLeft.set(encoderPosition);
-		rearRight.set(encoderPosition);
+		Robot.talonLeft.setSetpoint(encoderPosition);
+		Robot.talonRight.setSetpoint(encoderPosition);
 	}
 	
-	private void setLeft(double value){
+	public void setLeft(double value){
 		frontLeft.set(value);
 		rearLeft.changeControlMode(TalonControlMode.Follower);
 		rearLeft.set(RobotMap.FRONT_LEFT_MOTOR);
 	}
 	
-	private void setRight(double value){
+	public void setRight(double value){
 		frontRight.set(value);
 		rearRight.changeControlMode(TalonControlMode.Follower);
 		rearRight.set(RobotMap.FRONT_RIGHT_MOTOR);

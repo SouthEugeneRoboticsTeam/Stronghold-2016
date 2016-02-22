@@ -36,7 +36,7 @@ public class Sensors extends Subsystem {
 		lidar = new AnalogInput(RobotMap.LIDAR_PORT);
 		table = NetworkTable.getTable("SmartDashboard");
 	}
-    
+ 
 	public boolean ballInBot() { //get if we have the ball in the bot
 		return getLidarDistance() < RobotMap.LIDAR_IN_BOT_THRESHOLD;
 	}
