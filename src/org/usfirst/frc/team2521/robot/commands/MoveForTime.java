@@ -11,8 +11,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class MoveForTime extends Command {
 	
-	private double time;
+	//private double time;
 	private double value;
+	
 	
 	public MoveForTime(double value) {
 		requires(Robot.drivetrain);
@@ -27,7 +28,7 @@ public class MoveForTime extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		Robot.drivetrain.set(value);
-		SmartDashboard.putBoolean("Auto running", true);
+		SmartDashboard.putString("Current command", "Move for time");
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()

@@ -10,7 +10,28 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Autonomous extends CommandGroup {
     
     public  Autonomous() {
-    	addSequential(new MoveForTime(RobotMap.AUTO_SPEED), RobotMap.AUTO_TIME);
+    	/*addSequential(new MoveForTime(RobotMap.AUTO_SPEED), 1);
+    	addSequential(new TraverseObstacle(), 1);
+    	addSequential(new MoveForTime(RobotMap.AUTO_SPEED), 1);
+    	addSequential(new TraverseObstacle(), 1);
+    	addSequential(new MoveForTime(RobotMap.AUTO_SPEED), 1);
+    	addSequential(new TraverseObstacle(), 1);
+    	addSequential(new MoveForTime(RobotMap.AUTO_SPEED), 1);
+    	addSequential(new TraverseObstacle(), 1);
+    	addSequential(new MoveForTime(RobotMap.AUTO_SPEED), 1);
+    	addSequential(new TraverseObstacle(), 1);
+    	addSequential(new MoveForTime(RobotMap.AUTO_SPEED), 1);
+    	addSequential(new TraverseObstacle(), 1);
+    	addSequential(new MoveForTime(RobotMap.AUTO_SPEED), 1);
+    	addSequential(new TraverseObstacle(), 1);
+    	addSequential(new MoveForTime(RobotMap.AUTO_SPEED), 1);
+    	addSequential(new TraverseObstacle(), 1);*/
+    	
+    	addSequential(new TraverseMoat());
+    	
+    	//addSequential(new MoveForTime(0.5),1);
+    	
+    	//addSequential(new AlignRight(),1);
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DisplaySensors extends Command {
 	
 	public DisplaySensors() {
+		requires(Robot.sensors);
 	}
 	
 	// Called just before this Command runs the first time
