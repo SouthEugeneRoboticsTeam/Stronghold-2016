@@ -31,7 +31,8 @@ public class RobotMap {
 	public static final int PUSHER_OUT_PORT = 0;
 	// Find actual numbers later.
 	
-	public static final int LIDAR_PORT = 0;
+	public static final int INTAKE_LIDAR_PORT = 0;
+	public static final int LONG_LIDAR_PORT = 1;
 	
 	public static final int LEFT_ENCODER_A = 0;
 	public static final int LEFT_ENCODER_B = 1;
@@ -68,6 +69,7 @@ public class RobotMap {
 	
 	public static final double LIDAR_IN_BOT_THRESHOLD = 720; //uses .getValue()
 	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 3440; //uses .getValue()
+	public static final double LIDAR_OUTER_WORKS_THRESHOLD = 1180; //uses .getValue()
 	
 	public static final double YAW_P = 1;
 	public static final double YAW_I = 0;

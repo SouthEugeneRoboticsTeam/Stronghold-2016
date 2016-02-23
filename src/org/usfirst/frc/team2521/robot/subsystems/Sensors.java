@@ -21,7 +21,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Sensors extends Subsystem {
 	
 	private AHRS ahrs;
-	private AnalogInput lidar;
+	private AnalogInput intakeLidar;
+	private AnalogInput longLidar;
 	private NetworkTable table;
 	
 	private double deltaX = 0;
@@ -36,22 +37,23 @@ public class Sensors extends Subsystem {
 	
 	public Sensors() {
 		ahrs = new AHRS(SPI.Port.kMXP);
-		lidar = new AnalogInput(RobotMap.LIDAR_PORT);
+		intakeLidar = new AnalogInput(RobotMap.INTAKE_LIDAR_PORT);
+		longLidar = new AnalogInput(RobotMap.LONG_LIDAR_PORT);
 		table = NetworkTable.getTable("SmartDashboard");
 	}
  
 	public boolean ballInBot() { //get if we have the ball in the bot
-		return lidar.getValue() > RobotMap.LIDAR_IN_BOT_THRESHOLD;
+		return intakeLidar.getValue() > RobotMap.LIDAR_IN_BOT_THRESHOLD;
 	}
 	
 	public boolean ballInShooter() { //get if we have the ball in the shooter
-		return lidar.getValue() > RobotMap.LIDAR_IN_SHOOTER_THRESHOLD;
+		return intakeLidar.getValue() > RobotMap.LIDAR_IN_SHOOTER_THRESHOLD;
 	}
 	
 	public void display() {
 		SmartDashboard.putNumber("Cam distance", getCameraDistance());
 		SmartDashboard.putNumber("Lidar distance", getLidarDistance());
-		SmartDashboard.putNumber("Lidar value", lidar.getValue());
+		SmartDashboard.putNumber("Lidar value", intakeLidar.getValue());
 		SmartDashboard.putBoolean("Ball in bot", ballInBot());
 		SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
 		SmartDashboard.putNumber("Yaw", getYaw());
@@ -62,6 +64,8 @@ public class Sensors extends Subsystem {
 		System.out.println("Pitch" + ahrs.getPitch());
 		if (Math.abs(maxPitch) < Math.abs(ahrs.getPitch())) maxPitch = ahrs.getPitch();
 		SmartDashboard.putNumber("Max pitch", maxPitch);
+		SmartDashboard.putNumber("Long lidar", longLidar.getValue());
+		SmartDashboard.putBoolean("Outerworks distance", longLidar.getValue() > RobotMap.LIDAR_OUTER_WORKS_THRESHOLD);
 	}
 	
 	public double getYaw(){
@@ -97,9 +101,12 @@ public class Sensors extends Subsystem {
     	return height;
     }
 	
+	public double getLongLidar(){
+		return longLidar.getValue();
+	}
 	
 	public double getLidarDistance() {
-		double raw = lidar.getValue();
+		double raw = intakeLidar.getValue();
 		return RobotMap.LIDAR_FACTOR/(raw - RobotMap.LIDAR_OFFSET);
 	}
 	
