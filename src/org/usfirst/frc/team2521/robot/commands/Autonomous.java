@@ -28,6 +28,7 @@ public class Autonomous extends CommandGroup {
     	addSequential(new TraverseObstacle(), 1);*/
     	
     	addSequential(new Traverse());
+    	addSequential(new MoveToLidar());
     	
     	//addSequential(new MoveForTime(0.5),5);
     	

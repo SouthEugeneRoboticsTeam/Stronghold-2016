@@ -16,7 +16,7 @@ public class MoveToLidar extends Command {
 	private double value;
 	
 	
-	public MoveToLidar(double value) {
+	public MoveToLidar() {
 		requires(Robot.drivetrain);
 		this.value = value;
 		//this.time = time;
@@ -28,8 +28,8 @@ public class MoveToLidar extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.drivetrain.set(value);
-		SmartDashboard.putString("Current command", "Move for time");
+		Robot.drivetrain.set(0.5);
+		//SmartDashboard.putString("Current command", "Move for time");
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()

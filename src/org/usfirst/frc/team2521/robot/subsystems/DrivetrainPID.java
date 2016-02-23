@@ -85,8 +85,8 @@ public class DrivetrainPID extends PIDSubsystem {
 	}
 	
 	public void set(double value) {
-		frontRight.set(value);
-		frontLeft.set(-value);
+		frontRight.set(value); 
+		frontLeft.set(-value); 
 		
 		SmartDashboard.putNumber("Front right", frontRight.get());
 		rearRight.changeControlMode(TalonControlMode.Follower);

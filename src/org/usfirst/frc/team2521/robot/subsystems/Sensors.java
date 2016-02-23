@@ -67,7 +67,7 @@ public class Sensors extends Subsystem {
 		if (Math.abs(maxPitch) < Math.abs(ahrs.getPitch())) maxPitch = ahrs.getPitch();
 		SmartDashboard.putNumber("Max pitch", maxPitch);
 		SmartDashboard.putNumber("Long lidar", longLidar.getValue());
-		SmartDashboard.putBoolean("Outerworks distance", longLidar.getValue() > RobotMap.LIDAR_OUTER_WORKS_THRESHOLD);
+		SmartDashboard.putBoolean("Outerworks distance", longLidar.getValue() < RobotMap.LIDAR_OUTER_WORKS_THRESHOLD);
 	}
 	
 	public double getYaw(){

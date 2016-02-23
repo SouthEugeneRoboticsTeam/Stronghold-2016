@@ -71,7 +71,7 @@ public class RobotMap {
 	
 	public static final double LIDAR_IN_BOT_THRESHOLD = 720; //uses .getValue()
 	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 3440; //uses .getValue()
-	public static final double LIDAR_OUTER_WORKS_THRESHOLD = 1180; //uses .getValue()
+	public static final double LIDAR_OUTER_WORKS_THRESHOLD = 1200; //uses .getValue()
 	
 	public static final double YAW_P = 1;
 	public static final double YAW_I = 0;
