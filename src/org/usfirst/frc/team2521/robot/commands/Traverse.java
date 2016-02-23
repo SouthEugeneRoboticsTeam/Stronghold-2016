@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class TraverseMoat extends Command {
+public class Traverse extends Command {
 	boolean hasTraversed = false;
 	
-    public TraverseMoat() {
+    public Traverse() {
     	requires(Robot.drivetrain);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

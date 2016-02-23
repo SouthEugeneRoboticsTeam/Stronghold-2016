@@ -27,7 +27,7 @@ public class Autonomous extends CommandGroup {
     	addSequential(new MoveForTime(RobotMap.AUTO_SPEED), 1);
     	addSequential(new TraverseObstacle(), 1);*/
     	
-    	addSequential(new TraverseMoat());
+    	addSequential(new Traverse());
     	
     	//addSequential(new MoveForTime(0.5),5);
     	

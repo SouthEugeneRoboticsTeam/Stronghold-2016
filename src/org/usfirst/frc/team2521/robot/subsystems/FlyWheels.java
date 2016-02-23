@@ -4,6 +4,8 @@ package org.usfirst.frc.team2521.robot.subsystems;
 import org.usfirst.frc.team2521.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -18,6 +20,9 @@ public class FlyWheels extends Subsystem {
 	
 	private DoubleSolenoid pusher;
 	
+	private DigitalInput wheelSwitch;
+	private Counter counter;
+	
 	public FlyWheels() {
 		left = new CANTalon(RobotMap.LEFT_SHOOTER_MOTOR);
 		right = new CANTalon(RobotMap.RIGHT_SHOOTER_MOTOR);
@@ -29,16 +34,13 @@ public class FlyWheels extends Subsystem {
 		right.reverseOutput(true);
 		
 		pusher = new DoubleSolenoid(RobotMap.PUSHER_OUT_PORT, RobotMap.PUSHER_IN_PORT);
-		
+	
+		wheelSwitch = new DigitalInput(RobotMap.FLYWHEEL_SWITCH);
+		counter = new Counter(wheelSwitch);
 	}
 	
-	
-	private double getLeftSpeed() {
-		return left.getEncVelocity();
-	}
-	
-	private double getRightSpeed() {
-		return right.getEncVelocity();
+	public boolean getUpToSpeed(){
+		return Math.abs(counter.getRate()) > RobotMap.FINISHED_SPIN_UP_THRESHOLD;
 	}
 	
 	public void in() {

@@ -28,7 +28,7 @@ public class SetPusher extends Command {
     protected boolean isFinished() {
     	if (out) {
     		//return Robot.sensors.ballInShooter();
-    		return true;
+    		return Robot.flyWheels.upToSpeed();
     	} else {
     		//return !Robot.sensors.ballInBot();
     		return true;
