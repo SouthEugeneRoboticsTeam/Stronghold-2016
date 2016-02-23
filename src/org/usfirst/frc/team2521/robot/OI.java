@@ -57,7 +57,7 @@ public class OI {
 	public void setPrefs(){
 		prefs = Preferences.getInstance();
 		fieldPosition = prefs.getInt("Field Position", 1);
-		switch(3 /*prefs.getInt("Defense", 0)*/){
+		switch(prefs.getInt("Defense", 0)){
 		case 1: defense = Defense.portcullis;
 			break;
 		case 2: defense = Defense.chevalDeFrise;

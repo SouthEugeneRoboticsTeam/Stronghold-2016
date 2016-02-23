@@ -53,8 +53,8 @@ public class Robot extends IterativeRobot {
 		flyWheels = new FlyWheels();
 		pitch = new Pitch();
 		yaw = new YawNoPID();
-		talonLeft = new TalonLeft();
-		talonRight = new TalonRight();
+		//talonLeft = new TalonLeft();
+		//talonRight = new TalonRight();
 		
 		sensors = new Sensors();
 		
