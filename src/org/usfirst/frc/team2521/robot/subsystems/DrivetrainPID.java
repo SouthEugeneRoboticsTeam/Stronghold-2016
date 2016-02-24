@@ -18,8 +18,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DrivetrainPID extends PIDSubsystem {
 	private RobotDrive frontDrive;
 	private RobotDrive rearDrive;
+	private boolean clockwise = false;
 	
 	private final double traverseOffset = 0.1;
+	
+	private double targetAngle = 0; 
 	
 	private CANTalon frontLeft, frontRight, rearLeft, rearRight;
 	
@@ -67,34 +70,40 @@ public class DrivetrainPID extends PIDSubsystem {
 		tankDrive();
 	}
 	
-	public void setPosition(int encoderPosition) {
-		Robot.talonLeft.setSetpoint(encoderPosition);
-		Robot.talonRight.setSetpoint(encoderPosition);
+	public void setClockwise(boolean clockwise){
+		this.clockwise = clockwise;
 	}
 	
-	public void setLeft(double value){
+	public void setPosition(int leftPosition, int rightPosition) {
+		Robot.talonLeft.setSetpoint(leftPosition);
+		Robot.talonRight.setSetpoint(rightPosition);
+	}
+	
+	private void setLeft(double value){
 		frontLeft.set(value);
 		rearLeft.changeControlMode(TalonControlMode.Follower);
 		rearLeft.set(RobotMap.FRONT_LEFT_MOTOR);
 	}
 	
-	public void setRight(double value){
+	private void setRight(double value){
 		frontRight.set(value);
 		rearRight.changeControlMode(TalonControlMode.Follower);
 		rearRight.set(RobotMap.FRONT_RIGHT_MOTOR);
 	}
 	
-	public void set(double value) {
-		frontRight.set(value); 
-		frontLeft.set(-value); 
+	public void set(double leftValue, double rightValue) {
+		frontRight.set(leftValue); 
+		frontLeft.set(-rightValue); 
 		
-		SmartDashboard.putNumber("Front right", frontRight.get());
 		rearRight.changeControlMode(TalonControlMode.Follower);
 		rearRight.set(RobotMap.FRONT_RIGHT_MOTOR);
 		
-		SmartDashboard.putNumber("Front left", frontLeft.get());
 		rearLeft.changeControlMode(TalonControlMode.Follower);
 		rearLeft.set(RobotMap.FRONT_LEFT_MOTOR);
+	}
+	
+	public void setTargetAngle(double angle){
+		targetAngle = angle;
 	}
     
     public void initDefaultCommand() {
@@ -106,12 +115,16 @@ public class DrivetrainPID extends PIDSubsystem {
         // Return your input value for the PID loop
         // e.g. a sensor, like a potentiometer:
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
-    	return Robot.sensors.getYaw();
+    	double a = targetAngle - Robot.sensors.getYaw();
+    	a = (a + 180) % 360 - 180;
+    	return a;
     }
     
     protected void usePIDOutput(double output) {
-    	setRight(output);
-    	setLeft(output);
+    	setRight(-output);
+    	setLeft(-output);
+   // 		setRight(output);
+    //		setLeft(output);
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
     }

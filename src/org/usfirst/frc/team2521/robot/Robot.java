@@ -61,6 +61,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		auto = new Autonomous();
+		sensors.setInitYaw();
 	}
 	
 	/**
@@ -88,7 +89,7 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		sensors.setInitYaw();
+		//sensors.setInitYaw();
 		auto.start();
 		SmartDashboard.putString("Mode", "auto");
 	}

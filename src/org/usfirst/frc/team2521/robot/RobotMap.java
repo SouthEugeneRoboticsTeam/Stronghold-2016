@@ -13,6 +13,7 @@ public class RobotMap {
 	public static final int LEFT_STICK_PORT = 0;
 	public static final int RIGHT_STICK_PORT = 1;
 	public static final int SECONDARY_STICK_PORT = 2;
+	public static final int CUSTOM_PORT = 3;
 	
 	public static final int FRONT_LEFT_MOTOR = 46; //Real
 	public static final int FRONT_RIGHT_MOTOR = 48; //Real
@@ -48,8 +49,14 @@ public class RobotMap {
 	public static final int SHOOTER_BUTTON_OUT = 5;
 	public static final int PUSHER_BUTTON = 1;
 	public static final int FIRE_BUTTON = 6; // Real
-	public static final int AUTO_INTAKE_BUTTON = 7; //Tester
+	public static final int AUTO_INTAKE_BUTTON = 1; //Real
 	public static final int LINKED_INTAKE_BUTTON = 2;
+	
+	//Lights
+	public static final int INTAKE_LIGHT = 0;
+	public static final int WHEELS_LIGHT = 1;
+	public static final int VISION_LIGHT = 2;
+	public static final int OTHER_LIGHT = 3;
 	
 	//Other constants
 	public static final double LIDAR_FACTOR = 10940; //Calculated
@@ -57,7 +64,7 @@ public class RobotMap {
 	public static final double HEIGHT_TO_DISTANCE_FACTOR = 4138.375054; //calculated from measured data
 	public static final double ENC_COUNTS_PER_RADIAN = 121/(0.5*Math.PI);//measured
 	public static final double VISION_SETPOINT = 0;
-	public static final double YAW_SENSITIVITY = 0.5;
+	public static final double YAW_SENSITIVITY = 0.25;
 	public static final double AUTO_SPEED = 0.25;
 	public static final double AUTO_TIME = 5;
 	
@@ -73,6 +80,8 @@ public class RobotMap {
 	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 3440; //uses .getValue()
 	public static final double LIDAR_OUTER_WORKS_THRESHOLD = 1200; //uses .getValue()
 	
+	public static final double RIGHT_ANGLE = 220;
+	
 	public static final double YAW_P = 1;
 	public static final double YAW_I = 0;
 	public static final double YAW_D = 0;
@@ -81,7 +90,7 @@ public class RobotMap {
 	public static final double PITCH_I = 0;
 	public static final double PITCH_D = 0;
 	
-	public static final double DRIVE_TURN_P = 0.1;
+	public static final double DRIVE_TURN_P = 0.03;
 	public static final double DRIVE_TURN_I = 0;
 	public static final double DRIVE_TURN_D = 0;
 	

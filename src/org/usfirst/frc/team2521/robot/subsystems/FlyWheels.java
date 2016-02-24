@@ -44,12 +44,12 @@ public class FlyWheels extends Subsystem {
 	}
 	
 	public void in() {
-		left.set(-1);
+		left.set(-0.25);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
 	
 	public void out() {
-		left.set(1);
+		left.set(0.25);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
 	

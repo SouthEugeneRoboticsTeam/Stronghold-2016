@@ -27,12 +27,12 @@ public class Autonomous extends CommandGroup {
     	addSequential(new MoveForTime(RobotMap.AUTO_SPEED), 1);
     	addSequential(new TraverseObstacle(), 1);*/
     	
-    	addSequential(new Traverse());
-    	addSequential(new MoveToLidar());
+    	//addSequential(new Traverse());
+    	//addSequential(new MoveToLidar());
     	
     	//addSequential(new MoveForTime(0.5),5);
     	
-    	//addSequential(new AlignRight(),1);
+    	addSequential(new ToAngle(60));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

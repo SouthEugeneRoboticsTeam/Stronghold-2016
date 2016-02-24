@@ -37,6 +37,6 @@ public class TalonLeft extends PIDSubsystem {
     protected void usePIDOutput(double output) {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
-    	Robot.drivetrain.setLeft(output);
+    	Robot.drivetrain.set(output, 0);
     }
 }

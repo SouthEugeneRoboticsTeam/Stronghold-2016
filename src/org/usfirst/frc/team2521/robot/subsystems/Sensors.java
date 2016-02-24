@@ -1,4 +1,6 @@
 
+
+
 package org.usfirst.frc.team2521.robot.subsystems;
 
 import org.usfirst.frc.team2521.robot.OI;
@@ -37,6 +39,9 @@ public class Sensors extends Subsystem {
 	
 	private double initYaw = 0;
 	
+	private double lastYaw = 0;
+	private double yawOffset = 0; 
+	
 	public Sensors() {
 		ahrs = new AHRS(SPI.Port.kMXP);
 		intakeLidar = new AnalogInput(RobotMap.INTAKE_LIDAR_PORT);
@@ -53,25 +58,37 @@ public class Sensors extends Subsystem {
 	}
 	
 	public void display() {
-		SmartDashboard.putNumber("Cam distance", getCameraDistance());
 		SmartDashboard.putNumber("Lidar distance", getLidarDistance());
 		SmartDashboard.putNumber("Lidar value", intakeLidar.getValue());
 		SmartDashboard.putBoolean("Ball in bot", ballInBot());
 		SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
-		SmartDashboard.putNumber("Yaw", getYaw());
+		SmartDashboard.putNumber("Yaw", ahrs.getYaw());
+		SmartDashboard.putNumber("Shifted Yaw", ahrs.getYaw() + 120);
+		SmartDashboard.putNumber("Fixed yaw", getYaw());
 		SmartDashboard.putString("Defense", OI.getInstance().getDefense().toString());
 		SmartDashboard.putNumber("Setpoint", Robot.drivetrain.getSetpoint());
 		SmartDashboard.putBoolean("Is traversing", isTraversing());
 		SmartDashboard.putNumber("Pitch", ahrs.getPitch());
-		System.out.println("Pitch" + ahrs.getPitch());
 		if (Math.abs(maxPitch) < Math.abs(ahrs.getPitch())) maxPitch = ahrs.getPitch();
 		SmartDashboard.putNumber("Max pitch", maxPitch);
 		SmartDashboard.putNumber("Long lidar", longLidar.getValue());
+		SmartDashboard.putNumber("Last yaw", lastYaw);
 		SmartDashboard.putBoolean("Outerworks distance", longLidar.getValue() < RobotMap.LIDAR_OUTER_WORKS_THRESHOLD);
+		//setLights();
+	}
+	
+	public void setLights(){
+		OI.getInstance().setLight(RobotMap.INTAKE_LIGHT, ballInBot());
+		OI.getInstance().setLight(RobotMap.WHEELS_LIGHT, Robot.flyWheels.getUpToSpeed());
+		OI.getInstance().setLight(RobotMap.VISION_LIGHT, false);
 	}
 	
 	public double getYaw(){
-		return ahrs.getYaw();
+		if(ahrs.getYaw()> 0){
+			return ahrs.getYaw() ;
+		}else {
+			return 360 + ahrs.getYaw();
+		}
 	}
 	
 	public double getInitYaw(){

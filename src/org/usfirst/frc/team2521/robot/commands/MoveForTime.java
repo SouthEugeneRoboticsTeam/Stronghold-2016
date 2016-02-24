@@ -27,7 +27,7 @@ public class MoveForTime extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.drivetrain.set(value);
+		Robot.drivetrain.set(value, value);
 		SmartDashboard.putString("Current command", "Move for time");
 	}
 	
@@ -39,7 +39,7 @@ public class MoveForTime extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		SmartDashboard.putBoolean("Auto running", false);
-		Robot.drivetrain.set(0);
+		Robot.drivetrain.set(0,0);
 		
 		//Timer.delay(time);
 		//Robot.drivetrain.set(0);
@@ -48,6 +48,6 @@ public class MoveForTime extends Command {
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		Robot.drivetrain.set(0);
+		Robot.drivetrain.set(0,0);
 	}
 }

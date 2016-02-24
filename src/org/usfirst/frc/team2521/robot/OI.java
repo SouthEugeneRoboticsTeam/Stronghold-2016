@@ -26,6 +26,7 @@ public class OI {
 	private Joystick left;
 	private Joystick right;
 	private Joystick secondary;
+	private Joystick custom;
 	
 	private JoystickButton intakeButtonIn;
 	private JoystickButton intakeButtonOut;
@@ -50,6 +51,7 @@ public class OI {
 		left = new Joystick(RobotMap.LEFT_STICK_PORT);
 		right = new Joystick(RobotMap.RIGHT_STICK_PORT);
 		secondary = new Joystick(RobotMap.SECONDARY_STICK_PORT);
+		custom = new Joystick(RobotMap.CUSTOM_PORT);
 		setPrefs();
 		initButtons();
 	}
@@ -118,13 +120,17 @@ public class OI {
 		return secondary;
 	}
 	
+	public void setLight(int lightNumber, boolean value){
+		custom.setOutput(lightNumber, value);
+	}
+	
 	public void initButtons() {
 		intakeButtonIn = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON_IN);
 		intakeButtonOut = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON_OUT);
 		shooterButtonIn = new JoystickButton(secondary, RobotMap.SHOOTER_BUTTON_IN);
 		shooterButtonOut = new JoystickButton(secondary, RobotMap.SHOOTER_BUTTON_OUT);
 		fireButton = new JoystickButton(secondary, RobotMap.FIRE_BUTTON);
-		autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
+		autoIntakeButton = new JoystickButton(right, RobotMap.AUTO_INTAKE_BUTTON);
 		pusherButton = new JoystickButton(secondary, RobotMap.PUSHER_BUTTON);
 		linkedIntakeButton = new JoystickButton(secondary, RobotMap.LINKED_INTAKE_BUTTON);
 		driveIntakeOut = new JoystickButton(right, RobotMap.INTAKE_BUTTON_OUT);
