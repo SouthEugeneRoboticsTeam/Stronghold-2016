@@ -117,6 +117,7 @@ public class DrivetrainPID extends PIDSubsystem {
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
     	double a = targetAngle - Robot.sensors.getYaw();
     	a = (a + 180) % 360 - 180;
+    	SmartDashboard.putNumber("Error", a);
     	return a;
     }
     

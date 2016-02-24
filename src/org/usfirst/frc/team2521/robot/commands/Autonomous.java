@@ -32,7 +32,7 @@ public class Autonomous extends CommandGroup {
     	
     	//addSequential(new MoveForTime(0.5),5);
     	
-    	addSequential(new ToAngle(60));
+    	addSequential(new ToAngle(-90));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

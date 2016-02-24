@@ -12,6 +12,7 @@ public class ToAngle extends Command {
 	double angle;
 	
     public ToAngle(double angle) {
+    	this.angle = angle + 80;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
