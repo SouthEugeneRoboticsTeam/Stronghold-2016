@@ -15,10 +15,10 @@ public class RobotMap {
 	public static final int SECONDARY_STICK_PORT = 2;
 	public static final int CUSTOM_PORT = 3;
 	
-	public static final int FRONT_LEFT_MOTOR = 46; //Real
-	public static final int FRONT_RIGHT_MOTOR = 48; //Real
-	public static final int REAR_LEFT_MOTOR = 47; //Real
-	public static final int REAR_RIGHT_MOTOR = 49; //Real
+	public static int FRONT_LEFT_MOTOR;
+	public static int FRONT_RIGHT_MOTOR;
+	public static int REAR_LEFT_MOTOR;
+	public static int REAR_RIGHT_MOTOR;
 	
 	public static final int LEFT_SHOOTER_MOTOR = 50; //Either this or 41 is the real value
 	public static final int RIGHT_SHOOTER_MOTOR = 40; //Either this or 50 is the real value
@@ -80,7 +80,7 @@ public class RobotMap {
 	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 3440; //uses .getValue()
 	public static final double LIDAR_OUTER_WORKS_THRESHOLD = 1200; //uses .getValue()
 	
-	public static final double RIGHT_ANGLE = 80;
+	public static final double RIGHT_ANGLE = -140;
 	
 	public static final double YAW_P = 1;
 	public static final double YAW_I = 0;
@@ -102,5 +102,20 @@ public class RobotMap {
 	
 	public static final float TRAVERSE_DEGREES = 12;
 	
-	
+	public static void setMotors(){
+		if(Robot.test_platform){
+			FRONT_LEFT_MOTOR = 42;//46; //Real
+			FRONT_RIGHT_MOTOR = 43;//48; //Real
+			REAR_LEFT_MOTOR = 45;//47; //Real
+			REAR_RIGHT_MOTOR = 44;//49; //Real
+		}else {
+
+			FRONT_LEFT_MOTOR = 46; //Real
+			FRONT_RIGHT_MOTOR = 48; //Real
+			REAR_LEFT_MOTOR = 47; //Real
+			REAR_RIGHT_MOTOR = 49; //Real
+		
+			
+		}
+	}
 }
