@@ -80,7 +80,7 @@ public class RobotMap {
 	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 3440; //uses .getValue()
 	public static final double LIDAR_OUTER_WORKS_THRESHOLD = 1200; //uses .getValue()
 	
-	public static final double RIGHT_ANGLE = 220;
+	public static final double RIGHT_ANGLE = 80;
 	
 	public static final double YAW_P = 1;
 	public static final double YAW_I = 0;
@@ -100,7 +100,7 @@ public class RobotMap {
 	
 	public static final int CAMERA_HEIGHT = 38; //in inches; needs to be fixed
 	
-	public static final float MOAT_TRAVERSE_DEGREES = 12;
+	public static final float TRAVERSE_DEGREES = 12;
 	
 	
 }

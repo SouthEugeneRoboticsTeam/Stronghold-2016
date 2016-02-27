@@ -1,61 +1,32 @@
 package org.usfirst.frc.team2521.robot.subsystems;
 
-import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
 import org.usfirst.frc.team2521.robot.commands.YawTeleop;
 
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
-public class Yaw extends PIDSubsystem {
+public class Yaw extends Subsystem {
 	CANTalon yaw;
+	public Yaw(){
+		yaw = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
+		yaw.enableControl();
+	}
+    
+	public void set(double value){
+		yaw.set(value);
+	}
 	
-    // Initialize your subsystem here
-    public Yaw() {
-    	super(RobotMap.YAW_P, RobotMap.YAW_I, RobotMap.YAW_D);
-    	yaw = new CANTalon(RobotMap.TARGETING_PITCH_MOTOR);
-    	//yaw.changeControlMode(TalonControlMode.Position);
-        // Use these to get going:
-        // setSetpoint() -  Sets where the PID controller should move the system
-        //                  to
-        // enable() - Enables the PID controller.
-    }
-    
-    public void autoInit(){
-    	yaw.changeControlMode(TalonControlMode.Position);
-    }
-    
-    public boolean getOnTarget(){
-    	return (Math.abs(getSetpoint() - Robot.sensors.getWidth()) < RobotMap.YAW_ERROR_THRESHOLD);
-    }
-    
-    public void set(double position){
-    	yaw.set(position);
-    }
-    
+    // Put methods for controlling this subsystem
+    // here. Call these from Commands.
+
     public void initDefaultCommand() {
+    	
         // Set the default command for a subsystem here.
         setDefaultCommand(new YawTeleop());
     }
-    
-    protected double returnPIDInput() {
-        // Return your input value for the PID loop
-        // e.g. a sensor, like a potentiometer:
-        // yourPot.getAverageVoltage() / kYourMaxVoltage;
-    	return Robot.sensors.getWidth();
-    }
-    
-    public void teleopInit(){
-    	yaw.changeControlMode(TalonControlMode.PercentVbus);
-    }
-    
-    protected void usePIDOutput(double output) {
-        // Use output to drive your system, like a motor
-        // e.g. yourMotor.set(output);
-    	yaw.set(output);
-    }
 }
+

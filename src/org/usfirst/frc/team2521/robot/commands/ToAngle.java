@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2521.robot.commands;
 
 import org.usfirst.frc.team2521.robot.Robot;
+import org.usfirst.frc.team2521.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -12,7 +13,7 @@ public class ToAngle extends Command {
 	double angle;
 	
     public ToAngle(double angle) {
-    	this.angle = angle + 80;
+    	this.angle = angle + RobotMap.RIGHT_ANGLE;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

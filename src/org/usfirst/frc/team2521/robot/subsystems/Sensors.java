@@ -145,7 +145,7 @@ public class Sensors extends Subsystem {
 	public void updateTraversing() {
 		//switch(OI.getInstance().getDefense()){
 		//case moat:
-			if (ahrs.getPitch() >= RobotMap.MOAT_TRAVERSE_DEGREES) {
+			if (ahrs.getPitch() >= RobotMap.TRAVERSE_DEGREES) {
 				isTraversing = true;
 			} else if (ahrs.getPitch() <= /*-RobotMap.MOAT_TRAVERSE_DEGREES*/ 0) {
 				isTraversing = false;

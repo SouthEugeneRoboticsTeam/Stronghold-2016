@@ -70,10 +70,6 @@ public class DrivetrainPID extends PIDSubsystem {
 		tankDrive();
 	}
 	
-	public void setClockwise(boolean clockwise){
-		this.clockwise = clockwise;
-	}
-	
 	public void setPosition(int leftPosition, int rightPosition) {
 		Robot.talonLeft.setSetpoint(leftPosition);
 		Robot.talonRight.setSetpoint(rightPosition);
