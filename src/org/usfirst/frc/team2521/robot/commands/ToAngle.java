@@ -13,7 +13,7 @@ public class ToAngle extends Command {
 	double angle;
 	
     public ToAngle(double angle) {
-    	this.angle = angle + RobotMap.RIGHT_ANGLE;
+    	this.angle = angle;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -28,13 +28,13 @@ public class ToAngle extends Command {
     protected void execute() {
     	Robot.drivetrain.setTargetAngle(angle);
     	SmartDashboard.putNumber("Setpoint", Robot.drivetrain.getSetpoint());
-    	SmartDashboard.putString("Current command", "Align right");
+    	//SmartDashboard.putString("Current command", "Align right");
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         //return hasTraversed && !Robot.sensors.isTraversing;
-    	return false;
+    	return Robot.drivetrain.onTarget();
     }
 
     // Called once after isFinished returns true
