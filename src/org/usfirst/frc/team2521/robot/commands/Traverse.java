@@ -1,9 +1,7 @@
 package org.usfirst.frc.team2521.robot.commands;
 
-import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.Robot;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -25,6 +23,7 @@ public class Traverse extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	//Robot.drivetrain.set(0.5);
     	Robot.drivetrain.set(0.8,0.8);
     	if(Robot.sensors.isTraversing()) hasTraversed = true;
 		SmartDashboard.putBoolean("Has traversed", hasTraversed);
@@ -39,11 +38,6 @@ public class Traverse extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drivetrain.set(0.8,0.8);
-    	//switch(OI.getInstance().getDefense()){
-    	//case rockWall:
-    		Timer.delay(0.5);
-    	//}
     	Robot.drivetrain.set(0,0);
     }
 

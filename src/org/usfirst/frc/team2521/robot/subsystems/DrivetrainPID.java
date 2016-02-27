@@ -23,10 +23,9 @@ public class DrivetrainPID extends PIDSubsystem {
 	private final double traverseOffset = 0.1;
 	
 	private double targetAngle = 0; 
-	private boolean onTarget = false;
 	
 	private CANTalon frontLeft, frontRight, rearLeft, rearRight;
-
+	
     // Initialize your subsystem here
     public DrivetrainPID() {
     	super(RobotMap.DRIVE_TURN_P, RobotMap.DRIVE_TURN_I, RobotMap.DRIVE_TURN_D);
@@ -50,15 +49,9 @@ public class DrivetrainPID extends PIDSubsystem {
     public void tankDrive() {
 		double left = OI.getInstance().getLeftStick().getY();
 		double right = OI.getInstance().getRightStick().getY();
-		if(Robot.test_platform){
-			left = -left;
-			right = -right;
-			frontDrive.tankDrive(left, right); // Switched to make it work
-			rearDrive.tankDrive(left, right);
-		} else{
-			frontDrive.tankDrive(right, left); // Switched to make it work
-			rearDrive.tankDrive(right, left);
-		}
+		
+		frontDrive.tankDrive(right, left); // Switched to make it work
+		rearDrive.tankDrive(right, left);
 	}
 	
 	public void arcadeDrive() {
@@ -66,11 +59,6 @@ public class DrivetrainPID extends PIDSubsystem {
 		
 		frontDrive.arcadeDrive(left);
 		rearDrive.arcadeDrive(left);
-	}
-	
-	public boolean onTarget(){
-		SmartDashboard.putBoolean("On target", onTarget());
-		return onTarget();
 	}
 	
 	public void teleoperatedDrive() {
@@ -100,13 +88,9 @@ public class DrivetrainPID extends PIDSubsystem {
 	}
 	
 	public void set(double leftValue, double rightValue) {
-		if(Robot.test_platform){
-			frontRight.set(-leftValue); 
-			frontLeft.set(rightValue);
-		} else{
-			frontRight.set(leftValue); 
-			frontLeft.set(-rightValue);
-		}
+		frontRight.set(leftValue); 
+		frontLeft.set(-rightValue); 
+		
 		rearRight.changeControlMode(TalonControlMode.Follower);
 		rearRight.set(RobotMap.FRONT_RIGHT_MOTOR);
 		
@@ -130,13 +114,12 @@ public class DrivetrainPID extends PIDSubsystem {
     	double a = targetAngle - Robot.sensors.getYaw();
     	a = (a + 180) % 360 - 180;
     	SmartDashboard.putNumber("Error", a);
-    	onTarget = a < 5;
     	return a;
     }
     
     protected void usePIDOutput(double output) {
-    	setRight(output);
-    	setLeft(output);
+    	setRight(-output);
+    	setLeft(-output);
    // 		setRight(output);
     //		setLeft(output);
         // Use output to drive your system, like a motor
