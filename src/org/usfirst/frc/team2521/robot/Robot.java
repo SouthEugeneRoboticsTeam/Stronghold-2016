@@ -29,6 +29,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	public static boolean test_platform = true; //are we on the real robot or the test platform?
 	
 	public static DrivetrainPID drivetrain;
 	public static Intake intake;
@@ -48,6 +49,7 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
+		RobotMap.setMotors();
 		drivetrain = new DrivetrainPID();
 		intake = new Intake();
 		flyWheels = new FlyWheels();
@@ -103,6 +105,7 @@ public class Robot extends IterativeRobot {
 	
 	public void teleopInit() {
 		SmartDashboard.putString("Mode", "teleop");
+		auto.cancel();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove

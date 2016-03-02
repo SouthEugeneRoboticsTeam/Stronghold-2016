@@ -63,7 +63,7 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putBoolean("Ball in bot", ballInBot());
 		SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
 		SmartDashboard.putNumber("Yaw", ahrs.getYaw());
-		SmartDashboard.putNumber("Shifted Yaw", ahrs.getYaw() + 120);
+		
 		SmartDashboard.putNumber("Fixed yaw", getYaw());
 		SmartDashboard.putString("Defense", OI.getInstance().getDefense().toString());
 		SmartDashboard.putNumber("Setpoint", Robot.drivetrain.getSetpoint());
@@ -84,11 +84,12 @@ public class Sensors extends Subsystem {
 	}
 	
 	public double getYaw(){
-		if(ahrs.getYaw()> 0){
-			return ahrs.getYaw() ;
-		}else {
-			return 360 + ahrs.getYaw();
+		double angle = ahrs.getYaw() - initYaw; //- RobotMap.RIGHT_ANGLE;
+		angle = angle % 360;
+		if(angle < 0){
+			angle = 360 + angle;
 		}
+		return 360 - angle;
 	}
 	
 	public double getInitYaw(){
