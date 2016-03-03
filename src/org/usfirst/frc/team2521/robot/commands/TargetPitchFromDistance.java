@@ -1,19 +1,16 @@
 package org.usfirst.frc.team2521.robot.commands;
 
-import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.Robot;
-import org.usfirst.frc.team2521.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class PitchTeleop extends Command {
-	int counter = 0;
-    public PitchTeleop() {
-    	requires(Robot.pitch);
+public class TargetPitchFromDistance extends Command {
+	
+
+    public TargetPitchFromDistance() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -25,17 +22,14 @@ public class PitchTeleop extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double value = -OI.getInstance().getSecondaryStick().getZ();
-    	value = 0.5*(value + 1); //transforms to be 0 to 1
-    	value = value*(Robot.pitch.getEncoderMax() - Robot.pitch.getEncoderMin())+Robot.pitch.getEncoderMin();
-    	SmartDashboard.putNumber("Encoder value", value);
-    	Robot.pitch.set(value);
-    	SmartDashboard.putNumber("Motor value", Robot.pitch.getMotorValue());
+    	double setpoint = Robot.pitch.getTargetEncoderPosition();
+    	
+    	Robot.pitch.set(setpoint);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.pitch.getOnTarget();
     }
 
     // Called once after isFinished returns true

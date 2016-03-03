@@ -20,13 +20,13 @@ public class RobotMap {
 	public static int REAR_LEFT_MOTOR;
 	public static int REAR_RIGHT_MOTOR;
 	
-	public static final int LEFT_SHOOTER_MOTOR = 50; //Either this or 41 is the real value
-	public static final int RIGHT_SHOOTER_MOTOR = 40; //Either this or 50 is the real value
+	public static int LEFT_SHOOTER_MOTOR = 50;
+	public static int RIGHT_SHOOTER_MOTOR = 40;
 	
 	public static final int INTAKE_WHEEL_MOTOR = 30; //Real
 	
 	public static final int TARGETING_YAW_MOTOR = 31; //Real
-	public static final int TARGETING_PITCH_MOTOR = 41; //Real
+	public static int TARGETING_PITCH_MOTOR;
 	
 	public static final int PUSHER_IN_PORT = 1;
 	public static final int PUSHER_OUT_PORT = 0;
@@ -102,20 +102,29 @@ public class RobotMap {
 	
 	public static final float TRAVERSE_DEGREES = 12;
 	
+	public static final double ENCODER_RANGE = 1300;
+	
 	public static void setMotors(){
 		if(Robot.test_platform){
-			FRONT_LEFT_MOTOR = 42;//46; //Real
-			FRONT_RIGHT_MOTOR = 43;//48; //Real
-			REAR_LEFT_MOTOR = 45;//47; //Real
-			REAR_RIGHT_MOTOR = 44;//49; //Real
+			FRONT_LEFT_MOTOR = 42;
+			FRONT_RIGHT_MOTOR = 43;
+			REAR_LEFT_MOTOR = 45;
+			REAR_RIGHT_MOTOR = 44;
+			
+			TARGETING_PITCH_MOTOR = 40; //Real
+			LEFT_SHOOTER_MOTOR = 51;
+			RIGHT_SHOOTER_MOTOR = 56;
+			
+			
 		}else {
-
 			FRONT_LEFT_MOTOR = 46; //Real
 			FRONT_RIGHT_MOTOR = 48; //Real
 			REAR_LEFT_MOTOR = 47; //Real
 			REAR_RIGHT_MOTOR = 49; //Real
-		
 			
+			TARGETING_PITCH_MOTOR = 41; //Real
+			LEFT_SHOOTER_MOTOR = 50;
+			RIGHT_SHOOTER_MOTOR = 40;
 		}
 	}
 }

@@ -5,8 +5,10 @@ import org.usfirst.frc.team2521.robot.RobotMap;
 import org.usfirst.frc.team2521.robot.commands.PitchTeleop;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import java.lang.Math;
 
@@ -15,17 +17,38 @@ import java.lang.Math;
  */
 public class Pitch extends Subsystem {
 	private CANTalon pitch;
-	
-	int encYawZero = 0;
+	private double encoderMax;
+	private double encoderMin;
+	int counter = 0;
 	
 	public Pitch(){
 		pitch = new CANTalon(RobotMap.TARGETING_PITCH_MOTOR);
 		pitch.enableControl();
+		encoderMin = pitch.getEncPosition();
+		encoderMax = encoderMin + RobotMap.ENCODER_RANGE;
 	}
 	
 	public void autoInit(){
 		pitch.changeControlMode(TalonControlMode.Position);
-		pitch.setPID(RobotMap.YAW_P, RobotMap.YAW_I, RobotMap.YAW_D);
+		pitch.setPID(RobotMap.PITCH_P, RobotMap.PITCH_I, RobotMap.PITCH_D);
+		pitch.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		pitch.reverseOutput(true);
+	}
+	
+	public double getEncoderPosition(){
+		return pitch.getEncPosition();
+	}
+	
+	public double getEncoderMax(){
+		return encoderMax;
+	}
+	
+	public double getEncoderMin(){
+		return encoderMin;
+	}
+	
+	public double getMotorValue(){
+		return pitch.get();
 	}
 	
 	private double getTargetPitchAngle(){
@@ -38,13 +61,25 @@ public class Pitch extends Subsystem {
     public boolean getOnTarget() {
     	return (Math.abs(pitch.getError()) < RobotMap.PITCH_ERROR_THRESHOLD);
     }
+    
+   public double getTargetEncoderPosition(){
+	   double angle = getTargetAngleRadians();
+	   return (angle*RobotMap.ENC_COUNTS_PER_RADIAN);
+   }
+    
+    private double getTargetAngleRadians(){
+    	double adj = Robot.sensors.getCameraDistance();
+    	double opp = 85 - RobotMap.CAMERA_HEIGHT;
+    	return Math.atan(opp/adj);
+    }
 	
 	public void set(double value){
+		SmartDashboard.putNumber("Value from in set", value);
 		pitch.set(value);
+		SmartDashboard.putNumber("Get from in set", pitch.get());
 	}
 	
 	public void teleopInit(){
-		//yaw.changeControlMode(TalonControlMode.PercentVbus);
 		pitch.changeControlMode(TalonControlMode.PercentVbus);
 	}
 

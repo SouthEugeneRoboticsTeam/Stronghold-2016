@@ -75,6 +75,7 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putNumber("Last yaw", lastYaw);
 		SmartDashboard.putBoolean("Outerworks distance", longLidar.getValue() < RobotMap.LIDAR_OUTER_WORKS_THRESHOLD);
 		//setLights();
+		SmartDashboard.putNumber("Encoder position", Robot.pitch.getEncoderPosition());
 	}
 	
 	public void setLights(){
@@ -100,7 +101,7 @@ public class Sensors extends Subsystem {
     	return RobotMap.HEIGHT_TO_DISTANCE_FACTOR/(getHeight());
     }
 	
-	/*public double getDeltaX() {
+	public double getDeltaX() {
 		double[] blobs = getBlobs();
 		if (blobs.length > 0) { //makes sure that there is a blob, then calculates distance off center
 			deltaX = blobs[1] - RobotMap.IMAGE_WIDTH/2;
@@ -110,7 +111,7 @@ public class Sensors extends Subsystem {
 		}
 		
 		return deltaX;
-	}*/
+	}
 	
 	private double getHeight() { 
     	double height = table.getNumber("HEIGHT", 0);
