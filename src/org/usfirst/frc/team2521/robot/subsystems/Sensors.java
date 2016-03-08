@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.networktables.NetworkTableKeyNotDefined;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -36,6 +37,7 @@ public class Sensors extends Subsystem {
 	private double[] blobs_default = { -1 };
 	
 	private boolean isTraversing = false;
+	private boolean targetVisible = false;
 	
 	private double initYaw = 0;
 	
@@ -57,7 +59,7 @@ public class Sensors extends Subsystem {
 		return intakeLidar.getValue() > RobotMap.LIDAR_IN_SHOOTER_THRESHOLD;
 	}
 	
-	public void display() {
+	public void display() {	
 		SmartDashboard.putNumber("Lidar distance", getLidarDistance());
 		SmartDashboard.putNumber("Lidar value", intakeLidar.getValue());
 		SmartDashboard.putBoolean("Ball in bot", ballInBot());
@@ -69,13 +71,16 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putNumber("Setpoint", Robot.drivetrain.getSetpoint());
 		SmartDashboard.putBoolean("Is traversing", isTraversing());
 		SmartDashboard.putNumber("Pitch", ahrs.getPitch());
-		if (Math.abs(maxPitch) < Math.abs(ahrs.getPitch())) maxPitch = ahrs.getPitch();
-		SmartDashboard.putNumber("Max pitch", maxPitch);
-		SmartDashboard.putNumber("Long lidar", longLidar.getValue());
-		SmartDashboard.putNumber("Last yaw", lastYaw);
-		SmartDashboard.putBoolean("Outerworks distance", longLidar.getValue() < RobotMap.LIDAR_OUTER_WORKS_THRESHOLD);
+		//if (Math.abs(maxPitch) < Math.abs(ahrs.getPitch())) maxPitch = ahrs.getPitch();
+		//SmartDashboard.putNumber("Max pitch", maxPitch);
+		//SmartDashboard.putNumber("Long lidar", longLidar.getValue());
+		//SmartDashboard.putNumber("Last yaw", lastYaw);
+		//SmartDashboard.putBoolean("Outerworks distance", longLidar.getValue() < RobotMap.LIDAR_OUTER_WORKS_THRESHOLD);
 		//setLights();
 		SmartDashboard.putNumber("Encoder position", Robot.pitch.getEncoderPosition());
+		//SmartDashboard.putNumber("Height", getHeight()); 
+		SmartDashboard.putBoolean("Target visible", targetVisible);
+		SmartDashboard.putNumber("Wheel enc speed", Robot.flyWheels.getEncVelocity());
 	}
 	
 	public void setLights(){
@@ -113,12 +118,19 @@ public class Sensors extends Subsystem {
 		return deltaX;
 	}
 	
-	private double getHeight() { 
-    	double height = table.getNumber("HEIGHT", 0);
-    	if (height != 0) {
-    		height = SmartDashboard.getNumber("Height");
+	public double getHeight() { 
+    	/*double height = table.getNumber("HEIGHT", 0);
+    	if (height == 0) {
+    		//try{
+    			height = SmartDashboard.getNumber("Height");
+    		//}catch(@SuppressWarnings("deprecation") NetworkTableKeyNotDefined e){
+    			
+    		//}
     	}
-    	
+    	if (height != 0) targetVisible = true;
+    	else targetVisible = false;
+    	SmartDashboard.putNumber("Height height", SmartDashboard.getNumber("Height"));*/
+		double height = SmartDashboard.getNumber("Height");
     	return height;
     }
 	

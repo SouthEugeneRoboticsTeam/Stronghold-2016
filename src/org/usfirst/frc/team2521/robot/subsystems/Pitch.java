@@ -3,6 +3,7 @@ package org.usfirst.frc.team2521.robot.subsystems;
 import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
 import org.usfirst.frc.team2521.robot.commands.PitchTeleop;
+import org.usfirst.frc.team2521.robot.commands.TargetPitchFromDistance;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
@@ -23,9 +24,12 @@ public class Pitch extends Subsystem {
 	
 	public Pitch(){
 		pitch = new CANTalon(RobotMap.TARGETING_PITCH_MOTOR);
+		pitch.reset();
 		pitch.enableControl();
 		encoderMin = pitch.getEncPosition();
 		encoderMax = encoderMin + RobotMap.ENCODER_RANGE;
+		SmartDashboard.putNumber("Encoder min", encoderMin);
+		SmartDashboard.putNumber("Encoder max", encoderMax);
 	}
 	
 	public void autoInit(){
@@ -63,8 +67,12 @@ public class Pitch extends Subsystem {
     }
     
    public double getTargetEncoderPosition(){
-	   double angle = getTargetAngleRadians();
-	   return (angle*RobotMap.ENC_COUNTS_PER_RADIAN);
+	   //double angle = getTargetAngleRadians();
+	   //return (angle*RobotMap.ENC_COUNTS_PER_RADIAN);
+	   double h = Robot.sensors.getHeight();
+	   SmartDashboard.putNumber("h", h);
+	   //return 13*Math.pow(height, 2.348)+900+encoderMin; 
+	   return 540.9/(Math.pow((h-17.84),2))+19.92*(h+26.41)-4.661;
    }
     
     private double getTargetAngleRadians(){
@@ -85,7 +93,8 @@ public class Pitch extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new PitchTeleop());
+        setDefaultCommand(new TargetPitchFromDistance());
+    	//setDefaultCommand(new PitchTeleop());
     }
 }
 

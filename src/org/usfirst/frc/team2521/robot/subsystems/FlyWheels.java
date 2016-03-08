@@ -33,7 +33,7 @@ public class FlyWheels extends Subsystem {
 		right.changeControlMode(CANTalon.TalonControlMode.Follower);
 		right.reverseOutput(true);
 		
-	//	pusher = new DoubleSolenoid(RobotMap.PUSHER_OUT_PORT, RobotMap.PUSHER_IN_PORT);
+		pusher = new DoubleSolenoid(RobotMap.PUSHER_OUT_PORT, RobotMap.PUSHER_IN_PORT);
 	
 		wheelSwitch = new DigitalInput(RobotMap.FLYWHEEL_SWITCH);
 		counter = new Counter(wheelSwitch);
@@ -43,13 +43,18 @@ public class FlyWheels extends Subsystem {
 		return Math.abs(counter.getRate()) > RobotMap.FINISHED_SPIN_UP_THRESHOLD;
 	}
 	
+	// get rid of this later
+	public double getEncVelocity(){
+		return counter.getRate();
+	}
+	
 	public void in() {
-		left.set(-0.5);
+		left.set(-1);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
 	
 	public void out() {
-		left.set(0.25);
+		left.set(1);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
 	
@@ -61,9 +66,9 @@ public class FlyWheels extends Subsystem {
 	
 	public void setPusher(boolean on) {
 		if (on) {
-	//		pusher.set(Value.kForward);
+			pusher.set(Value.kForward);
 		} else {
-		//	pusher.set(Value.kReverse);
+			pusher.set(Value.kReverse);
 		}
 	}
 	

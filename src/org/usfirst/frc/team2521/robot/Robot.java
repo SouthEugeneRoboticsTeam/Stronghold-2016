@@ -4,6 +4,8 @@ package org.usfirst.frc.team2521.robot;
 import org.usfirst.frc.team2521.robot.commands.Autonomous;
 import org.usfirst.frc.team2521.robot.commands.MoveForTime;
 import org.usfirst.frc.team2521.robot.commands.MoveToDistance;
+import org.usfirst.frc.team2521.robot.commands.PitchTeleop;
+import org.usfirst.frc.team2521.robot.commands.TargetPitchFromDistance;
 import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2521.robot.subsystems.DrivetrainPID;
 import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
@@ -43,6 +45,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	
 	Command auto;
+	Command teleop;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -62,7 +65,8 @@ public class Robot extends IterativeRobot {
 		
 		oi = new OI();
 		
-		auto = new Autonomous();
+		auto = new TargetPitchFromDistance();
+		teleop = new PitchTeleop();
 		sensors.setInitYaw();
 	}
 	
@@ -92,6 +96,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		//sensors.setInitYaw();
+		teleop.cancel();
 		auto.start();
 		SmartDashboard.putString("Mode", "auto");
 	}
@@ -99,6 +104,7 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This function is called periodically during autonomous
 	 */
+
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 	}
@@ -106,6 +112,7 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		SmartDashboard.putString("Mode", "teleop");
 		auto.cancel();
+		//teleop.start();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
