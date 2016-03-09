@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class PitchTeleop extends Command {
-    public PitchTeleop() {
+public class TeleopPitch extends Command {
+    public TeleopPitch() {
     	requires(Robot.pitch);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

@@ -8,14 +8,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DisplaySensors extends Command {
+public class SensorDefault extends Command {
 	
-	public DisplaySensors() {
+	public SensorDefault() {
 		requires(Robot.sensors);
 	}
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		Robot.sensors.getHeight();
 	}
 	
 	// Called repeatedly when this Command is scheduled to run

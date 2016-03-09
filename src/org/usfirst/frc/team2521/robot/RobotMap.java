@@ -30,6 +30,7 @@ public class RobotMap {
 	
 	public static final int PUSHER_IN_PORT = 1;
 	public static final int PUSHER_OUT_PORT = 0;
+	public static final int LOCK_PORT = 2;
 	// Find actual numbers later.
 	
 	public static final int INTAKE_LIDAR_PORT = 0;
@@ -43,7 +44,7 @@ public class RobotMap {
 	public static final int FLYWHEEL_SWITCH = 0;
 	
 	// Buttons
-	public static final int INTAKE_BUTTON_IN = 8;
+	/*public static final int INTAKE_BUTTON_IN = 8;
 	public static final int INTAKE_BUTTON_OUT = 3;
 	public static final int SHOOTER_BUTTON_IN = 4;
 	public static final int SHOOTER_BUTTON_OUT = 5;
@@ -51,6 +52,24 @@ public class RobotMap {
 	public static final int FIRE_BUTTON = 6; // Real
 	public static final int AUTO_INTAKE_BUTTON = 1; //Real
 	public static final int LINKED_INTAKE_BUTTON = 2;
+	public static final int LOCK_BUTTON = 7;*/
+	
+	
+	//Right joystick buttons
+	public static final int CHEVAL_BUTTON = 1;
+	
+	//Secondary joystick buttons
+	public static final int PUSHER_BUTTON = 1;
+	public static final int SHOOTER_BUTTON_IN = 3;
+	public static final int SHOOTER_BUTTON_OUT = 4;
+	public static final int INTAKE_BUTTON_IN = 5;
+	public static final int INTAKE_BUTTON_OUT = 6;
+	
+	public static final int LOCK_BUTTON = 7;
+	
+	public static final int AUTO_AIM_BUTTON = 9;
+	public static final int AUTO_INTAKE_BUTTON = 11;
+	public static final int AUTO_SHOOT_BUTTON = 12;
 	
 	//Lights
 	public static final int INTAKE_LIGHT = 0;
@@ -59,17 +78,19 @@ public class RobotMap {
 	public static final int OTHER_LIGHT = 3;
 	
 	//Other constants
+	public static final double PITCH_VISION_BASELINE = 600;
+	public static final double FIND_TARGET_DELAY = 5;
 	public static final double LIDAR_FACTOR = 10940; //Calculated
 	public static final double LIDAR_OFFSET = 145.2; //Calculated
 	public static final double HEIGHT_TO_DISTANCE_FACTOR = 4138.375054; //calculated from measured data
-	public static final double ENC_COUNTS_PER_RADIAN = 121/(0.5*Math.PI);//measured
+	//public static final double ENC_COUNTS_PER_RADIAN = 121/(0.5*Math.PI);//measured
 	public static final double VISION_SETPOINT = 0;
+	public static final double IMAGE_WIDTH = 320; //Change if you crop!
 	public static final double YAW_SENSITIVITY = 0.25;
 	public static final double AUTO_SPEED = 0.25;
 	public static final double AUTO_TIME = 5;
-	
 	public static final int AUTO_DISTANCE = 700;
-	public static final int IMAGE_WIDTH = 320;
+	
 	
 	// Thresholds
 	public static final int FINISHED_SPIN_UP_THRESHOLD = 100;
@@ -85,6 +106,10 @@ public class RobotMap {
 	public static final double YAW_P = 1;
 	public static final double YAW_I = 0;
 	public static final double YAW_D = 0;
+	
+	public static final double YAW_VISION_P = 1;
+	public static final double YAW_VISION_I = 0;
+	public static final double YAW_VISION_D = 0;
 	
 	public static final double PITCH_P = 1;
 	public static final double PITCH_I = 0;

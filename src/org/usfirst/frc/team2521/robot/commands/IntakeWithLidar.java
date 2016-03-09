@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class AutomatedIntake extends Command {
+public class IntakeWithLidar extends Command {
 	
-	public AutomatedIntake() {
+	public IntakeWithLidar() {
 		requires(Robot.intake);
 		requires(Robot.flyWheels);
 		// Use requires() here to declare subsystem dependencies

@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class TeleoperatedDrive extends Command {
+public class TeleopDrivetrain extends Command {
 	int traverseCount = 0;
 	boolean lastTraverseState = false;
 	boolean hasTraversed = false;
 	
-	public TeleoperatedDrive() {
+	public TeleopDrivetrain() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.drivetrain);
 		

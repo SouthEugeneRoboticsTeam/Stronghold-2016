@@ -7,7 +7,7 @@ import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
 import org.usfirst.frc.team2521.robot.OI.Defense;
-import org.usfirst.frc.team2521.robot.commands.DisplaySensors;
+import org.usfirst.frc.team2521.robot.commands.SensorDefault;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -44,6 +44,9 @@ public class Sensors extends Subsystem {
 	private double lastYaw = 0;
 	private double yawOffset = 0; 
 	
+	public boolean autoFireOn = false;
+	public boolean autoAimOn = false;
+	
 	public Sensors() {
 		ahrs = new AHRS(SPI.Port.kMXP);
 		intakeLidar = new AnalogInput(RobotMap.INTAKE_LIDAR_PORT);
@@ -60,7 +63,14 @@ public class Sensors extends Subsystem {
 	}
 	
 	public void display() {	
-		SmartDashboard.putNumber("Lidar distance", getLidarDistance());
+		SmartDashboard.putBoolean("Target visible", targetVisible);
+		SmartDashboard.putBoolean("On target", Robot.pitch.getOnTarget() && Robot.yaw.getOnTarget());
+		
+		SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
+		SmartDashboard.putBoolean("Auto aim on", autoAimOn);
+		SmartDashboard.putBoolean("Auto fire on", autoFireOn);
+		
+		/*SmartDashboard.putNumber("Lidar distance", getLidarDistance());
 		SmartDashboard.putNumber("Lidar value", intakeLidar.getValue());
 		SmartDashboard.putBoolean("Ball in bot", ballInBot());
 		SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
@@ -81,6 +91,7 @@ public class Sensors extends Subsystem {
 		//SmartDashboard.putNumber("Height", getHeight()); 
 		SmartDashboard.putBoolean("Target visible", targetVisible);
 		SmartDashboard.putNumber("Wheel enc speed", Robot.flyWheels.getEncVelocity());
+		SmartDashboard.putNumber("Target enc position", Robot.pitch.getTargetEncoderPosition());*/
 	}
 	
 	public void setLights(){
@@ -119,18 +130,18 @@ public class Sensors extends Subsystem {
 	}
 	
 	public double getHeight() { 
-    	/*double height = table.getNumber("HEIGHT", 0);
+    	double height = table.getNumber("HEIGHT", 0);
     	if (height == 0) {
-    		//try{
+    		try{
     			height = SmartDashboard.getNumber("Height");
-    		//}catch(@SuppressWarnings("deprecation") NetworkTableKeyNotDefined e){
-    			
-    		//}
+    		}catch(@SuppressWarnings("deprecation") NetworkTableKeyNotDefined e){
+    			System.out.print(e.getStackTrace());
+    			SmartDashboard.putNumber("Height", table.getNumber("HEIGHT", 0));
+    		}
     	}
     	if (height != 0) targetVisible = true;
     	else targetVisible = false;
-    	SmartDashboard.putNumber("Height height", SmartDashboard.getNumber("Height"));*/
-		double height = SmartDashboard.getNumber("Height");
+    	
     	return height;
     }
 	
@@ -148,9 +159,18 @@ public class Sensors extends Subsystem {
 		return blobs;
 	}
 	
-	public double getWidth() {
-		return 0; //needs to be updated with SmartDashboard -- right now I just wanted to make it so it wouldn't throw an error
-	}
+	/*public double getWidth() {
+		double width = table.getNumber("WIDTH", 0);
+    	if (width == 0) {
+    		try{
+    			width = SmartDashboard.getNumber("Width");
+    		}catch(@SuppressWarnings("deprecation") NetworkTableKeyNotDefined e){
+    			System.out.print(e.getStackTrace());
+    			SmartDashboard.putNumber("Width", table.getNumber("WIDTH", 0));
+    		}
+    	}
+    	return width;	
+	}*/
 	
 	public double getPitch(){
 		return ahrs.getPitch();
@@ -170,8 +190,6 @@ public class Sensors extends Subsystem {
 		//}
 	}
 	
-	
-	
 	public void setInitYaw(){
 		initYaw = ahrs.getYaw();
 	}
@@ -181,7 +199,6 @@ public class Sensors extends Subsystem {
 	}
 
     public void initDefaultCommand() {
-        setDefaultCommand(new DisplaySensors());
+        setDefaultCommand(new SensorDefault());
     }
 }
-

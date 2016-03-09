@@ -3,7 +3,7 @@ package org.usfirst.frc.team2521.robot.subsystems;
 import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
-import org.usfirst.frc.team2521.robot.commands.TeleoperatedDrive;
+import org.usfirst.frc.team2521.robot.commands.TeleopDrivetrain;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
@@ -119,7 +119,7 @@ public class DrivetrainPID extends PIDSubsystem {
 	}
     
     public void initDefaultCommand() {
-    	setDefaultCommand(new TeleoperatedDrive());
+    	setDefaultCommand(new TeleopDrivetrain());
         // Set the default command for a subsystem here.
     }
     

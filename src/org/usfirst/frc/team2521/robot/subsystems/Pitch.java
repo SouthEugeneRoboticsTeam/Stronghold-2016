@@ -2,7 +2,7 @@ package org.usfirst.frc.team2521.robot.subsystems;
 
 import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
-import org.usfirst.frc.team2521.robot.commands.PitchTeleop;
+import org.usfirst.frc.team2521.robot.commands.TeleopPitch;
 import org.usfirst.frc.team2521.robot.commands.TargetPitchFromDistance;
 
 import edu.wpi.first.wpilibj.CANTalon;
@@ -55,12 +55,12 @@ public class Pitch extends Subsystem {
 		return pitch.get();
 	}
 	
-	private double getTargetPitchAngle(){
+	/*private double getTargetPitchAngle(){
     	double adj = Robot.sensors.getLidarDistance();
     	double opp = 85 - RobotMap.CAMERA_HEIGHT;
     	double angle = Math.atan(opp/adj);
     	return angle*RobotMap.ENC_COUNTS_PER_RADIAN;
-    }
+    }*/
     
     public boolean getOnTarget() {
     	return (Math.abs(pitch.getError()) < RobotMap.PITCH_ERROR_THRESHOLD);

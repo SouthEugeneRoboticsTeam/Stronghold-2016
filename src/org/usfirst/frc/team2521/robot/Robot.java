@@ -4,12 +4,13 @@ package org.usfirst.frc.team2521.robot;
 import org.usfirst.frc.team2521.robot.commands.Autonomous;
 import org.usfirst.frc.team2521.robot.commands.MoveForTime;
 import org.usfirst.frc.team2521.robot.commands.MoveToDistance;
-import org.usfirst.frc.team2521.robot.commands.PitchTeleop;
+import org.usfirst.frc.team2521.robot.commands.TeleopPitch;
 import org.usfirst.frc.team2521.robot.commands.TargetPitchFromDistance;
 import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2521.robot.subsystems.DrivetrainPID;
 import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
 import org.usfirst.frc.team2521.robot.subsystems.Intake;
+import org.usfirst.frc.team2521.robot.subsystems.Lock;
 import org.usfirst.frc.team2521.robot.subsystems.Sensors;
 import org.usfirst.frc.team2521.robot.subsystems.TalonLeft;
 import org.usfirst.frc.team2521.robot.subsystems.TalonRight;
@@ -31,16 +32,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	public static boolean test_platform = true; //are we on the real robot or the test platform?
+	public static boolean test_platform = false; //are we on the real robot or the test platform?
 	
 	public static DrivetrainPID drivetrain;
 	public static Intake intake;
 	public static FlyWheels flyWheels;
 	public static Sensors sensors;
 	public static Pitch pitch;
-	public static Yaw yaw;
+	public static YawPID yaw;
 	public static TalonLeft talonLeft;
 	public static TalonRight talonRight;
+	public static Lock lock;
 	
 	public static OI oi;
 	
@@ -57,16 +59,17 @@ public class Robot extends IterativeRobot {
 		intake = new Intake();
 		flyWheels = new FlyWheels();
 		pitch = new Pitch();
-		yaw = new Yaw();
+		yaw = new YawPID();
 		//talonLeft = new TalonLeft();
 		//talonRight = new TalonRight();
+		lock = new Lock();
 		
 		sensors = new Sensors();
 		
 		oi = new OI();
 		
 		auto = new TargetPitchFromDistance();
-		teleop = new PitchTeleop();
+		teleop = new TeleopPitch();
 		sensors.setInitYaw();
 	}
 	

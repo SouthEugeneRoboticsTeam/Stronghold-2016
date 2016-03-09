@@ -1,13 +1,17 @@
 
 package org.usfirst.frc.team2521.robot;
 
-import org.usfirst.frc.team2521.robot.commands.AutomatedIntake;
+import org.usfirst.frc.team2521.robot.commands.IntakeWithLidar;
+import org.usfirst.frc.team2521.robot.commands.AutoAim;
+import org.usfirst.frc.team2521.robot.commands.AutoIntake;
+import org.usfirst.frc.team2521.robot.commands.AutoShoot;
 import org.usfirst.frc.team2521.robot.commands.IntakeIn;
 import org.usfirst.frc.team2521.robot.commands.IntakeOut;
 import org.usfirst.frc.team2521.robot.commands.IntakeStop;
 import org.usfirst.frc.team2521.robot.commands.LinkedIntake;
 import org.usfirst.frc.team2521.robot.commands.LinkedIntakeStop;
 import org.usfirst.frc.team2521.robot.commands.SetFlyWheels;
+import org.usfirst.frc.team2521.robot.commands.SetLock;
 import org.usfirst.frc.team2521.robot.commands.SetPusher;
 import org.usfirst.frc.team2521.robot.commands.ShootBall;
 import org.usfirst.frc.team2521.robot.commands.StopFlyWheels;
@@ -35,12 +39,13 @@ public class OI {
 	private JoystickButton shooterButtonIn;
 	private JoystickButton shooterButtonOut;
 	
-	private JoystickButton fireButton;
 	private JoystickButton autoIntakeButton;
+	private JoystickButton autoAimButton;
+	private JoystickButton autoShootButton;
 	
 	private JoystickButton pusherButton;
 	
-	private JoystickButton linkedIntakeButton;
+	private JoystickButton lockButton;
 	
 	private static OI instance;
 	
@@ -129,31 +134,34 @@ public class OI {
 		intakeButtonOut = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON_OUT);
 		shooterButtonIn = new JoystickButton(secondary, RobotMap.SHOOTER_BUTTON_IN);
 		shooterButtonOut = new JoystickButton(secondary, RobotMap.SHOOTER_BUTTON_OUT);
-		fireButton = new JoystickButton(secondary, RobotMap.FIRE_BUTTON);
-		autoIntakeButton = new JoystickButton(right, RobotMap.AUTO_INTAKE_BUTTON);
+		autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
 		pusherButton = new JoystickButton(secondary, RobotMap.PUSHER_BUTTON);
-		linkedIntakeButton = new JoystickButton(secondary, RobotMap.LINKED_INTAKE_BUTTON);
-		driveIntakeOut = new JoystickButton(right, RobotMap.INTAKE_BUTTON_OUT);
+		driveIntakeOut = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON_OUT);
+		lockButton = new JoystickButton(secondary, RobotMap.LOCK_BUTTON);
+		autoAimButton = new JoystickButton(secondary, RobotMap.AUTO_AIM_BUTTON);
+		autoShootButton = new JoystickButton(secondary, RobotMap.AUTO_SHOOT_BUTTON);
+		autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
 		
 		tieButtons();
 	}
 	
 	public void tieButtons() {
 		//fireButton.whenPressed(new ShootBall());
+		autoIntakeButton.whenPressed(new AutoIntake());
+		//autoAimButton.whenPressed(new AutoAim());
+		//autoShootButton.whenPressed(new AutoShoot());
+		
 		intakeButtonIn.whenPressed(new IntakeIn());
 		intakeButtonIn.whenReleased(new IntakeStop());
 		intakeButtonOut.whenPressed(new IntakeOut());
 		intakeButtonOut.whenReleased(new IntakeStop());
-		autoIntakeButton.whenPressed(new AutomatedIntake());
 		shooterButtonIn.whenPressed(new SetFlyWheels(false));
 		shooterButtonOut.whenPressed(new SetFlyWheels(true));
 		shooterButtonIn.whenReleased(new StopFlyWheels());
 		shooterButtonOut.whenReleased(new StopFlyWheels());
 		pusherButton.whenPressed(new SetPusher(true));
 		pusherButton.whenReleased(new SetPusher(false));
-		linkedIntakeButton.whenPressed(new LinkedIntake());
-		linkedIntakeButton.whenReleased(new LinkedIntakeStop());
-		driveIntakeOut.whenPressed(new IntakeOut());
-		driveIntakeOut.whenReleased(new IntakeStop());
+		lockButton.whenPressed(new SetLock(true));
+		lockButton.whenReleased(new SetLock(false));
 	}
 }
