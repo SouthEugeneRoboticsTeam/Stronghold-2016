@@ -23,20 +23,20 @@ public class TargetPitchFromDistance extends Command {
     protected void initialize() {
     	Robot.pitch.autoInit();
     	Robot.pitch.set(RobotMap.PITCH_VISION_BASELINE + Robot.pitch.getEncoderMin());
-    	SmartDashboard.putNumber("600 set", RobotMap.PITCH_VISION_BASELINE + Robot.pitch.getEncoderMin());
+    	SmartDashboard.putNumber("Baseline", RobotMap.PITCH_VISION_BASELINE + Robot.pitch.getEncoderMin());
     	setpoint = Robot.pitch.getTargetEncoderPosition() + Robot.pitch.getEncoderMin();
     	Timer.delay(RobotMap.FIND_TARGET_DELAY);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putNumber("Targ enc pos", setpoint);
+    	//SmartDashboard.putNumber("Targ enc pos", setpoint);
     	Robot.pitch.set(setpoint);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;//Robot.pitch.getOnTarget();
+        return Robot.pitch.getOnTarget();
     }
 
     // Called once after isFinished returns true

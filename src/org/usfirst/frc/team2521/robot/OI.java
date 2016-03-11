@@ -1,20 +1,7 @@
 
 package org.usfirst.frc.team2521.robot;
 
-import org.usfirst.frc.team2521.robot.commands.IntakeWithLidar;
-import org.usfirst.frc.team2521.robot.commands.AutoAim;
-import org.usfirst.frc.team2521.robot.commands.AutoIntake;
-import org.usfirst.frc.team2521.robot.commands.AutoShoot;
-import org.usfirst.frc.team2521.robot.commands.IntakeIn;
-import org.usfirst.frc.team2521.robot.commands.IntakeOut;
-import org.usfirst.frc.team2521.robot.commands.IntakeStop;
-import org.usfirst.frc.team2521.robot.commands.LinkedIntake;
-import org.usfirst.frc.team2521.robot.commands.LinkedIntakeStop;
-import org.usfirst.frc.team2521.robot.commands.SetFlyWheels;
-import org.usfirst.frc.team2521.robot.commands.SetLock;
-import org.usfirst.frc.team2521.robot.commands.SetPusher;
-import org.usfirst.frc.team2521.robot.commands.ShootBall;
-import org.usfirst.frc.team2521.robot.commands.StopFlyWheels;
+import org.usfirst.frc.team2521.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Preferences;
@@ -42,6 +29,7 @@ public class OI {
 	private JoystickButton autoIntakeButton;
 	private JoystickButton autoAimButton;
 	private JoystickButton autoShootButton;
+	private JoystickButton autoResetShooterButton;
 	
 	private JoystickButton pusherButton;
 	
@@ -141,6 +129,7 @@ public class OI {
 		autoAimButton = new JoystickButton(secondary, RobotMap.AUTO_AIM_BUTTON);
 		autoShootButton = new JoystickButton(secondary, RobotMap.AUTO_SHOOT_BUTTON);
 		autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
+		autoResetShooterButton = new JoystickButton(secondary, RobotMap.RESET_SHOOTER_BUTTON);
 		
 		tieButtons();
 	}
@@ -163,5 +152,6 @@ public class OI {
 		pusherButton.whenReleased(new SetPusher(false));
 		lockButton.whenPressed(new SetLock(true));
 		lockButton.whenReleased(new SetLock(false));
+		autoResetShooterButton.whenPressed(new ResetShooter());
 	}
 }

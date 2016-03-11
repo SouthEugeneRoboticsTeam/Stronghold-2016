@@ -2,7 +2,7 @@
 package org.usfirst.frc.team2521.robot;
 
 import org.usfirst.frc.team2521.robot.commands.Autonomous;
-import org.usfirst.frc.team2521.robot.commands.MoveForTime;
+import org.usfirst.frc.team2521.robot.commands.SetDrivetrain;
 import org.usfirst.frc.team2521.robot.commands.MoveToDistance;
 import org.usfirst.frc.team2521.robot.commands.TeleopPitch;
 import org.usfirst.frc.team2521.robot.commands.TargetPitchFromDistance;
@@ -19,6 +19,7 @@ import org.usfirst.frc.team2521.robot.subsystems.Yaw;
 import org.usfirst.frc.team2521.robot.subsystems.Pitch;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -32,6 +33,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	Preferences prefs;
+	public static double YAW_P;
+	public static double YAW_I;
+	public static double YAW_D;
+	
+	public static double YAW_VISION_P;
+	public static double YAW_VISION_I;
+	public static double YAW_VISION_D;
+	
 	public static boolean test_platform = false; //are we on the real robot or the test platform?
 	
 	public static DrivetrainPID drivetrain;
@@ -54,14 +64,19 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
+		prefs = Preferences.getInstance();
+		YAW_P = prefs.getInt("Yaw P", 1);
+		YAW_I = prefs.getInt("Yaw I", 0);
+		YAW_D = prefs.getInt("Yaw D", 0);
+		YAW_VISION_P = prefs.getInt("Yaw Vision P", 1);
+		YAW_VISION_I = prefs.getInt("Yaw Vision I", 0);
+		YAW_VISION_D = prefs.getInt("Yaw Vision D", 0);
 		RobotMap.setMotors();
 		drivetrain = new DrivetrainPID();
 		intake = new Intake();
 		flyWheels = new FlyWheels();
 		pitch = new Pitch();
 		yaw = new YawPID();
-		//talonLeft = new TalonLeft();
-		//talonRight = new TalonRight();
 		lock = new Lock();
 		
 		sensors = new Sensors();
@@ -98,10 +113,8 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		//sensors.setInitYaw();
 		teleop.cancel();
 		auto.start();
-		SmartDashboard.putString("Mode", "auto");
 	}
 	
 	/**
@@ -113,8 +126,8 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void teleopInit() {
-		SmartDashboard.putString("Mode", "teleop");
 		auto.cancel();
+		teleop.start();
 		//teleop.start();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to

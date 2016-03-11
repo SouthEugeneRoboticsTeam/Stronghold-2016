@@ -35,7 +35,7 @@ public class FlyWheels extends Subsystem {
 		
 		pusher = new DoubleSolenoid(RobotMap.PUSHER_OUT_PORT, RobotMap.PUSHER_IN_PORT);
 	
-		wheelSwitch = new DigitalInput(RobotMap.FLYWHEEL_SWITCH);
+		wheelSwitch = new DigitalInput(RobotMap.FLYWHEEL_ENCODER_SWITCH);
 		counter = new Counter(wheelSwitch);
 	}
 	

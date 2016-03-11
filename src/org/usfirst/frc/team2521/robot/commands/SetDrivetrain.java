@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * Move the robot to a certain encoder location
  */
-public class MoveForTime extends Command {
+public class SetDrivetrain extends Command {
 	
 	//private double time;
 	private double value;
 	
 	
-	public MoveForTime(double value) {
+	public SetDrivetrain(double value) {
 		requires(Robot.drivetrain);
 		this.value = value;
 		//this.time = time;
@@ -28,7 +28,6 @@ public class MoveForTime extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		Robot.drivetrain.set(value, value);
-		SmartDashboard.putString("Current command", "Move for time");
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
@@ -38,7 +37,6 @@ public class MoveForTime extends Command {
 	
 	// Called once after isFinished returns true
 	protected void end() {
-		SmartDashboard.putBoolean("Auto running", false);
 		Robot.drivetrain.set(0,0);
 		
 		//Timer.delay(time);

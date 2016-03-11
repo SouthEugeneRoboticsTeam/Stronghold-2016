@@ -64,7 +64,7 @@ public class Sensors extends Subsystem {
 	
 	public void display() {	
 		SmartDashboard.putBoolean("Target visible", targetVisible);
-		SmartDashboard.putBoolean("On target", Robot.pitch.getOnTarget() && Robot.yaw.getOnTarget());
+		SmartDashboard.putBoolean("On target", Robot.pitch.getOnTarget() && Robot.yaw.getVisionOnTarget());
 		
 		SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
 		SmartDashboard.putBoolean("Auto aim on", autoAimOn);
@@ -123,7 +123,7 @@ public class Sensors extends Subsystem {
 			deltaX = blobs[1] - RobotMap.IMAGE_WIDTH/2;
 			lastDeltaX = deltaX;
 		} else {
-			deltaX = RobotMap.VISION_SETPOINT;
+			deltaX = 0;//RobotMap.VISION_SETPOINT;
 		}
 		
 		return deltaX;
