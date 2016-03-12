@@ -13,7 +13,7 @@ public class IntakeWithLidar extends Command {
 	
 	public IntakeWithLidar() {
 		requires(Robot.intake);
-		requires(Robot.flyWheels);
+		//requires(Robot.flyWheels);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 	}
@@ -24,7 +24,7 @@ public class IntakeWithLidar extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.flyWheels.in();
+		//Robot.flyWheels.in();
 		Robot.intake.in();
 	}
 	
@@ -36,7 +36,7 @@ public class IntakeWithLidar extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		Robot.intake.stop();
-		Robot.flyWheels.stop();
+	//	Robot.flyWheels.stop();
 	}
 	
 	// Called when another command which requires one or more of the same

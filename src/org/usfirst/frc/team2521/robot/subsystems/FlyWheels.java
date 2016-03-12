@@ -26,7 +26,6 @@ public class FlyWheels extends Subsystem {
 	public FlyWheels() {
 		left = new CANTalon(RobotMap.LEFT_SHOOTER_MOTOR);
 		right = new CANTalon(RobotMap.RIGHT_SHOOTER_MOTOR);
-		
 		left.enableBrakeMode(true);
 		right.enableBrakeMode(true);
 		

@@ -39,10 +39,10 @@ public class SetPusher extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	if (out) {
-    		Robot.flyWheels.setPusher(true);
+    		//Robot.flyWheels.setPusher(true);
     		SmartDashboard.putBoolean("Pusher", true);
     	} else {
-    		Robot.flyWheels.setPusher(false);
+    		//Robot.flyWheels.setPusher(false);
     		SmartDashboard.putBoolean("Pusher", false);
     	}
     }

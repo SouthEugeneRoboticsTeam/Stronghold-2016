@@ -20,13 +20,13 @@ public class ResetShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.pitch.set(Robot.pitch.getEncoderMin());
-    	Robot.yaw.set(Robot.yaw.getZero());
+    //	Robot.pitch.set(Robot.pitch.getEncoderMin());
+    	//Robot.yaw.set(Robot.yaw.getZero());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.pitch.getOnTarget() && Robot.yaw.getOnTarget();
+        return true;//Robot.pitch.getOnTarget() && Robot.yaw.getOnTarget();
     }
 
     // Called once after isFinished returns true

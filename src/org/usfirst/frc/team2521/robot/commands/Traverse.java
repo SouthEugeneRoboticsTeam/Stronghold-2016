@@ -25,7 +25,7 @@ public class Traverse extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.set(0.8,0.8);
+    //	Robot.drivetrain.set(0.8,0.8);
     	if(Robot.sensors.isTraversing()) hasTraversed = true;
 		SmartDashboard.putBoolean("Has traversed", hasTraversed);
 		Robot.sensors.updateTraversing();
@@ -34,7 +34,7 @@ public class Traverse extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (hasTraversed && !Robot.sensors.isTraversing())/* && (Robot.sensors.getPitch() ==0)*/;
+        return true; //(hasTraversed && !Robot.sensors.isTraversing())/* && (Robot.sensors.getPitch() ==0)*/;
     }
 
     // Called once after isFinished returns true
@@ -42,7 +42,7 @@ public class Traverse extends Command {
     	Robot.drivetrain.set(0.8,0.8);
     	//switch(OI.getInstance().getDefense()){
     	//case rockWall:
-    		Timer.delay(0.5);
+    		Timer.delay(5);
     	//}
     	Robot.drivetrain.set(0,0);
     }

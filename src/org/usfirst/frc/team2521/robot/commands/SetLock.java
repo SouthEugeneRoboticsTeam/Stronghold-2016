@@ -11,7 +11,7 @@ public class SetLock extends Command {
 	boolean value;
 	
     public SetLock(boolean value) {
-    	requires(Robot.lock);
+    	//requires(Robot.lock);
     	this.value = value;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -32,7 +32,7 @@ public class SetLock extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.lock.set(value);
+    	//Robot.lock.set(value);
     }
 
     // Called when another command which requires one or more of the same

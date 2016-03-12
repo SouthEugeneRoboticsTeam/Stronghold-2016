@@ -46,18 +46,18 @@ public class Robot extends IterativeRobot {
 	
 	public static DrivetrainPID drivetrain;
 	public static Intake intake;
-	public static FlyWheels flyWheels;
+	//public static FlyWheels flyWheels;
 	public static Sensors sensors;
-	public static Pitch pitch;
-	public static YawPID yaw;
-	public static TalonLeft talonLeft;
-	public static TalonRight talonRight;
-	public static Lock lock;
+	//public static Pitch pitch;
+	//public static YawPID yaw;
+	//public static TalonLeft talonLeft;
+//	public static TalonRight talonRight;
+	//public static Lock lock;
 	
 	public static OI oi;
 	
 	Command auto;
-	Command teleop;
+	//Command teleop;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -74,17 +74,17 @@ public class Robot extends IterativeRobot {
 		RobotMap.setMotors();
 		drivetrain = new DrivetrainPID();
 		intake = new Intake();
-		flyWheels = new FlyWheels();
+		/*flyWheels = new FlyWheels();
 		pitch = new Pitch();
 		yaw = new YawPID();
-		lock = new Lock();
+		lock = new Lock();*/
 		
 		sensors = new Sensors();
 		
 		oi = new OI();
 		
-		auto = new TargetPitchFromDistance();
-		teleop = new TeleopPitch();
+		auto = new Autonomous();
+		//teleop = new TeleopPitch();
 		sensors.setInitYaw();
 	}
 	
@@ -94,7 +94,7 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 	public void disabledInit() {
-		flyWheels.stop();
+		//flyWheels.stop();
 		auto.cancel();
 	}
 	
@@ -113,7 +113,7 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		teleop.cancel();
+		//teleop.cancel();
 		auto.start();
 	}
 	
@@ -126,8 +126,9 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void teleopInit() {
+		drivetrain.set(0, 0);
 		auto.cancel();
-		teleop.start();
+		//teleop.start();
 		//teleop.start();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to

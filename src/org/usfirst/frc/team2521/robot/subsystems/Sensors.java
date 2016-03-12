@@ -64,7 +64,7 @@ public class Sensors extends Subsystem {
 	
 	public void display() {	
 		SmartDashboard.putBoolean("Target visible", targetVisible);
-		SmartDashboard.putBoolean("On target", Robot.pitch.getOnTarget() && Robot.yaw.getVisionOnTarget());
+		//SmartDashboard.putBoolean("On target", Robot.pitch.getOnTarget() && Robot.yaw.getVisionOnTarget());
 		
 		SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
 		SmartDashboard.putBoolean("Auto aim on", autoAimOn);
@@ -79,9 +79,10 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putNumber("Fixed yaw", getYaw());
 		SmartDashboard.putString("Defense", OI.getInstance().getDefense().toString());
 		SmartDashboard.putNumber("Setpoint", Robot.drivetrain.getSetpoint());
-		SmartDashboard.putBoolean("Is traversing", isTraversing());
-		SmartDashboard.putNumber("Pitch", ahrs.getPitch());
-		//if (Math.abs(maxPitch) < Math.abs(ahrs.getPitch())) maxPitch = ahrs.getPitch();
+		SmartDashboard.putBoolean("Is traversing", isTraversing());*/
+		System.out.println("Pitch" + ahrs.getPitch());
+		System.out.println("Traversing" + isTraversing());
+		/*//if (Math.abs(maxPitch) < Math.abs(ahrs.getPitch())) maxPitch = ahrs.getPitch();
 		//SmartDashboard.putNumber("Max pitch", maxPitch);
 		//SmartDashboard.putNumber("Long lidar", longLidar.getValue());
 		//SmartDashboard.putNumber("Last yaw", lastYaw);
@@ -96,7 +97,7 @@ public class Sensors extends Subsystem {
 	
 	public void setLights(){
 		OI.getInstance().setLight(RobotMap.INTAKE_LIGHT, ballInBot());
-		OI.getInstance().setLight(RobotMap.WHEELS_LIGHT, Robot.flyWheels.getUpToSpeed());
+		//OI.getInstance().setLight(RobotMap.WHEELS_LIGHT, Robot.flyWheels.getUpToSpeed());
 		OI.getInstance().setLight(RobotMap.VISION_LIGHT, false);
 	}
 	
@@ -119,7 +120,7 @@ public class Sensors extends Subsystem {
 	
 	public double getDeltaX() {
 		double[] blobs = getBlobs();
-		if (blobs.length > 0) { //makes sure that there is a blob, then calculates distance off center
+		if (blobs.length > 1) { //makes sure that there is a blob, then calculates distance off center
 			deltaX = blobs[1] - RobotMap.IMAGE_WIDTH/2;
 			lastDeltaX = deltaX;
 		} else {

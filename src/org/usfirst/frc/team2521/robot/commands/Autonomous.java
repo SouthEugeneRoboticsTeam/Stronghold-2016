@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Autonomous extends CommandGroup {
     
     public  Autonomous() {
-    	if (OI.getInstance().getDefense() == Defense.moat ||
+    	/*if (OI.getInstance().getDefense() == Defense.moat ||
     			OI.getInstance().getDefense() == Defense.ramparts ||
     			OI.getInstance().getDefense() == Defense.rockWall ||
     			OI.getInstance().getDefense() == Defense.roughTerrain){
@@ -43,11 +43,12 @@ public class Autonomous extends CommandGroup {
 	    		break;
 	    	}
 	    	//addSequential(new AutoShoot());
-	    	addSequential(new ToAngle(180));
+	    	/*addSequential(new ToAngle(180));
 	    	addSequential(new Traverse());
 	    	addSequential(new ToAngle(0));
     	}else{
     		addSequential(new SetDrivetrain(0.3), 5);
-    	}
+    	}*/
+    	//addSequential(new Traverse());
     }
 }
