@@ -27,7 +27,7 @@ public class RobotMap {
 	
 	public static final int INTAKE_WHEEL_MOTOR = 30;
 	
-	public static final int TARGETING_YAW_MOTOR = 31;
+	public static int TARGETING_YAW_MOTOR;
 	public static int TARGETING_PITCH_MOTOR;
 	
 	//Pneumatics
@@ -98,6 +98,7 @@ public class RobotMap {
 	public static final float TRAVERSE_DEGREES = 12;
 	
 	public static final double ENCODER_RANGE = 1300;
+	public static final double YAW_ENCODER_RANGE = 4042;
 	
 	// Thresholds
 	public static final int FINISHED_SPIN_UP_THRESHOLD = 100;
@@ -109,11 +110,11 @@ public class RobotMap {
 	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 3440; //uses .getValue()
 	public static final double LIDAR_OUTER_WORKS_THRESHOLD = 1200; //uses .getValue()
 	
-	public static final double YAW_P = 1;
+	public static final double YAW_P = 0.1;
 	public static final double YAW_I = 0;
 	public static final double YAW_D = 0;
 	
-	public static final double YAW_VISION_P = 1;
+	public static final double YAW_VISION_P = 0.0025;
 	public static final double YAW_VISION_I = 0;
 	public static final double YAW_VISION_D = 0;
 	
@@ -129,8 +130,8 @@ public class RobotMap {
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;
 	
-	public static void setMotors(){
-		if(Robot.test_platform){
+	public static void setMotors() {
+		if(Robot.test_platform) {
 			FRONT_LEFT_MOTOR = 42;
 			FRONT_RIGHT_MOTOR = 43;
 			REAR_LEFT_MOTOR = 45;
@@ -139,9 +140,9 @@ public class RobotMap {
 			TARGETING_PITCH_MOTOR = 40; //Real
 			LEFT_SHOOTER_MOTOR = 51;
 			RIGHT_SHOOTER_MOTOR = 56;
+			TARGETING_YAW_MOTOR = 52;
 			
-			
-		}else {
+		} else {
 			FRONT_LEFT_MOTOR = 46; //Real
 			FRONT_RIGHT_MOTOR = 48; //Real
 			REAR_LEFT_MOTOR = 47; //Real
@@ -150,6 +151,7 @@ public class RobotMap {
 			TARGETING_PITCH_MOTOR = 41; //Real
 			LEFT_SHOOTER_MOTOR = 50;
 			RIGHT_SHOOTER_MOTOR = 40;
+			TARGETING_YAW_MOTOR = 31;
 		}
 	}
 }

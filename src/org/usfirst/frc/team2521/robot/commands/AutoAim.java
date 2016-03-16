@@ -11,8 +11,8 @@ public class AutoAim extends CommandGroup {
     
     public  AutoAim() {
     	Robot.sensors.autoAimOn = true;
-    	addParallel(new TargetYawFromDistance());
-    	addParallel(new TargetPitchFromDistance());
+    	addParallel(new TargetYaw());
+    	addParallel(new TargetPitch());
     	Robot.sensors.autoAimOn = false;
     }
 }

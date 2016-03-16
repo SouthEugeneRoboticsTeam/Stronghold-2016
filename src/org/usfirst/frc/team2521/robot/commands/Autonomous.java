@@ -49,6 +49,6 @@ public class Autonomous extends CommandGroup {
     	}else{
     		addSequential(new SetDrivetrain(0.3), 5);
     	}*/
-    	//addSequential(new Traverse());
+    	addSequential(new Traverse());
     }
 }

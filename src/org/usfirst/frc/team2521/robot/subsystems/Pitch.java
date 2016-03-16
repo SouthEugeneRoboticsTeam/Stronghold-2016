@@ -3,7 +3,7 @@ package org.usfirst.frc.team2521.robot.subsystems;
 import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
 import org.usfirst.frc.team2521.robot.commands.TeleopPitch;
-import org.usfirst.frc.team2521.robot.commands.TargetPitchFromDistance;
+import org.usfirst.frc.team2521.robot.commands.TargetPitch;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;

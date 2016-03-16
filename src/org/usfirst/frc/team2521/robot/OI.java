@@ -41,9 +41,9 @@ public class OI {
 	private Defense defense;
 	
 	public OI() {
-		left = new Joystick(RobotMap.LEFT_STICK_PORT);
-		right = new Joystick(RobotMap.RIGHT_STICK_PORT);
 		secondary = new Joystick(RobotMap.SECONDARY_STICK_PORT);
+		right = new Joystick(RobotMap.RIGHT_STICK_PORT);
+		left = new Joystick(RobotMap.LEFT_STICK_PORT);
 		custom = new Joystick(RobotMap.CUSTOM_PORT);
 		setPrefs();
 		initButtons();

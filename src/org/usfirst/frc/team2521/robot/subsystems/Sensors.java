@@ -80,8 +80,8 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putString("Defense", OI.getInstance().getDefense().toString());
 		SmartDashboard.putNumber("Setpoint", Robot.drivetrain.getSetpoint());
 		SmartDashboard.putBoolean("Is traversing", isTraversing());*/
-		System.out.println("Pitch" + ahrs.getPitch());
-		System.out.println("Traversing" + isTraversing());
+		//System.out.println("Pitch" + ahrs.getPitch());
+		//System.out.println("Traversing" + isTraversing());
 		/*//if (Math.abs(maxPitch) < Math.abs(ahrs.getPitch())) maxPitch = ahrs.getPitch();
 		//SmartDashboard.putNumber("Max pitch", maxPitch);
 		//SmartDashboard.putNumber("Long lidar", longLidar.getValue());
@@ -93,6 +93,7 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putBoolean("Target visible", targetVisible);
 		SmartDashboard.putNumber("Wheel enc speed", Robot.flyWheels.getEncVelocity());
 		SmartDashboard.putNumber("Target enc position", Robot.pitch.getTargetEncoderPosition());*/
+		SmartDashboard.putNumber("Delta X", getDeltaX());
 	}
 	
 	public void setLights(){
@@ -120,9 +121,10 @@ public class Sensors extends Subsystem {
 	
 	public double getDeltaX() {
 		double[] blobs = getBlobs();
-		if (blobs.length > 1) { //makes sure that there is a blob, then calculates distance off center
-			deltaX = blobs[1] - RobotMap.IMAGE_WIDTH/2;
-			lastDeltaX = deltaX;
+		if (blobs.length > 0) { //makes sure that there is a blob, then calculates distance off center
+			SmartDashboard.putNumber("X", blobs[1]);
+			deltaX = blobs[0] - RobotMap.IMAGE_WIDTH/2;
+			//lastDeltaX = deltaX;
 		} else {
 			deltaX = 0;//RobotMap.VISION_SETPOINT;
 		}

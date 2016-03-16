@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class TeleopPitch extends Command {
     public TeleopPitch() {
-    	//requires(Robot.pitch);
+    	requires(Robot.pitch);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -32,7 +32,7 @@ public class TeleopPitch extends Command {
     	//value = Robot.pitch.getEncoderMin()+600;//4*RobotMap.ENCODER_RANGE/13;//409.449;
     	value = value*(RobotMap.ENCODER_RANGE)+Robot.pitch.getEncoderMin();
     	//SmartDashboard.putNumber("Encoder value", value);*/
-    	//Robot.pitch.set(value);
+    	Robot.pitch.set(value);
     	//SmartDashboard.putNumber("Motor value", Robot.pitch.getMotorValue());
     }
 

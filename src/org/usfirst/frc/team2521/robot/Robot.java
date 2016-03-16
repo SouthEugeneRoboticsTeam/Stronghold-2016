@@ -5,7 +5,7 @@ import org.usfirst.frc.team2521.robot.commands.Autonomous;
 import org.usfirst.frc.team2521.robot.commands.SetDrivetrain;
 import org.usfirst.frc.team2521.robot.commands.MoveToDistance;
 import org.usfirst.frc.team2521.robot.commands.TeleopPitch;
-import org.usfirst.frc.team2521.robot.commands.TargetPitchFromDistance;
+import org.usfirst.frc.team2521.robot.commands.TargetPitch;
 import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2521.robot.subsystems.DrivetrainPID;
 import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
@@ -42,14 +42,14 @@ public class Robot extends IterativeRobot {
 	public static double YAW_VISION_I;
 	public static double YAW_VISION_D;
 	
-	public static boolean test_platform = false; //are we on the real robot or the test platform?
+	public static boolean test_platform = true; //are we on the real robot or the test platform?
 	
 	public static DrivetrainPID drivetrain;
 	public static Intake intake;
-	//public static FlyWheels flyWheels;
+	public static FlyWheels flyWheels;
 	public static Sensors sensors;
-	//public static Pitch pitch;
-	//public static YawPID yaw;
+	public static Pitch pitch;
+	public static YawPID yaw;
 	//public static TalonLeft talonLeft;
 //	public static TalonRight talonRight;
 	//public static Lock lock;
@@ -64,20 +64,20 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-		prefs = Preferences.getInstance();
-		YAW_P = prefs.getInt("Yaw P", 1);
-		YAW_I = prefs.getInt("Yaw I", 0);
-		YAW_D = prefs.getInt("Yaw D", 0);
-		YAW_VISION_P = prefs.getInt("Yaw Vision P", 1);
-		YAW_VISION_I = prefs.getInt("Yaw Vision I", 0);
-		YAW_VISION_D = prefs.getInt("Yaw Vision D", 0);
+//		prefs = Preferences.getInstance();
+//		YAW_P = prefs.getInt("Yaw P", 1);
+//		YAW_I = prefs.getInt("Yaw I", 0);
+//		YAW_D = prefs.getInt("Yaw D", 0);
+//		YAW_VISION_P = prefs.getInt("Yaw Vision P", 1);
+//		YAW_VISION_I = prefs.getInt("Yaw Vision I", 0);
+//		YAW_VISION_D = prefs.getInt("Yaw Vision D", 0);
 		RobotMap.setMotors();
 		drivetrain = new DrivetrainPID();
 		intake = new Intake();
-		/*flyWheels = new FlyWheels();
+		flyWheels = new FlyWheels();
 		pitch = new Pitch();
 		yaw = new YawPID();
-		lock = new Lock();*/
+		///lock = new Lock();
 		
 		sensors = new Sensors();
 		

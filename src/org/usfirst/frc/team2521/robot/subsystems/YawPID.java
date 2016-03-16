@@ -2,6 +2,7 @@ package org.usfirst.frc.team2521.robot.subsystems;
 
 import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
+import org.usfirst.frc.team2521.robot.commands.TargetYaw;
 import org.usfirst.frc.team2521.robot.commands.TeleopYaw;
 
 import edu.wpi.first.wpilibj.CANTalon;
@@ -17,7 +18,7 @@ public class YawPID extends PIDSubsystem {
 	
     // Initialize your subsystem here
     public YawPID() {
-    	super(RobotMap.YAW_P, RobotMap.YAW_I, RobotMap.YAW_D);
+    	super(RobotMap.YAW_VISION_P, RobotMap.YAW_VISION_I, RobotMap.YAW_VISION_D);
     	yaw = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
 		yaw.enableControl();
 		yawZero = yaw.getEncPosition();
@@ -25,7 +26,7 @@ public class YawPID extends PIDSubsystem {
 	
     public void autoInit(){
     	yaw.changeControlMode(TalonControlMode.Position);
-		yaw.setPID(RobotMap.YAW_VISION_P, RobotMap.YAW_VISION_I, RobotMap.YAW_VISION_D);
+		yaw.setPID(RobotMap.YAW_P, RobotMap.YAW_I, RobotMap.YAW_D);
 		enable();
     }
     
@@ -50,9 +51,14 @@ public class YawPID extends PIDSubsystem {
     	return (Math.abs(yaw.get() - yaw.getEncPosition()) < RobotMap.YAW_ERROR_THRESHOLD);
     }
     
+    public void printEncPos(){
+    	System.out.println("Enc pos: " + yaw.getEncPosition());
+    }
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new TeleopYaw());
+        //setDefaultCommand(new TeleopYaw());
+    	setDefaultCommand(new TargetYaw());
     }
     
     protected double returnPIDInput() {
@@ -65,6 +71,6 @@ public class YawPID extends PIDSubsystem {
     protected void usePIDOutput(double output) {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
-    	yaw.set(output);
+    	yaw.set(-output);
     }
 }

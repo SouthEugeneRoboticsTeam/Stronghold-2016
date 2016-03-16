@@ -10,33 +10,33 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class TargetPitchFromDistance extends Command {
+public class TargetPitch extends Command {
 	double setpoint;
 
-    public TargetPitchFromDistance() {
-    	//requires(Robot.pitch);
+    public TargetPitch() {
+    	requires(Robot.pitch);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	/*Robot.pitch.autoInit();
+    	Robot.pitch.autoInit();
     	Robot.pitch.set(RobotMap.PITCH_VISION_BASELINE + Robot.pitch.getEncoderMin());
     	SmartDashboard.putNumber("Baseline", RobotMap.PITCH_VISION_BASELINE + Robot.pitch.getEncoderMin());
     	setpoint = Robot.pitch.getTargetEncoderPosition() + Robot.pitch.getEncoderMin();
-    	Timer.delay(RobotMap.FIND_TARGET_DELAY);*/
+    	Timer.delay(RobotMap.FIND_TARGET_DELAY);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//SmartDashboard.putNumber("Targ enc pos", setpoint);
-    	//Robot.pitch.set(setpoint);
+    	Robot.pitch.set(setpoint);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;// Robot.pitch.getOnTarget();
+        return false;// Robot.pitch.getOnTarget();
     }
 
     // Called once after isFinished returns true
