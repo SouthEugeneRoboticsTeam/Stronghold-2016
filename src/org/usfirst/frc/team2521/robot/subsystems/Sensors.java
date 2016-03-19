@@ -122,7 +122,7 @@ public class Sensors extends Subsystem {
 	public double getDeltaX() {
 		double[] blobs = getBlobs();
 		if (blobs.length > 0) { //makes sure that there is a blob, then calculates distance off center
-			SmartDashboard.putNumber("X", blobs[1]);
+			SmartDashboard.putNumber("X", blobs[0]);
 			deltaX = blobs[0] - RobotMap.IMAGE_WIDTH/2;
 			//lastDeltaX = deltaX;
 		} else {
