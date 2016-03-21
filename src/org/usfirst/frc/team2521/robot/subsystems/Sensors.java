@@ -120,13 +120,16 @@ public class Sensors extends Subsystem {
     }
 	
 	public double getDeltaX() {
+		SmartDashboard.putBoolean("Delta x called", true);
 		double[] blobs = getBlobs();
 		if (blobs.length > 0) { //makes sure that there is a blob, then calculates distance off center
 			SmartDashboard.putNumber("X", blobs[0]);
 			deltaX = blobs[0] - RobotMap.IMAGE_WIDTH/2;
 			//lastDeltaX = deltaX;
+			SmartDashboard.putBoolean("Target seeen", true);
 		} else {
 			deltaX = 0;//RobotMap.VISION_SETPOINT;
+			SmartDashboard.putBoolean("Target seeen", false);
 		}
 		
 		return deltaX;

@@ -25,7 +25,9 @@ public class TargetPitch extends Command {
     	Robot.pitch.set(RobotMap.PITCH_VISION_BASELINE + Robot.pitch.getEncoderMin());
     	SmartDashboard.putNumber("Baseline", RobotMap.PITCH_VISION_BASELINE + Robot.pitch.getEncoderMin());
     	setpoint = Robot.pitch.getTargetEncoderPosition() + Robot.pitch.getEncoderMin();
+    	SmartDashboard.putNumber("Relative encoder position", setpoint);
     	Timer.delay(RobotMap.FIND_TARGET_DELAY);
+    	SmartDashboard.putString("Current command:", "Target Pitch");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -36,7 +38,7 @@ public class TargetPitch extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;// Robot.pitch.getOnTarget();
+        return Robot.pitch.getOnTarget();
     }
 
     // Called once after isFinished returns true

@@ -85,7 +85,7 @@ public class Robot extends IterativeRobot {
 		
 		auto = new Autonomous();
 		//teleop = new TeleopPitch();
-		sensors.setInitYaw();
+		//sensors.setInitYaw(); 
 	}
 	
 	/**
@@ -141,6 +141,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Delta x", sensors.getDeltaX());
 	}
 	
 	/**

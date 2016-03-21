@@ -27,9 +27,9 @@ public class TeleopDrivetrain extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		Robot.drivetrain.teleoperatedDrive();
-    	if(Robot.sensors.isTraversing()) hasTraversed = true;
+    	//if(Robot.sensors.isTraversing()) hasTraversed = true;
 		SmartDashboard.putBoolean("Has traversed", hasTraversed);
-		Robot.sensors.updateTraversing();
+		//Robot.sensors.updateTraversing();
 		SmartDashboard.putString("Current command", "Traverse moat");
 	}
 	

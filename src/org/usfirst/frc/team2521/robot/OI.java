@@ -137,7 +137,7 @@ public class OI {
 	public void tieButtons() {
 		//fireButton.whenPressed(new ShootBall());
 		autoIntakeButton.whenPressed(new AutoIntake());
-		//autoAimButton.whenPressed(new AutoAim());
+		autoAimButton.whenPressed(new Target());
 		//autoShootButton.whenPressed(new AutoShoot());
 		
 		intakeButtonIn.whenPressed(new IntakeIn());

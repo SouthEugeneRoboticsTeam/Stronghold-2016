@@ -42,6 +42,7 @@ public class RobotMap {
 	//Encoder
 	public static final int LEFT_ENCODER_A = 0;
 	public static final int LEFT_ENCODER_B = 1;
+	
 	public static final int RIGHT_ENCODER_A = 2;
 	public static final int RIGHT_ENCODER_B = 3;
 	
@@ -102,9 +103,9 @@ public class RobotMap {
 	
 	// Thresholds
 	public static final int FINISHED_SPIN_UP_THRESHOLD = 100;
-	public static final int YAW_VISION_ERROR_THRESHOLD = 10;
-	public static final int YAW_ERROR_THRESHOLD = 5;
-	public static final int PITCH_ERROR_THRESHOLD = 10;
+	public static final int YAW_VISION_ERROR_THRESHOLD = 1;
+	public static final int YAW_ERROR_THRESHOLD = 1;
+	public static final int PITCH_ERROR_THRESHOLD = 1;
 	
 	public static final double LIDAR_IN_BOT_THRESHOLD = 720; //uses .getValue()
 	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 3440; //uses .getValue()
