@@ -49,6 +49,7 @@ public class Sensors extends Subsystem {
 	
 	public Sensors() {
 		ahrs = new AHRS(SPI.Port.kMXP);
+		ahrs.reset();
 		intakeLidar = new AnalogInput(RobotMap.INTAKE_LIDAR_PORT);
 		longLidar = new AnalogInput(RobotMap.LONG_LIDAR_PORT);
 		table = NetworkTable.getTable("SmartDashboard");
@@ -63,12 +64,13 @@ public class Sensors extends Subsystem {
 	}
 	
 	public void display() {	
-		SmartDashboard.putBoolean("Target visible", targetVisible);
+		SmartDashboard.putNumber("Lidar Value", longLidar.getValue());
+		//SmartDashboard.putBoolean("Target visible", targetVisible);
 		//SmartDashboard.putBoolean("On target", Robot.pitch.getOnTarget() && Robot.yaw.getVisionOnTarget());
 		
-		SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
-		SmartDashboard.putBoolean("Auto aim on", autoAimOn);
-		SmartDashboard.putBoolean("Auto fire on", autoFireOn);
+		//SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
+		//SmartDashboard.putBoolean("Auto aim on", autoAimOn);
+		//SmartDashboard.putBoolean("Auto fire on", autoFireOn);
 		
 		/*SmartDashboard.putNumber("Lidar distance", getLidarDistance());
 		SmartDashboard.putNumber("Lidar value", intakeLidar.getValue());
@@ -93,7 +95,7 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putBoolean("Target visible", targetVisible);
 		SmartDashboard.putNumber("Wheel enc speed", Robot.flyWheels.getEncVelocity());
 		SmartDashboard.putNumber("Target enc position", Robot.pitch.getTargetEncoderPosition());*/
-		SmartDashboard.putNumber("Delta X", getDeltaX());
+		//SmartDashboard.putNumber("Delta X", getDeltaX());
 	}
 	
 	public void setLights(){

@@ -11,13 +11,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Move the robot to a certain encoder location
  */
 public class MoveToLidar extends Command {
+	private double threshold;
 	
-	//private double time;
-	
-	
-	public MoveToLidar() {
+	public MoveToLidar(double threshold) {
+		this.threshold = threshold;
 		requires(Robot.drivetrain);
-		//this.time = time;
 	}
 	
 	// Called just before this Command runs the first time
@@ -26,22 +24,17 @@ public class MoveToLidar extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.drivetrain.set(0.5, 0.5);
-		//SmartDashboard.putString("Current command", "Move for time");
+		Robot.drivetrain.set(RobotMap.AUTO_SPEED, RobotMap.AUTO_SPEED);
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.sensors.getLongLidar() > RobotMap.LIDAR_OUTER_WORKS_THRESHOLD;
+		return Robot.sensors.getLongLidar() > threshold;
 	}
 	
 	// Called once after isFinished returns true
 	protected void end() {
-		SmartDashboard.putBoolean("Auto running", false);
 		Robot.drivetrain.set(0,0);
-		
-		//Timer.delay(time);
-		//Robot.drivetrain.set(0);
 	}
 	
 	// Called when another command which requires one or more of the same

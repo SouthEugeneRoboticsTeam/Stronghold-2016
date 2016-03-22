@@ -11,6 +11,7 @@ import org.usfirst.frc.team2521.robot.subsystems.DrivetrainPID;
 import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
 import org.usfirst.frc.team2521.robot.subsystems.Intake;
 import org.usfirst.frc.team2521.robot.subsystems.Lock;
+import org.usfirst.frc.team2521.robot.subsystems.Manipulator;
 import org.usfirst.frc.team2521.robot.subsystems.Sensors;
 import org.usfirst.frc.team2521.robot.subsystems.TalonLeft;
 import org.usfirst.frc.team2521.robot.subsystems.TalonRight;
@@ -22,6 +23,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -45,11 +47,12 @@ public class Robot extends IterativeRobot {
 	public static boolean test_platform = true; //are we on the real robot or the test platform?
 	
 	public static DrivetrainPID drivetrain;
+	public static Manipulator manipulator;
 	public static Intake intake;
-	public static FlyWheels flyWheels;
+	//public static FlyWheels flyWheels;
 	public static Sensors sensors;
-	public static Pitch pitch;
-	public static YawPID yaw;
+	//public static Pitch pitch;
+	//public static YawPID yaw;
 	//public static TalonLeft talonLeft;
 //	public static TalonRight talonRight;
 	//public static Lock lock;
@@ -74,9 +77,10 @@ public class Robot extends IterativeRobot {
 		RobotMap.setMotors();
 		drivetrain = new DrivetrainPID();
 		intake = new Intake();
-		flyWheels = new FlyWheels();
-		pitch = new Pitch();
-		yaw = new YawPID();
+		manipulator = new Manipulator();
+	//	flyWheels = new FlyWheels();
+		//pitch = new Pitch();
+		//yaw = new YawPID();
 		///lock = new Lock();
 		
 		sensors = new Sensors();

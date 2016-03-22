@@ -66,6 +66,9 @@ public class RobotMap {
 	public static final int AUTO_SHOOT_BUTTON = 12;
 	public static final int RESET_SHOOTER_BUTTON = 10;
 	
+	public static final int MANIPULATOR_UP_BUTTON = 3;
+	public static final int MANIPULATOR_DOWN_BUTTON = 2;
+	
 	//Lights
 	public static final int INTAKE_LIGHT = 0;
 	public static final int WHEELS_LIGHT = 1;
@@ -90,7 +93,7 @@ public class RobotMap {
 	public static final double YAW_SENSITIVITY = 0.25;
 	
 	//Auto
-	public static final double AUTO_SPEED = 0.25;
+	public static final double AUTO_SPEED = 0.8;
 	public static final double AUTO_TIME = 5;
 	public static final int AUTO_DISTANCE = 700;
 	
@@ -110,6 +113,7 @@ public class RobotMap {
 	public static final double LIDAR_IN_BOT_THRESHOLD = 720; //uses .getValue()
 	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 3440; //uses .getValue()
 	public static final double LIDAR_OUTER_WORKS_THRESHOLD = 1200; //uses .getValue()
+	public static final double LIDAR_WALL_THRESHOLD = 2400; //uses .getValue()
 	
 	public static final double YAW_P = 0.1;
 	public static final double YAW_I = 0;
@@ -130,6 +134,9 @@ public class RobotMap {
 	public static final double DRIVE_P = 1;
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;
+	
+	public static final int MANIPULATOR_MOTOR = 42; //get real value
+	public static final double MANIPULATOR_SPEED = 0.35;
 	
 	public static void setMotors() {
 		if(Robot.test_platform) {

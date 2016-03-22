@@ -12,14 +12,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class TargetPitchBaseline extends Command {
     public TargetPitchBaseline() {
-    	requires(Robot.pitch);
+    	//requires(Robot.pitch);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.pitch.autoInit();
+    	//Robot.pitch.autoInit();
     	SmartDashboard.putString("Current command:", "Baseline");
     }
 
@@ -30,16 +30,16 @@ public class TargetPitchBaseline extends Command {
     	//double value = -OI.getInstance().getSecondaryStick().getZ();
     	//value = 0.5*(value + 1); //transforms to be 0 to 1
     	//SmartDashboard.putNumber("Relative encoder position", value*(RobotMap.ENCODER_RANGE));
-    	double value = Robot.pitch.getEncoderMin()+1000;//4*RobotMap.ENCODER_RANGE/13;//409.449;
+    	//double value = Robot.pitch.getEncoderMin()+1000;//4*RobotMap.ENCODER_RANGE/13;//409.449;
     	//value = value*(RobotMap.ENCODER_RANGE)+Robot.pitch.getEncoderMin();
     	//SmartDashboard.putNumber("Encoder value", value);*/
-    	Robot.pitch.set(value);
+    	//Robot.pitch.set(value);
     	//SmartDashboard.putNumber("Motor value", Robot.pitch.getMotorValue());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.yaw.getOnTarget();
+        return true;//Robot.yaw.getOnTarget();
     }
 
     // Called once after isFinished returns true

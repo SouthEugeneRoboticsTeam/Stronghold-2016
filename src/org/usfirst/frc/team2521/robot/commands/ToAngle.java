@@ -34,7 +34,7 @@ public class ToAngle extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         //return hasTraversed && !Robot.sensors.isTraversing;
-    	return Robot.drivetrain.onTarget();
+    	return false;//Robot.drivetrain.onTarget();
     }
 
     // Called once after isFinished returns true

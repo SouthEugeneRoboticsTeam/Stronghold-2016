@@ -31,6 +31,9 @@ public class OI {
 	private JoystickButton autoShootButton;
 	private JoystickButton autoResetShooterButton;
 	
+	private JoystickButton manipulatorUp;
+	private JoystickButton manipulatorDown;
+	
 	private JoystickButton pusherButton;
 	
 	private JoystickButton lockButton;
@@ -39,6 +42,7 @@ public class OI {
 	
 	private int fieldPosition;
 	private Defense defense;
+	private AutoMode auto;
 	
 	public OI() {
 		secondary = new Joystick(RobotMap.SECONDARY_STICK_PORT);
@@ -71,6 +75,15 @@ public class OI {
 			break;
 		default: defense = Defense.lowBar;
 		}
+		switch(prefs.getInt("Auto Mode", 0)){
+		case 1: auto = AutoMode.traverseOnly;
+			break;
+		case 2: auto = AutoMode.traverseAndReturn;
+			break;
+		case 3: auto = AutoMode.traverseAndLowGoal;
+			break;
+		default: auto = AutoMode.none;
+		}
 	}
 	
 	public enum Defense {
@@ -85,8 +98,19 @@ public class OI {
 		lowBar
 	}
 	
+	public enum AutoMode {
+		traverseOnly,
+		traverseAndReturn,
+		traverseAndLowGoal,
+		none
+	}
+	
 	public Defense getDefense(){
 		return defense;
+	}
+	
+	public AutoMode getAutoMode(){
+		return auto;
 	}
 	
 	public int getFieldPosition(){
@@ -108,8 +132,7 @@ public class OI {
 	public Joystick getRightStick() {
 		return right;
 	}
-	
-	public Joystick getSecondaryStick() {
+ Joystick getSecondaryStick() {
 		return secondary;
 	}
 	
@@ -130,6 +153,9 @@ public class OI {
 		autoShootButton = new JoystickButton(secondary, RobotMap.AUTO_SHOOT_BUTTON);
 		autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
 		autoResetShooterButton = new JoystickButton(secondary, RobotMap.RESET_SHOOTER_BUTTON);
+		
+		manipulatorUp = new JoystickButton(right, RobotMap.MANIPULATOR_UP_BUTTON);
+		manipulatorDown = new JoystickButton(right, RobotMap.MANIPULATOR_DOWN_BUTTON);
 		
 		tieButtons();
 	}
@@ -153,5 +179,11 @@ public class OI {
 		lockButton.whenPressed(new SetLock(true));
 		lockButton.whenReleased(new SetLock(false));
 		autoResetShooterButton.whenPressed(new ResetShooter());
+		
+		manipulatorUp.whenPressed(new ManipulatorUp());
+		manipulatorDown.whenPressed(new ManipulatorDown());
+		
+		manipulatorUp.whenReleased(new ManipulatorReset());
+		manipulatorDown.whenReleased(new ManipulatorReset());
 	}
 }

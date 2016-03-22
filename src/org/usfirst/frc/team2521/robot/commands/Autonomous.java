@@ -13,6 +13,23 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Autonomous extends CommandGroup {
     
     public  Autonomous() {
+    	switch(OI.getInstance().getAutoMode()){
+    	case traverseOnly: addSequential(new Traverse());
+    		break;
+    	case traverseAndReturn: addSequential(new Traverse());
+    		addSequential(new ToAngle(180));
+    		addSequential(new Traverse());
+    		addSequential(new ToAngle(0));
+    		break;
+    	case traverseAndLowGoal: addSequential(new MoveToLidar(RobotMap.LIDAR_WALL_THRESHOLD));
+    		if(OI.getInstance().getFieldPosition() <= 3){
+    			addSequential(new ToAngle(270));
+    		} else addSequential(new ToAngle(90));
+    		//addSequential(new MoveToLidar(RobotMap.LIDAR_WALL_THRESHOLD));
+    		//addSequential(new IntakeOut(), 2);
+    		break;
+    	default: break;
+    	}
     	/*if (OI.getInstance().getDefense() == Defense.moat ||
     			OI.getInstance().getDefense() == Defense.ramparts ||
     			OI.getInstance().getDefense() == Defense.rockWall ||
