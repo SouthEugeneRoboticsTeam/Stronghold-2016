@@ -65,6 +65,12 @@ public class Sensors extends Subsystem {
 	
 	public void display() {	
 		SmartDashboard.putNumber("Lidar Value", longLidar.getValue());
+		SmartDashboard.putNumber("Pitch", ahrs.getPitch());
+		SmartDashboard.putNumber("Roll", ahrs.getRoll());
+		SmartDashboard.putBoolean("Traversing", isTraversing);
+		SmartDashboard.putNumber("Error", Robot.drivetrain.getError());
+		SmartDashboard.putNumber("Manipulator encoder", Robot.manipulator.getEncoderPosition());
+		
 		//SmartDashboard.putBoolean("Target visible", targetVisible);
 		//SmartDashboard.putBoolean("On target", Robot.pitch.getOnTarget() && Robot.yaw.getVisionOnTarget());
 		
@@ -187,9 +193,9 @@ public class Sensors extends Subsystem {
 	public void updateTraversing() {
 		//switch(OI.getInstance().getDefense()){
 		//case moat:
-			if (ahrs.getPitch() >= RobotMap.TRAVERSE_DEGREES) {
+			if (ahrs.getRoll() >= RobotMap.TRAVERSE_DEGREES) {
 				isTraversing = true;
-			} else if (ahrs.getPitch() <= /*-RobotMap.MOAT_TRAVERSE_DEGREES*/ 0) {
+			} else if (ahrs.getRoll() <= /*-RobotMap.MOAT_TRAVERSE_DEGREES*/ 0) {
 				isTraversing = false;
 			}
 			//break;

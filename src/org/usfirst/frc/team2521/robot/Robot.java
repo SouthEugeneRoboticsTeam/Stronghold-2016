@@ -3,6 +3,7 @@ package org.usfirst.frc.team2521.robot;
 
 import org.usfirst.frc.team2521.robot.commands.Autonomous;
 import org.usfirst.frc.team2521.robot.commands.SetDrivetrain;
+import org.usfirst.frc.team2521.robot.commands.Spin;
 import org.usfirst.frc.team2521.robot.commands.MoveToDistance;
 import org.usfirst.frc.team2521.robot.commands.TeleopPitch;
 import org.usfirst.frc.team2521.robot.commands.TargetPitch;
@@ -44,7 +45,7 @@ public class Robot extends IterativeRobot {
 	public static double YAW_VISION_I;
 	public static double YAW_VISION_D;
 	
-	public static boolean test_platform = true; //are we on the real robot or the test platform?
+	public static boolean test_platform = false; //are we on the real robot or the test platform?
 	
 	public static DrivetrainPID drivetrain;
 	public static Manipulator manipulator;
@@ -60,7 +61,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	
 	Command auto;
-	//Command teleop;
+	Command teleop;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -88,7 +89,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		auto = new Autonomous();
-		//teleop = new TeleopPitch();
+		//teleop = new Spin(180);
 		//sensors.setInitYaw(); 
 	}
 	

@@ -4,6 +4,7 @@ import org.usfirst.frc.team2521.robot.RobotMap;
 import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.OI.Defense;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -15,57 +16,26 @@ public class Autonomous extends CommandGroup {
     public  Autonomous() {
     	switch(OI.getInstance().getAutoMode()){
     	case traverseOnly: addSequential(new Traverse());
+    		Timer.delay(5);
+    		/*if(OI.getInstance().getDefense() == OI.Defense.chevalDeFrise){
+    			addSequential(new ToAngle(180));
+    		}*/
     		break;
     	case traverseAndReturn: addSequential(new Traverse());
-    		addSequential(new ToAngle(180));
+	    	if(!(OI.getInstance().getDefense() == OI.Defense.chevalDeFrise)){
+				addSequential(new ToAngle(180, true), 2);
+			}
     		addSequential(new Traverse());
-    		addSequential(new ToAngle(0));
+    		addSequential(new ToAngle(0, true), 2);
     		break;
     	case traverseAndLowGoal: addSequential(new MoveToLidar(RobotMap.LIDAR_WALL_THRESHOLD));
     		if(OI.getInstance().getFieldPosition() <= 3){
-    			addSequential(new ToAngle(270));
-    		} else addSequential(new ToAngle(90));
+    			addSequential(new ToAngle(270, true), 2);
+    		} else addSequential(new ToAngle(90, true), 2);
     		//addSequential(new MoveToLidar(RobotMap.LIDAR_WALL_THRESHOLD));
     		//addSequential(new IntakeOut(), 2);
     		break;
     	default: break;
     	}
-    	/*if (OI.getInstance().getDefense() == Defense.moat ||
-    			OI.getInstance().getDefense() == Defense.ramparts ||
-    			OI.getInstance().getDefense() == Defense.rockWall ||
-    			OI.getInstance().getDefense() == Defense.roughTerrain){
-	    	addSequential(new Traverse());
-	    	switch(OI.getInstance().getFieldPosition()){
-	    	case 1:
-	    		addSequential(new ToAngle(330));
-	    		SmartDashboard.putNumber("Field position", 1);
-	    		break;
-	    	case 2:
-	    		addSequential(new ToAngle(300));
-	    		SmartDashboard.putNumber("Field position", 2);
-	    		break;
-	    	case 3:
-	    		SmartDashboard.putNumber("Field position", 3);
-	    		break;
-	    	case 4:
-	    		addSequential(new ToAngle(60));
-	    		SmartDashboard.putNumber("Field position", 4);
-	    		break;
-	    	case 5:
-	    		addSequential(new ToAngle(30));
-	    		SmartDashboard.putNumber("Field position", 5);
-	    		break;
-	    	default:
-	    		SmartDashboard.putNumber("Field position", 6);
-	    		break;
-	    	}
-	    	//addSequential(new AutoShoot());
-	    	/*addSequential(new ToAngle(180));
-	    	addSequential(new Traverse());
-	    	addSequential(new ToAngle(0));
-    	}else{
-    		addSequential(new SetDrivetrain(0.3), 5);
-    	}*/
-    	addSequential(new Traverse());
     }
 }

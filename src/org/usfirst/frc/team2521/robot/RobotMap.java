@@ -69,6 +69,8 @@ public class RobotMap {
 	public static final int MANIPULATOR_UP_BUTTON = 3;
 	public static final int MANIPULATOR_DOWN_BUTTON = 2;
 	
+	public static final int SPIN_BUTTON = 1;
+	
 	//Lights
 	public static final int INTAKE_LIGHT = 0;
 	public static final int WHEELS_LIGHT = 1;
@@ -135,8 +137,8 @@ public class RobotMap {
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;
 	
-	public static final int MANIPULATOR_MOTOR = 42; //get real value
-	public static final double MANIPULATOR_SPEED = 0.35;
+	public static final int MANIPULATOR_MOTOR = 31; //get real value
+	public static final double MANIPULATOR_SPEED = 0.3;
 	
 	public static void setMotors() {
 		if(Robot.test_platform) {

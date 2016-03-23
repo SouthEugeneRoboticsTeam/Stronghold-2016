@@ -38,6 +38,8 @@ public class OI {
 	
 	private JoystickButton lockButton;
 	
+	private JoystickButton spinButton;
+	
 	private static OI instance;
 	
 	private int fieldPosition;
@@ -157,6 +159,8 @@ public class OI {
 		manipulatorUp = new JoystickButton(right, RobotMap.MANIPULATOR_UP_BUTTON);
 		manipulatorDown = new JoystickButton(right, RobotMap.MANIPULATOR_DOWN_BUTTON);
 		
+		spinButton = new JoystickButton(right, RobotMap.SPIN_BUTTON);
+		
 		tieButtons();
 	}
 	
@@ -185,5 +189,8 @@ public class OI {
 		
 		manipulatorUp.whenReleased(new ManipulatorReset());
 		manipulatorDown.whenReleased(new ManipulatorReset());
+		
+		spinButton.whenPressed(new Spin(180));
+		//spinButton.whenReleased(new DisableDrivetrainPID());
 	}
 }
