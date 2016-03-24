@@ -69,7 +69,8 @@ public class RobotMap {
 	public static final int MANIPULATOR_UP_BUTTON = 3;
 	public static final int MANIPULATOR_DOWN_BUTTON = 2;
 	
-	public static final int SPIN_BUTTON = 1;
+	public static final int SPIN_BUTTON_FRONT = 5;
+	public static final int SPIN_BUTTON_BACK = 4;
 	
 	//Lights
 	public static final int INTAKE_LIGHT = 0;
@@ -115,7 +116,7 @@ public class RobotMap {
 	public static final double LIDAR_IN_BOT_THRESHOLD = 720; //uses .getValue()
 	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 3440; //uses .getValue()
 	public static final double LIDAR_OUTER_WORKS_THRESHOLD = 1200; //uses .getValue()
-	public static final double LIDAR_WALL_THRESHOLD = 2400; //uses .getValue()
+	public static final double LIDAR_WALL_THRESHOLD = 1500; //uses .getValue()
 	
 	public static final double YAW_P = 0.1;
 	public static final double YAW_I = 0;

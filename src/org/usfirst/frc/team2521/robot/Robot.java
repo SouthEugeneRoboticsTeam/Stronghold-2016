@@ -100,7 +100,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void disabledInit() {
 		//flyWheels.stop();
-		auto.cancel();
+		//auto.cancel();
 	}
 	
 	public void disabledPeriodic() {
@@ -131,7 +131,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void teleopInit() {
-		drivetrain.set(0, 0);
+		//drivetrain.set(0, 0);
 		auto.cancel();
 		//teleop.start();
 		//teleop.start();

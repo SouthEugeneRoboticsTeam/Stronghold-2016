@@ -13,11 +13,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class ToAngle extends Command {
 	double angle;
-	boolean auto;
+	//boolean auto;
+	//boolean relative;
+	double initTime;
 	
-    public ToAngle(double angle, boolean auto) {
-    	this.auto = auto;
+    public ToAngle(double angle) {
+    	//this.auto = auto;
     	this.angle = angle;
+    	//this.relative = relative;
     	SmartDashboard.putBoolean("ToAngle called", true);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -25,7 +28,12 @@ public class ToAngle extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	SmartDashboard.putString("Current command", "To Angle");
+    	initTime = Timer.getFPGATimestamp();
+    	/*if(relative){
+    		angle = (Robot.sensors.getYaw() + angle);
+    		if(angle > 360) angle -= 360;
+    	}*/
+    	SmartDashboard.putNumber("Target angle", angle);
     	//Timer.delay(5);
     	Robot.drivetrain.enable();
     	Robot.drivetrain.setSetpoint(0);
@@ -42,7 +50,9 @@ public class ToAngle extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         //return hasTraversed && !Robot.sensors.isTraversing;
-    	return auto || !(OI.getInstance().getRightStick().getRawButton(RobotMap.SPIN_BUTTON));//false;//Robot.drivetrain.onTarget();
+    	return /*(auto || !((OI.getInstance().getRightStick().getRawButton(RobotMap.SPIN_BUTTON_BACK)) 
+    			|| (OI.getInstance().getRightStick().getRawButton(RobotMap.SPIN_BUTTON_FRONT)))) || */
+    			(Robot.drivetrain.getLargestMotorVal() < 0.5 && (Timer.getFPGATimestamp() - initTime) > 0.5);//false;//Robot.drivetrain.onTarget();
     }
 
     // Called once after isFinished returns true

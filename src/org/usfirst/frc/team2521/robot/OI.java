@@ -38,7 +38,8 @@ public class OI {
 	
 	private JoystickButton lockButton;
 	
-	private JoystickButton spinButton;
+	private JoystickButton spinFrontButton;
+	private JoystickButton spinBackButton;
 	
 	private static OI instance;
 	
@@ -134,7 +135,7 @@ public class OI {
 	public Joystick getRightStick() {
 		return right;
 	}
- Joystick getSecondaryStick() {
+ public Joystick getSecondaryStick() {
 		return secondary;
 	}
 	
@@ -143,46 +144,47 @@ public class OI {
 	}
 	
 	public void initButtons() {
-		intakeButtonIn = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON_IN);
-		intakeButtonOut = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON_OUT);
-		shooterButtonIn = new JoystickButton(secondary, RobotMap.SHOOTER_BUTTON_IN);
-		shooterButtonOut = new JoystickButton(secondary, RobotMap.SHOOTER_BUTTON_OUT);
-		autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
-		pusherButton = new JoystickButton(secondary, RobotMap.PUSHER_BUTTON);
-		driveIntakeOut = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON_OUT);
-		lockButton = new JoystickButton(secondary, RobotMap.LOCK_BUTTON);
-		autoAimButton = new JoystickButton(secondary, RobotMap.AUTO_AIM_BUTTON);
-		autoShootButton = new JoystickButton(secondary, RobotMap.AUTO_SHOOT_BUTTON);
-		autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
-		autoResetShooterButton = new JoystickButton(secondary, RobotMap.RESET_SHOOTER_BUTTON);
+		//intakeButtonIn = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON_IN);
+		//intakeButtonOut = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON_OUT);
+		//shooterButtonIn = new JoystickButton(secondary, RobotMap.SHOOTER_BUTTON_IN);
+		//shooterButtonOut = new JoystickButton(secondary, RobotMap.SHOOTER_BUTTON_OUT);
+		//autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
+		//pusherButton = new JoystickButton(secondary, RobotMap.PUSHER_BUTTON);
+		//driveIntakeOut = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON_OUT);
+		//lockButton = new JoystickButton(secondary, RobotMap.LOCK_BUTTON);
+		//autoAimButton = new JoystickButton(secondary, RobotMap.AUTO_AIM_BUTTON);
+		//autoShootButton = new JoystickButton(secondary, RobotMap.AUTO_SHOOT_BUTTON);
+		//autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
+		//autoResetShooterButton = new JoystickButton(secondary, RobotMap.RESET_SHOOTER_BUTTON);
 		
 		manipulatorUp = new JoystickButton(right, RobotMap.MANIPULATOR_UP_BUTTON);
 		manipulatorDown = new JoystickButton(right, RobotMap.MANIPULATOR_DOWN_BUTTON);
 		
-		spinButton = new JoystickButton(right, RobotMap.SPIN_BUTTON);
+		spinFrontButton = new JoystickButton(right, RobotMap.SPIN_BUTTON_FRONT);
+		spinBackButton = new JoystickButton(right, RobotMap.SPIN_BUTTON_BACK);
 		
 		tieButtons();
 	}
 	
 	public void tieButtons() {
 		//fireButton.whenPressed(new ShootBall());
-		autoIntakeButton.whenPressed(new AutoIntake());
-		autoAimButton.whenPressed(new Target());
+		//autoIntakeButton.whenPressed(new AutoIntake());
+		//autoAimButton.whenPressetd(new Target());
 		//autoShootButton.whenPressed(new AutoShoot());
 		
-		intakeButtonIn.whenPressed(new IntakeIn());
-		intakeButtonIn.whenReleased(new IntakeStop());
-		intakeButtonOut.whenPressed(new IntakeOut());
-		intakeButtonOut.whenReleased(new IntakeStop());
-		shooterButtonIn.whenPressed(new SetFlyWheels(false));
-		shooterButtonOut.whenPressed(new SetFlyWheels(true));
-		shooterButtonIn.whenReleased(new StopFlyWheels());
-		shooterButtonOut.whenReleased(new StopFlyWheels());
-		pusherButton.whenPressed(new SetPusher(true));
-		pusherButton.whenReleased(new SetPusher(false));
-		lockButton.whenPressed(new SetLock(true));
-		lockButton.whenReleased(new SetLock(false));
-		autoResetShooterButton.whenPressed(new ResetShooter());
+		//intakeButtonIn.whenPressed(new IntakeIn());
+		//intakeButtonIn.whenReleased(new IntakeStop());
+		//intakeButtonOut.whenPressed(new IntakeOut());
+		//intakeButtonOut.whenReleased(new IntakeStop());
+		//shooterButtonIn.whenPressed(new SetFlyWheels(false));
+		//shooterButtonOut.whenPressed(new SetFlyWheels(true));
+		//shooterButtonIn.whenReleased(new StopFlyWheels());
+		//shooterButtonOut.whenReleased(new StopFlyWheels());
+		//pusherButton.whenPressed(new SetPusher(true));
+		///pusherButton.whenReleased(new SetPusher(false));
+		//lockButton.whenPressed(new SetLock(true));
+		//lockButton.whenReleased(new SetLock(false));
+		//autoResetShooterButton.whenPressed(new ResetShooter());
 		
 		manipulatorUp.whenPressed(new ManipulatorUp());
 		manipulatorDown.whenPressed(new ManipulatorDown());
@@ -190,7 +192,8 @@ public class OI {
 		manipulatorUp.whenReleased(new ManipulatorReset());
 		manipulatorDown.whenReleased(new ManipulatorReset());
 		
-		spinButton.whenPressed(new Spin(180));
+		spinFrontButton.whenPressed(new ToAngle(179));
+		spinBackButton.whenPressed(new ToAngle(0));
 		//spinButton.whenReleased(new DisableDrivetrainPID());
 	}
 }

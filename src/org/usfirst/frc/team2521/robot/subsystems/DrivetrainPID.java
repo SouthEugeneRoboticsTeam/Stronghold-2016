@@ -52,6 +52,14 @@ public class DrivetrainPID extends PIDSubsystem {
     public void tankDrive() {
 		double left = OI.getInstance().getLeftStick().getY();
 		double right = OI.getInstance().getRightStick().getY();
+		if(OI.getInstance().getRightStick().getRawButton(1)){
+			left *= -1;
+			right *= -1;
+			double sub;
+			sub = left;
+			left = right;
+			right = sub;
+		}
 		if(Robot.test_platform){
 			left = -left;
 			right = -right;
@@ -68,6 +76,14 @@ public class DrivetrainPID extends PIDSubsystem {
 		
 		frontDrive.arcadeDrive(left);
 		rearDrive.arcadeDrive(left);
+	}
+	
+	public double getLargestMotorVal(){
+		double largest = frontLeft.get();
+		if (largest < frontRight.get()) largest = frontRight.get();
+		if (largest < rearRight.get()) largest = rearRight.get();
+		if (largest < rearLeft.get()) largest = rearLeft.get();
+		return largest;
 	}
 	
 	public boolean getOnTarget(){
