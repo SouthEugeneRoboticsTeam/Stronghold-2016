@@ -49,6 +49,7 @@ public class Sensors extends Subsystem {
 	
 	public Sensors() {
 		ahrs = new AHRS(SPI.Port.kMXP);
+		ahrs.reset();
 		intakeLidar = new AnalogInput(RobotMap.INTAKE_LIDAR_PORT);
 		longLidar = new AnalogInput(RobotMap.LONG_LIDAR_PORT);
 		table = NetworkTable.getTable("SmartDashboard");
@@ -63,12 +64,21 @@ public class Sensors extends Subsystem {
 	}
 	
 	public void display() {	
-		SmartDashboard.putBoolean("Target visible", targetVisible);
+		SmartDashboard.putNumber("Lidar Value", longLidar.getValue());
+		SmartDashboard.putNumber("Pitch", ahrs.getPitch());
+		SmartDashboard.putNumber("Roll", ahrs.getRoll());
+		SmartDashboard.putNumber("Yaw", getYaw());
+		SmartDashboard.putBoolean("Traversing", isTraversing);
+		SmartDashboard.putNumber("Error", Robot.drivetrain.getError());
+		SmartDashboard.putNumber("Mot val", Robot.drivetrain.getLargestMotorVal());
+		//SmartDashboard.putNumber("Manipulator encoder", Robot.manipulator.getEncoderPosition());
+		
+		//SmartDashboard.putBoolean("Target visible", targetVisible);
 		//SmartDashboard.putBoolean("On target", Robot.pitch.getOnTarget() && Robot.yaw.getVisionOnTarget());
 		
-		SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
-		SmartDashboard.putBoolean("Auto aim on", autoAimOn);
-		SmartDashboard.putBoolean("Auto fire on", autoFireOn);
+		//SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
+		//SmartDashboard.putBoolean("Auto aim on", autoAimOn);
+		//SmartDashboard.putBoolean("Auto fire on", autoFireOn);
 		
 		/*SmartDashboard.putNumber("Lidar distance", getLidarDistance());
 		SmartDashboard.putNumber("Lidar value", intakeLidar.getValue());
@@ -93,7 +103,7 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putBoolean("Target visible", targetVisible);
 		SmartDashboard.putNumber("Wheel enc speed", Robot.flyWheels.getEncVelocity());
 		SmartDashboard.putNumber("Target enc position", Robot.pitch.getTargetEncoderPosition());*/
-		SmartDashboard.putNumber("Delta X", getDeltaX());
+		//SmartDashboard.putNumber("Delta X", getDeltaX());
 	}
 	
 	public void setLights(){
@@ -120,13 +130,16 @@ public class Sensors extends Subsystem {
     }
 	
 	public double getDeltaX() {
+		SmartDashboard.putBoolean("Delta x called", true);
 		double[] blobs = getBlobs();
 		if (blobs.length > 0) { //makes sure that there is a blob, then calculates distance off center
-			SmartDashboard.putNumber("X", blobs[1]);
+			SmartDashboard.putNumber("X", blobs[0]);
 			deltaX = blobs[0] - RobotMap.IMAGE_WIDTH/2;
 			//lastDeltaX = deltaX;
+			SmartDashboard.putBoolean("Target seeen", true);
 		} else {
 			deltaX = 0;//RobotMap.VISION_SETPOINT;
+			SmartDashboard.putBoolean("Target seeen", false);
 		}
 		
 		return deltaX;
@@ -182,9 +195,9 @@ public class Sensors extends Subsystem {
 	public void updateTraversing() {
 		//switch(OI.getInstance().getDefense()){
 		//case moat:
-			if (ahrs.getPitch() >= RobotMap.TRAVERSE_DEGREES) {
+			if (ahrs.getRoll() >= RobotMap.TRAVERSE_DEGREES) {
 				isTraversing = true;
-			} else if (ahrs.getPitch() <= /*-RobotMap.MOAT_TRAVERSE_DEGREES*/ 0) {
+			} else if (ahrs.getRoll() <= /*-RobotMap.MOAT_TRAVERSE_DEGREES*/ 0) {
 				isTraversing = false;
 			}
 			//break;

@@ -11,7 +11,7 @@ public class StopFlyWheels extends Command {
 
     public StopFlyWheels() {
     	//requires(Robot.flyWheels);
-        // Use requires() here to declare subsystem dependencies
+        //Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 

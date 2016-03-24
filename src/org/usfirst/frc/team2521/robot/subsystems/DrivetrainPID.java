@@ -25,6 +25,8 @@ public class DrivetrainPID extends PIDSubsystem {
 	private double targetAngle = 0; 
 	private boolean onTarget = false;
 	
+	private double error = 0;
+	
 	private CANTalon frontLeft, frontRight, rearLeft, rearRight;
 
     // Initialize your subsystem here
@@ -50,6 +52,14 @@ public class DrivetrainPID extends PIDSubsystem {
     public void tankDrive() {
 		double left = OI.getInstance().getLeftStick().getY();
 		double right = OI.getInstance().getRightStick().getY();
+		if(OI.getInstance().getRightStick().getRawButton(1)){
+			left *= -1;
+			right *= -1;
+			double sub;
+			sub = left;
+			left = right;
+			right = sub;
+		}
 		if(Robot.test_platform){
 			left = -left;
 			right = -right;
@@ -68,9 +78,21 @@ public class DrivetrainPID extends PIDSubsystem {
 		rearDrive.arcadeDrive(left);
 	}
 	
-	public boolean onTarget(){
-		SmartDashboard.putBoolean("On target", onTarget());
-		return onTarget();
+	public double getLargestMotorVal(){
+		double largest = frontLeft.get();
+		if (largest < frontRight.get()) largest = frontRight.get();
+		if (largest < rearRight.get()) largest = rearRight.get();
+		if (largest < rearLeft.get()) largest = rearLeft.get();
+		return largest;
+	}
+	
+	public boolean getOnTarget(){
+		///SmartDashboard.putBoolean("On target", onTarget());
+		return super.onTarget();
+	}
+	
+	public double getError(){
+		return error;
 	}
 	
 	public void teleoperatedDrive() {
@@ -129,12 +151,13 @@ public class DrivetrainPID extends PIDSubsystem {
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
     	double a = targetAngle - Robot.sensors.getYaw();
     	a = (a + 180) % 360 - 180;
-    	SmartDashboard.putNumber("Error", a);
+    	error = a;
     	onTarget = a < 5;
     	return a;
     }
     
     protected void usePIDOutput(double output) {
+    	System.out.println(output);
     	setRight(output);
     	setLeft(output);
    // 		setRight(output);

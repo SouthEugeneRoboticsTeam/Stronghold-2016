@@ -42,6 +42,7 @@ public class RobotMap {
 	//Encoder
 	public static final int LEFT_ENCODER_A = 0;
 	public static final int LEFT_ENCODER_B = 1;
+	
 	public static final int RIGHT_ENCODER_A = 2;
 	public static final int RIGHT_ENCODER_B = 3;
 	
@@ -64,6 +65,12 @@ public class RobotMap {
 	public static final int AUTO_INTAKE_BUTTON = 11;
 	public static final int AUTO_SHOOT_BUTTON = 12;
 	public static final int RESET_SHOOTER_BUTTON = 10;
+	
+	public static final int MANIPULATOR_UP_BUTTON = 3;
+	public static final int MANIPULATOR_DOWN_BUTTON = 2;
+	
+	public static final int SPIN_BUTTON_FRONT = 5;
+	public static final int SPIN_BUTTON_BACK = 4;
 	
 	//Lights
 	public static final int INTAKE_LIGHT = 0;
@@ -89,7 +96,7 @@ public class RobotMap {
 	public static final double YAW_SENSITIVITY = 0.25;
 	
 	//Auto
-	public static final double AUTO_SPEED = 0.25;
+	public static final double AUTO_SPEED = 0.8;
 	public static final double AUTO_TIME = 5;
 	public static final int AUTO_DISTANCE = 700;
 	
@@ -102,13 +109,14 @@ public class RobotMap {
 	
 	// Thresholds
 	public static final int FINISHED_SPIN_UP_THRESHOLD = 100;
-	public static final int YAW_VISION_ERROR_THRESHOLD = 10;
-	public static final int YAW_ERROR_THRESHOLD = 5;
-	public static final int PITCH_ERROR_THRESHOLD = 10;
+	public static final int YAW_VISION_ERROR_THRESHOLD = 1;
+	public static final int YAW_ERROR_THRESHOLD = 1;
+	public static final int PITCH_ERROR_THRESHOLD = 1;
 	
 	public static final double LIDAR_IN_BOT_THRESHOLD = 720; //uses .getValue()
 	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 3440; //uses .getValue()
 	public static final double LIDAR_OUTER_WORKS_THRESHOLD = 1200; //uses .getValue()
+	public static final double LIDAR_WALL_THRESHOLD = 1500; //uses .getValue()
 	
 	public static final double YAW_P = 0.1;
 	public static final double YAW_I = 0;
@@ -130,6 +138,9 @@ public class RobotMap {
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;
 	
+	public static final int MANIPULATOR_MOTOR = 31; //get real value
+	public static final double MANIPULATOR_SPEED = 0.3;
+	
 	public static void setMotors() {
 		if(Robot.test_platform) {
 			FRONT_LEFT_MOTOR = 42;
@@ -137,10 +148,10 @@ public class RobotMap {
 			REAR_LEFT_MOTOR = 45;
 			REAR_RIGHT_MOTOR = 44;
 			
-			TARGETING_PITCH_MOTOR = 40; //Real
-			LEFT_SHOOTER_MOTOR = 51;
-			RIGHT_SHOOTER_MOTOR = 56;
-			TARGETING_YAW_MOTOR = 52;
+			TARGETING_PITCH_MOTOR = 52;
+			LEFT_SHOOTER_MOTOR = 56;
+			RIGHT_SHOOTER_MOTOR = 51;
+			TARGETING_YAW_MOTOR = 40;
 			
 		} else {
 			FRONT_LEFT_MOTOR = 46; //Real

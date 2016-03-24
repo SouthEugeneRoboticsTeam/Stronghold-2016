@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Traverse extends Command {
 	boolean hasTraversed = false;
+	static int counter = 0;
 	
     public Traverse() {
     	requires(Robot.drivetrain);
@@ -21,30 +22,49 @@ public class Traverse extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	counter++;
+    	SmartDashboard.putBoolean("End Called", false);
+    	SmartDashboard.putNumber("Counter", counter);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     //	Robot.drivetrain.set(0.8,0.8);
-    	if(Robot.sensors.isTraversing()) hasTraversed = true;
+    	if(OI.getInstance().getDefense() == OI.Defense.chevalDeFrise){
+    		Robot.drivetrain.set(-0.8,-0.8);
+		} else{
+			Robot.drivetrain.set(0.8,0.8);
+		}
+    	if(Robot.sensors.isTraversing()){
+    		hasTraversed = true;
+    		if(OI.getInstance().getDefense() == OI.Defense.chevalDeFrise){
+    			Robot.manipulator.down();
+    			
+    		}
+    	}
 		SmartDashboard.putBoolean("Has traversed", hasTraversed);
 		Robot.sensors.updateTraversing();
-		SmartDashboard.putString("Current command", "Traverse moat");
+		SmartDashboard.putString("Current command", "Traversing");
+    	SmartDashboard.putBoolean("End condition", hasTraversed && !Robot.sensors.isTraversing());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true; //(hasTraversed && !Robot.sensors.isTraversing())/* && (Robot.sensors.getPitch() ==0)*/;
+        return (hasTraversed && !Robot.sensors.isTraversing())/* && (Robot.sensors.getPitch() ==0)*/;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drivetrain.set(0.8,0.8);
-    	//switch(OI.getInstance().getDefense()){
-    	//case rockWall:
-    		Timer.delay(5);
-    	//}
+    	/*if(OI.getInstance().getDefense() == OI.Defense.chevalDeFrise){
+    		Robot.drivetrain.set(-0.8,-0.8);
+		} else{
+			Robot.drivetrain.set(0.8,0.8);
+		}*/
+    	SmartDashboard.putBoolean("End Called", true);
+    	Robot.manipulator.up();
     	Robot.drivetrain.set(0,0);
+    	Robot.manipulator.stop();
+    	
     }
 
     // Called when another command which requires one or more of the same

@@ -8,6 +8,7 @@ import org.usfirst.frc.team2521.robot.commands.TeleopYaw;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -25,7 +26,7 @@ public class YawPID extends PIDSubsystem {
 	}
 	
     public void autoInit(){
-    	yaw.changeControlMode(TalonControlMode.Position);
+     	yaw.changeControlMode(TalonControlMode.Position);
 		yaw.setPID(RobotMap.YAW_P, RobotMap.YAW_I, RobotMap.YAW_D);
 		enable();
     }
@@ -36,6 +37,7 @@ public class YawPID extends PIDSubsystem {
     }
     
 	public double getZero(){
+		
 		return yawZero;
 	}
     
@@ -44,21 +46,21 @@ public class YawPID extends PIDSubsystem {
 	}
 	
     public boolean getVisionOnTarget(){
-    	return (Math.abs(getSetpoint() - Robot.sensors.getDeltaX()) < RobotMap.YAW_VISION_ERROR_THRESHOLD);
+        return (Math.abs(getSetpoint() - Robot.sensors.getDeltaX()) < RobotMap.YAW_VISION_ERROR_THRESHOLD);
     }
     
     public boolean getOnTarget(){
-    	return (Math.abs(yaw.get() - yaw.getEncPosition()) < RobotMap.YAW_ERROR_THRESHOLD);
+       	return (Math.abs(yaw.get() - yaw.getEncPosition()) < RobotMap.YAW_ERROR_THRESHOLD);
     }
     
     public void printEncPos(){
-    	System.out.println("Enc pos: " + yaw.getEncPosition());
+    	
     }
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new TeleopYaw());
-    	setDefaultCommand(new TargetYaw());
+    	//setDefaultCommand(new TargetYaw());
     }
     
     protected double returnPIDInput() {
@@ -66,11 +68,13 @@ public class YawPID extends PIDSubsystem {
         // e.g. a sensor, like a potentiometer:
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
     	return Robot.sensors.getDeltaX();
+    	//return 0;
+       	
     }
     
     protected void usePIDOutput(double output) {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
-    	yaw.set(-output);
+       	yaw.set(-output);
     }
 }

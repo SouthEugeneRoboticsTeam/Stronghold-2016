@@ -28,8 +28,8 @@ public class Pitch extends Subsystem {
 		pitch.enableControl();
 		encoderMin = pitch.getEncPosition();
 		encoderMax = encoderMin + RobotMap.ENCODER_RANGE;
-		SmartDashboard.putNumber("Encoder min", encoderMin);
-		SmartDashboard.putNumber("Encoder max", encoderMax);
+		SmartDashboard.putNumber("Encoder minimum", encoderMin);
+		SmartDashboard.putNumber("Encoder maximum", encoderMax);
 	}
 	
 	public void autoInit(){
@@ -72,7 +72,8 @@ public class Pitch extends Subsystem {
 	   double h = Robot.sensors.getHeight();
 	   SmartDashboard.putNumber("h", h);
 	   //return 13*Math.pow(height, 2.348)+900+encoderMin; 
-	   return 540.9/(Math.pow((h-17.84),2))+19.92*(h+26.41)-4.661;
+	   //return 540.9/(Math.pow((h-17.84),2))+19.92*(h+26.41)-4.661;
+	   return Math.pow(h, 2)*9.355+-543.3*h+8952;
    }
     
     private double getTargetAngleRadians(){
@@ -93,8 +94,8 @@ public class Pitch extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new TargetPitchFromDistance());
-    	setDefaultCommand(new TeleopPitch());
+       // setDefaultCommand(new TargetPitch());
+    	//setDefaultCommand(new TeleopPitch());
     }
 }
 
