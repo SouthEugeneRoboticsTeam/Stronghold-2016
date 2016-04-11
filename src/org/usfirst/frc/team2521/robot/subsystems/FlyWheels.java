@@ -33,17 +33,17 @@ public class FlyWheels extends Subsystem {
 		right.reverseOutput(true);
 		
 		pusher = new DoubleSolenoid(RobotMap.PUSHER_OUT_PORT, RobotMap.PUSHER_IN_PORT);
-	
+		
 		wheelSwitch = new DigitalInput(RobotMap.FLYWHEEL_ENCODER_SWITCH);
 		counter = new Counter(wheelSwitch);
 	}
 	
-	public boolean getUpToSpeed(){
+	public boolean getUpToSpeed() {
 		return Math.abs(counter.getRate()) > RobotMap.FINISHED_SPIN_UP_THRESHOLD;
 	}
 	
 	// get rid of this later
-	public double getEncVelocity(){
+	public double getEncVelocity() {
 		return counter.getRate();
 	}
 	
@@ -61,7 +61,6 @@ public class FlyWheels extends Subsystem {
 		left.set(0);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
-
 	
 	public void setPusher(boolean on) {
 		if (on) {
@@ -71,10 +70,11 @@ public class FlyWheels extends Subsystem {
 		}
 	}
 	
-	public boolean upToSpeed(){
+	public boolean upToSpeed() {
 		double leftSpeed = left.getEncVelocity();
 		double rightSpeed = right.getEncVelocity();
-		return (Math.abs(leftSpeed) > RobotMap.FINISHED_SPIN_UP_THRESHOLD) && (Math.abs(rightSpeed) > RobotMap.FINISHED_SPIN_UP_THRESHOLD);
+		return (Math.abs(leftSpeed) > RobotMap.FINISHED_SPIN_UP_THRESHOLD)
+				&& (Math.abs(rightSpeed) > RobotMap.FINISHED_SPIN_UP_THRESHOLD);
 	}
 	
 	public void initDefaultCommand() {

@@ -1,3 +1,4 @@
+
 package org.usfirst.frc.team2521.robot.commands;
 
 import org.usfirst.frc.team2521.robot.Robot;
@@ -13,7 +14,6 @@ public class SetDrivetrain extends Command {
 	
 	//private double time;
 	private double value;
-	
 	
 	public SetDrivetrain(double value) {
 		requires(Robot.drivetrain);
@@ -37,7 +37,7 @@ public class SetDrivetrain extends Command {
 	
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.drivetrain.set(0,0);
+		Robot.drivetrain.set(0, 0);
 		
 		//Timer.delay(time);
 		//Robot.drivetrain.set(0);
@@ -46,6 +46,6 @@ public class SetDrivetrain extends Command {
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		Robot.drivetrain.set(0,0);
+		Robot.drivetrain.set(0, 0);
 	}
 }

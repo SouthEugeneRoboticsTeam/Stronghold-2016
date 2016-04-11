@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+	
 	private Preferences prefs;
 	
 	private Joystick left;
@@ -56,67 +57,69 @@ public class OI {
 		initButtons();
 	}
 	
-	public void setPrefs(){
+	public void setPrefs() {
 		prefs = Preferences.getInstance();
 		fieldPosition = prefs.getInt("Field Position", 3);
-		switch(prefs.getInt("Defense", 0)){
-		case 1: defense = Defense.portcullis;
-			break;
-		case 2: defense = Defense.chevalDeFrise;
-			break;
-		case 3: defense = Defense.moat;
-			break;
-		case 4: defense = Defense.ramparts;
-			break;
-		case 5: defense = Defense.drawbridge;
-			break;
-		case 6: defense = Defense.sallyPort;
-			break;
-		case 7: defense = Defense.roughTerrain;
-			break;
-		case 8: defense = Defense.rockWall;
-			break;
-		default: defense = Defense.lowBar;
+		switch (prefs.getInt("Defense", 0)) {
+			case 1:
+				defense = Defense.portcullis;
+				break;
+			case 2:
+				defense = Defense.chevalDeFrise;
+				break;
+			case 3:
+				defense = Defense.moat;
+				break;
+			case 4:
+				defense = Defense.ramparts;
+				break;
+			case 5:
+				defense = Defense.drawbridge;
+				break;
+			case 6:
+				defense = Defense.sallyPort;
+				break;
+			case 7:
+				defense = Defense.roughTerrain;
+				break;
+			case 8:
+				defense = Defense.rockWall;
+				break;
+			default:
+				defense = Defense.lowBar;
 		}
-		switch(prefs.getInt("Auto Mode", 0)){
-		case 1: auto = AutoMode.traverseOnly;
-			break;
-		case 2: auto = AutoMode.traverseAndReturn;
-			break;
-		case 3: auto = AutoMode.traverseAndLowGoal;
-			break;
-		default: auto = AutoMode.none;
+		switch (prefs.getInt("Auto Mode", 0)) {
+			case 1:
+				auto = AutoMode.traverseOnly;
+				break;
+			case 2:
+				auto = AutoMode.traverseAndReturn;
+				break;
+			case 3:
+				auto = AutoMode.traverseAndLowGoal;
+				break;
+			default:
+				auto = AutoMode.none;
 		}
 	}
 	
 	public enum Defense {
-		portcullis,
-		chevalDeFrise,
-		moat,
-		ramparts,
-		drawbridge,
-		sallyPort,
-		rockWall,
-		roughTerrain,
-		lowBar
+		portcullis, chevalDeFrise, moat, ramparts, drawbridge, sallyPort, rockWall, roughTerrain, lowBar
 	}
 	
 	public enum AutoMode {
-		traverseOnly,
-		traverseAndReturn,
-		traverseAndLowGoal,
-		none
+		traverseOnly, traverseAndReturn, traverseAndLowGoal, none
 	}
 	
-	public Defense getDefense(){
+	public Defense getDefense() {
 		return defense;
 	}
 	
-	public AutoMode getAutoMode(){
+	public AutoMode getAutoMode() {
 		return auto;
 	}
 	
-	public int getFieldPosition(){
+	public int getFieldPosition() {
 		return fieldPosition;
 	}
 	
@@ -135,11 +138,12 @@ public class OI {
 	public Joystick getRightStick() {
 		return right;
 	}
- public Joystick getSecondaryStick() {
+	
+	public Joystick getSecondaryStick() {
 		return secondary;
 	}
 	
-	public void setLight(int lightNumber, boolean value){
+	public void setLight(int lightNumber, boolean value) {
 		custom.setOutput(lightNumber, value);
 	}
 	

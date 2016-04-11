@@ -101,7 +101,7 @@ public class RobotMap {
 	public static final int AUTO_DISTANCE = 700;
 	
 	public static final double RIGHT_ANGLE = -140;
-
+	
 	public static final float TRAVERSE_DEGREES = 12;
 	
 	public static final double ENCODER_RANGE = 1300;
@@ -142,7 +142,7 @@ public class RobotMap {
 	public static final double MANIPULATOR_SPEED = 0.3;
 	
 	public static void setMotors() {
-		if(Robot.test_platform) {
+		if (Robot.test_platform) {
 			FRONT_LEFT_MOTOR = 42;
 			FRONT_RIGHT_MOTOR = 43;
 			REAR_LEFT_MOTOR = 45;

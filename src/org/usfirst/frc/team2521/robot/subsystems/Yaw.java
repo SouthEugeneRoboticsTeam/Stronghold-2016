@@ -1,3 +1,4 @@
+
 package org.usfirst.frc.team2521.robot.subsystems;
 
 import org.usfirst.frc.team2521.robot.RobotMap;
@@ -11,9 +12,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Yaw extends Subsystem {
+	
 	CANTalon yaw;
 	double yawZero;
-	public Yaw(){
+	
+	public Yaw() {
 		yaw = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
 		yaw.enableControl();
 		yawZero = yaw.getEncPosition();
@@ -22,21 +25,20 @@ public class Yaw extends Subsystem {
 		yaw.setPID(RobotMap.YAW_P, RobotMap.YAW_I, RobotMap.YAW_D);
 	}
 	
-	public double getZero(){
+	public double getZero() {
 		return yawZero;
 	}
-    
-	public void set(double value){
+	
+	public void set(double value) {
 		yaw.set(value);
 	}
 	
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-
-    public void initDefaultCommand() {
-    	
-        // Set the default command for a subsystem here.
-        setDefaultCommand(new TeleopYaw());
-    }
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
+	
+	public void initDefaultCommand() {
+		
+		// Set the default command for a subsystem here.
+		setDefaultCommand(new TeleopYaw());
+	}
 }
-

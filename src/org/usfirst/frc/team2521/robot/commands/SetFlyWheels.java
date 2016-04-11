@@ -1,3 +1,4 @@
+
 package org.usfirst.frc.team2521.robot.commands;
 
 import org.usfirst.frc.team2521.robot.Robot;
@@ -14,7 +15,8 @@ public class SetFlyWheels extends Command {
 	
 	boolean out;
 	
-	public SetFlyWheels(boolean out  /** true means shoot, false means intake **/) {
+	public SetFlyWheels(boolean out /** true means shoot, false means intake **/
+	) {
 		//requires(Robot.flyWheels);
 		this.out = out;
 	}

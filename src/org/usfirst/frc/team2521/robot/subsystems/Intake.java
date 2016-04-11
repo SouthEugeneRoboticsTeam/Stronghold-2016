@@ -17,7 +17,7 @@ public class Intake extends Subsystem {
 	
 	private CANTalon intake;
 	
-	public Intake(){
+	public Intake() {
 		intake = new CANTalon(RobotMap.INTAKE_WHEEL_MOTOR);
 	}
 	
@@ -31,17 +31,17 @@ public class Intake extends Subsystem {
 		SmartDashboard.putNumber("Intake val", intake.get());
 	}
 	
-	public void set(double speed){
+	public void set(double speed) {
 		intake.set(speed);
 		SmartDashboard.putNumber("Intake val", intake.get());
 	}
 	
-	public void stop(){
+	public void stop() {
 		intake.set(0);
 	}
 	
 	public void initDefaultCommand() {
-    	setDefaultCommand(new TeleopIntake());
-    }
+		setDefaultCommand(new TeleopIntake());
+	}
 	
 }

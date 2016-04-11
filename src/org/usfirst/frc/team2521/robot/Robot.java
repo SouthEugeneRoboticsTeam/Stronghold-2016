@@ -36,6 +36,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	
 	Preferences prefs;
 	public static double YAW_P;
 	public static double YAW_I;
@@ -55,7 +56,7 @@ public class Robot extends IterativeRobot {
 	//public static Pitch pitch;
 	//public static YawPID yaw;
 	//public static TalonLeft talonLeft;
-//	public static TalonRight talonRight;
+	//	public static TalonRight talonRight;
 	//public static Lock lock;
 	
 	public static OI oi;
@@ -68,18 +69,18 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-//		prefs = Preferences.getInstance();
-//		YAW_P = prefs.getInt("Yaw P", 1);
-//		YAW_I = prefs.getInt("Yaw I", 0);
-//		YAW_D = prefs.getInt("Yaw D", 0);
-//		YAW_VISION_P = prefs.getInt("Yaw Vision P", 1);
-//		YAW_VISION_I = prefs.getInt("Yaw Vision I", 0);
-//		YAW_VISION_D = prefs.getInt("Yaw Vision D", 0);
+		//		prefs = Preferences.getInstance();
+		//		YAW_P = prefs.getInt("Yaw P", 1);
+		//		YAW_I = prefs.getInt("Yaw I", 0);
+		//		YAW_D = prefs.getInt("Yaw D", 0);
+		//		YAW_VISION_P = prefs.getInt("Yaw Vision P", 1);
+		//		YAW_VISION_I = prefs.getInt("Yaw Vision I", 0);
+		//		YAW_VISION_D = prefs.getInt("Yaw Vision D", 0);
 		RobotMap.setMotors();
 		drivetrain = new DrivetrainPID();
 		intake = new Intake();
 		manipulator = new Manipulator();
-	//	flyWheels = new FlyWheels();
+		//	flyWheels = new FlyWheels();
 		//pitch = new Pitch();
 		//yaw = new YawPID();
 		///lock = new Lock();
@@ -125,7 +126,7 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This function is called periodically during autonomous
 	 */
-
+	
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 	}
