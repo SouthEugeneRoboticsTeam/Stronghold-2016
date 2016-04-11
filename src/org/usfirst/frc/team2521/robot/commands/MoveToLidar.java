@@ -1,3 +1,4 @@
+
 package org.usfirst.frc.team2521.robot.commands;
 
 import org.usfirst.frc.team2521.robot.Robot;
@@ -11,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Move the robot to a certain encoder location
  */
 public class MoveToLidar extends Command {
+	
 	private double threshold;
 	
 	public MoveToLidar(double threshold) {
@@ -34,12 +36,12 @@ public class MoveToLidar extends Command {
 	
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.drivetrain.set(0,0);
+		Robot.drivetrain.set(0, 0);
 	}
 	
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		Robot.drivetrain.set(0,0);
+		Robot.drivetrain.set(0, 0);
 	}
 }
