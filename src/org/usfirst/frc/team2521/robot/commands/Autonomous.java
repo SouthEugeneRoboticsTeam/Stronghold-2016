@@ -15,14 +15,19 @@ public class Autonomous extends CommandGroup {
     
     public  Autonomous() {
     	switch(OI.getInstance().getAutoMode()){
-    	case traverseOnly: addSequential(new Traverse());
-    		addSequential(new ToAngle(0));
+    	case traverseOnly: 
+    		SmartDashboard.putString("Auto", "Only");
+    		addSequential(new Traverse());
+    		addSequential(new SetDrivetrain(0));
+    		//addSequential(new ToAngle(0));
     		//Timer.delay(5);
-    		if(OI.getInstance().getDefense() == OI.Defense.chevalDeFrise || OI.getInstance().getDefense() == OI.Defense.portcullis){
+    		/*if(OI.getInstance().getDefense() == OI.Defense.chevalDeFrise || OI.getInstance().getDefense() == OI.Defense.portcullis){
     			addSequential(new ToAngle(180));
-    		} else addSequential(new ToAngle(0));
+    		} else addSequential(new ToAngle(0));*/
     		break;
-    	case traverseAndReturn: addSequential(new Traverse());
+    	case traverseAndReturn:
+    		SmartDashboard.putString("Auto", "Return");
+    		addSequential(new Traverse());
     		addSequential(new SetDrivetrain(1), 1);
     		addSequential(new SetDrivetrain(0));
 	    	if(!(OI.getInstance().getDefense() == OI.Defense.chevalDeFrise)){
@@ -30,13 +35,21 @@ public class Autonomous extends CommandGroup {
 			} else addSequential(new ToAngle(0));
     		addSequential(new Traverse());
     		addSequential(new ToAngle(0));
+    		addSequential(new SetDrivetrain(0));
     		break;
-    	case traverseAndLowGoal: addSequential(new MoveToLidar(RobotMap.LIDAR_WALL_THRESHOLD));
-    		if(OI.getInstance().getFieldPosition() <= 3){
+    	case traverseAndLowGoal: 
+    		SmartDashboard.putString("Auto", "Low Goal");
+    		addSequential(new Traverse());
+    		addSequential(new SetDrivetrain(RobotMap.AUTO_SPEED), 0.5);
+    		addSequential(new MoveToLidar(RobotMap.LIDAR_WALL_THRESHOLD));
+    		if(OI.getInstance().getFieldPosition() < 4){
     			addSequential(new ToAngle(270));
     		} else addSequential(new ToAngle(90));
-    		//addSequential(new MoveToLidar(RobotMap.LIDAR_WALL_THRESHOLD));
-    		//addSequential(new IntakeOut(), 2);
+    		addParallel(new SetDrivetrain(RobotMap.AUTO_SPEED));
+    		Timer.delay(5);
+    		addSequential(new IntakeOut());
+    		addSequential(new ToAngle(0));
+    		addSequential(new SetDrivetrain(0));
     		break;
     	default: break;
     	}

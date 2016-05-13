@@ -95,7 +95,7 @@ public class Pitch extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
        // setDefaultCommand(new TargetPitch());
-    	//setDefaultCommand(new TeleopPitch());
+    	setDefaultCommand(new TeleopPitch());
     }
 }
 

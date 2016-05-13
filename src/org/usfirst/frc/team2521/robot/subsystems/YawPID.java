@@ -21,7 +21,7 @@ public class YawPID extends PIDSubsystem {
     public YawPID() {
     	super(RobotMap.YAW_VISION_P, RobotMap.YAW_VISION_I, RobotMap.YAW_VISION_D);
     	yaw = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
-		yaw.enableControl();
+		//yaw.enableControl();
 		yawZero = yaw.getEncPosition();
 	}
 	

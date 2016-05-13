@@ -141,7 +141,7 @@ public class DrivetrainPID extends PIDSubsystem {
 	}
     
     public void initDefaultCommand() {
-    	setDefaultCommand(new TeleopDrivetrain());
+    	//setDefaultCommand(new TeleopDrivetrain());
         // Set the default command for a subsystem here.
     }
     

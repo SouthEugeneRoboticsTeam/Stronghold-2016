@@ -2,6 +2,7 @@
 package org.usfirst.frc.team2521.robot;
 
 import org.usfirst.frc.team2521.robot.commands.Autonomous;
+import org.usfirst.frc.team2521.robot.commands.DisableDrivetrainPID;
 import org.usfirst.frc.team2521.robot.commands.SetDrivetrain;
 import org.usfirst.frc.team2521.robot.commands.Spin;
 import org.usfirst.frc.team2521.robot.commands.MoveToDistance;
@@ -45,15 +46,15 @@ public class Robot extends IterativeRobot {
 	public static double YAW_VISION_I;
 	public static double YAW_VISION_D;
 	
-	public static boolean test_platform = false; //are we on the real robot or the test platform?
+	public static boolean test_platform = true; //are we on the real robot or the test platform?
 	
 	public static DrivetrainPID drivetrain;
 	public static Manipulator manipulator;
 	public static Intake intake;
-	//public static FlyWheels flyWheels;
+	public static FlyWheels flyWheels;
 	public static Sensors sensors;
-	//public static Pitch pitch;
-	//public static YawPID yaw;
+	public static Pitch pitch;
+	public static Yaw yaw;
 	//public static TalonLeft talonLeft;
 //	public static TalonRight talonRight;
 	//public static Lock lock;
@@ -79,9 +80,9 @@ public class Robot extends IterativeRobot {
 		drivetrain = new DrivetrainPID();
 		intake = new Intake();
 		manipulator = new Manipulator();
-	//	flyWheels = new FlyWheels();
-		//pitch = new Pitch();
-		//yaw = new YawPID();
+		flyWheels = new FlyWheels();
+		pitch = new Pitch();
+		yaw = new Yaw();
 		///lock = new Lock();
 		
 		sensors = new Sensors();
@@ -133,6 +134,8 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		//drivetrain.set(0, 0);
 		auto.cancel();
+		Command stopDrivetrain = new DisableDrivetrainPID();
+		stopDrivetrain.start();
 		//teleop.start();
 		//teleop.start();
 		// This makes sure that the autonomous stops running when

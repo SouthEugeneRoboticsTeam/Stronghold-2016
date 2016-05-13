@@ -63,7 +63,6 @@ public class OI {
 		case 1: defense = Defense.portcullis;
 			break;
 		case 2: defense = Defense.chevalDeFrise;
-			break;
 		case 3: defense = Defense.moat;
 			break;
 		case 4: defense = Defense.ramparts;
@@ -78,14 +77,14 @@ public class OI {
 			break;
 		default: defense = Defense.lowBar;
 		}
-		switch(prefs.getInt("Auto Mode", 0)){
+		switch(prefs.getInt("Auto Mode", 1)){
 		case 1: auto = AutoMode.traverseOnly;
 			break;
 		case 2: auto = AutoMode.traverseAndReturn;
 			break;
 		case 3: auto = AutoMode.traverseAndLowGoal;
 			break;
-		default: auto = AutoMode.none;
+		default: auto = AutoMode.traverseOnly;
 		}
 	}
 	
@@ -146,8 +145,17 @@ public class OI {
 	public void initButtons() {
 		//intakeButtonIn = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON_IN);
 		//intakeButtonOut = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON_OUT);
-		//shooterButtonIn = new JoystickButton(secondary, RobotMap.SHOOTER_BUTTON_IN);
-		//shooterButtonOut = new JoystickButton(secondary, RobotMap.SHOOTER_BUTTON_OUT);
+		if(Robot.test_platform){
+			shooterButtonIn = new JoystickButton(secondary, RobotMap.SHOOTER_BUTTON_IN);
+			shooterButtonOut = new JoystickButton(secondary, RobotMap.SHOOTER_BUTTON_OUT);
+			pusherButton = new JoystickButton(secondary, RobotMap.PUSHER_BUTTON);
+		} else{
+			manipulatorUp = new JoystickButton(right, RobotMap.MANIPULATOR_UP_BUTTON);
+			manipulatorDown = new JoystickButton(right, RobotMap.MANIPULATOR_DOWN_BUTTON);
+			
+			spinFrontButton = new JoystickButton(right, RobotMap.SPIN_BUTTON_FRONT);
+			spinBackButton = new JoystickButton(right, RobotMap.SPIN_BUTTON_BACK);
+		}
 		//autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
 		//pusherButton = new JoystickButton(secondary, RobotMap.PUSHER_BUTTON);
 		//driveIntakeOut = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON_OUT);
@@ -157,11 +165,7 @@ public class OI {
 		//autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
 		//autoResetShooterButton = new JoystickButton(secondary, RobotMap.RESET_SHOOTER_BUTTON);
 		
-		manipulatorUp = new JoystickButton(right, RobotMap.MANIPULATOR_UP_BUTTON);
-		manipulatorDown = new JoystickButton(right, RobotMap.MANIPULATOR_DOWN_BUTTON);
 		
-		spinFrontButton = new JoystickButton(right, RobotMap.SPIN_BUTTON_FRONT);
-		spinBackButton = new JoystickButton(right, RobotMap.SPIN_BUTTON_BACK);
 		
 		tieButtons();
 	}
@@ -176,24 +180,30 @@ public class OI {
 		//intakeButtonIn.whenReleased(new IntakeStop());
 		//intakeButtonOut.whenPressed(new IntakeOut());
 		//intakeButtonOut.whenReleased(new IntakeStop());
-		//shooterButtonIn.whenPressed(new SetFlyWheels(false));
-		//shooterButtonOut.whenPressed(new SetFlyWheels(true));
-		//shooterButtonIn.whenReleased(new StopFlyWheels());
-		//shooterButtonOut.whenReleased(new StopFlyWheels());
+		if(Robot.test_platform){
+			shooterButtonIn.whenPressed(new SetFlyWheels(false));
+			shooterButtonOut.whenPressed(new SetFlyWheels(true));
+			shooterButtonIn.whenReleased(new StopFlyWheels());
+			shooterButtonOut.whenReleased(new StopFlyWheels());
+			pusherButton.whenPressed(new SetPusher(true));
+			pusherButton.whenReleased(new SetPusher(false));
+		} else{
+			manipulatorUp.whenPressed(new ManipulatorUp());
+			manipulatorDown.whenPressed(new ManipulatorDown());
+			
+			manipulatorUp.whenReleased(new ManipulatorReset());
+			manipulatorDown.whenReleased(new ManipulatorReset());
+		}
 		//pusherButton.whenPressed(new SetPusher(true));
 		///pusherButton.whenReleased(new SetPusher(false));
 		//lockButton.whenPressed(new SetLock(true));
 		//lockButton.whenReleased(new SetLock(false));
 		//autoResetShooterButton.whenPressed(new ResetShooter());
 		
-		manipulatorUp.whenPressed(new ManipulatorUp());
-		manipulatorDown.whenPressed(new ManipulatorDown());
 		
-		manipulatorUp.whenReleased(new ManipulatorReset());
-		manipulatorDown.whenReleased(new ManipulatorReset());
 		
-		spinFrontButton.whenPressed(new ToAngle(179));
-		spinBackButton.whenPressed(new ToAngle(0));
+		//spinFrontButton.whenPressed(new ToAngle(179));
+		//spinBackButton.whenPressed(new ToAngle(0));
 		//spinButton.whenReleased(new DisableDrivetrainPID());
 	}
 }

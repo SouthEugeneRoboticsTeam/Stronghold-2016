@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Traverse extends Command {
 	boolean hasTraversed = false;
-	static int counter = 0;
 	
     public Traverse() {
     	requires(Robot.drivetrain);
@@ -22,9 +21,12 @@ public class Traverse extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	counter++;
     	SmartDashboard.putBoolean("End Called", false);
-    	SmartDashboard.putNumber("Counter", counter);
+    	if(OI.getInstance().getDefense() == OI.Defense.ramparts){
+    		Robot.drivetrain.enable();
+        	Robot.drivetrain.setSetpoint(0);
+        	Robot.drivetrain.setTargetAngle(0);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,7 +35,15 @@ public class Traverse extends Command {
     	if(OI.getInstance().getDefense() == OI.Defense.chevalDeFrise){
     		Robot.drivetrain.set(-0.8,-0.8);
 		} else{
-			Robot.drivetrain.set(0.8,0.8);
+			if(OI.getInstance().getDefense() == OI.Defense.ramparts){
+				if(Robot.sensors.getYaw() > 10) {
+					Robot.drivetrain.set(0.3,0.8);
+				} else{
+					Robot.drivetrain.set(0.8,0.8);
+				}
+    		}else{
+    			Robot.drivetrain.set(0.8,0.8);
+    		}
 		}
     	if(Robot.sensors.isTraversing()){
     		hasTraversed = true;
@@ -50,17 +60,12 @@ public class Traverse extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (hasTraversed && !Robot.sensors.isTraversing())/* && (Robot.sensors.getPitch() ==0)*/;
+        return (hasTraversed && !Robot.sensors.isTraversing());
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	/*if(OI.getInstance().getDefense() == OI.Defense.chevalDeFrise){
-    		Robot.drivetrain.set(-0.8,-0.8);
-		} else{
-			Robot.drivetrain.set(0.8,0.8);
-		}*/
-    	SmartDashboard.putBoolean("End Called", true);
+    	Robot.drivetrain.disable();
     	Robot.manipulator.up();
     	Robot.drivetrain.set(0,0);
     	Robot.manipulator.stop();
@@ -70,5 +75,8 @@ public class Traverse extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.drivetrain.disable();
+    	Robot.drivetrain.set(0,0);
+    	Robot.manipulator.stop();
     }
 }

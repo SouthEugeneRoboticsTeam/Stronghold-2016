@@ -116,7 +116,7 @@ public class RobotMap {
 	public static final double LIDAR_IN_BOT_THRESHOLD = 720; //uses .getValue()
 	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 3440; //uses .getValue()
 	public static final double LIDAR_OUTER_WORKS_THRESHOLD = 1200; //uses .getValue()
-	public static final double LIDAR_WALL_THRESHOLD = 1500; //uses .getValue()
+	public static final double LIDAR_WALL_THRESHOLD = 2300; //uses .getValue()
 	
 	public static final double YAW_P = 0.1;
 	public static final double YAW_I = 0;
@@ -152,6 +152,7 @@ public class RobotMap {
 			LEFT_SHOOTER_MOTOR = 56;
 			RIGHT_SHOOTER_MOTOR = 51;
 			TARGETING_YAW_MOTOR = 40;
+	
 			
 		} else {
 			FRONT_LEFT_MOTOR = 46; //Real

@@ -71,7 +71,7 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putBoolean("Traversing", isTraversing);
 		SmartDashboard.putNumber("Error", Robot.drivetrain.getError());
 		SmartDashboard.putNumber("Mot val", Robot.drivetrain.getLargestMotorVal());
-		//SmartDashboard.putNumber("Manipulator encoder", Robot.manipulator.getEncoderPosition());
+		SmartDashboard.putNumber("Manipulator encoder", Robot.manipulator.getEncoderPosition());
 		
 		//SmartDashboard.putBoolean("Target visible", targetVisible);
 		//SmartDashboard.putBoolean("On target", Robot.pitch.getOnTarget() && Robot.yaw.getVisionOnTarget());
