@@ -64,7 +64,7 @@ public class Sensors extends Subsystem {
 	}
 	
 	public void display() {	
-		SmartDashboard.putNumber("Lidar Value", longLidar.getValue());
+		/*SmartDashboard.putNumber("Lidar Value", longLidar.getValue());
 		SmartDashboard.putNumber("Pitch", ahrs.getPitch());
 		SmartDashboard.putNumber("Roll", ahrs.getRoll());
 		SmartDashboard.putNumber("Yaw", getYaw());
@@ -72,7 +72,7 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putNumber("Error", Robot.drivetrain.getError());
 		SmartDashboard.putNumber("Mot val", Robot.drivetrain.getLargestMotorVal());
 		SmartDashboard.putNumber("Manipulator encoder", Robot.manipulator.getEncoderPosition());
-		
+		*/
 		//SmartDashboard.putBoolean("Target visible", targetVisible);
 		//SmartDashboard.putBoolean("On target", Robot.pitch.getOnTarget() && Robot.yaw.getVisionOnTarget());
 		
@@ -90,7 +90,7 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putString("Defense", OI.getInstance().getDefense().toString());
 		SmartDashboard.putNumber("Setpoint", Robot.drivetrain.getSetpoint());
 		SmartDashboard.putBoolean("Is traversing", isTraversing());*/
-		//System.out.println("Pitch" + ahrs.getPitch());
+		System.out.println("Pitch" + ahrs.getPitch());
 		//System.out.println("Traversing" + isTraversing());
 		/*//if (Math.abs(maxPitch) < Math.abs(ahrs.getPitch())) maxPitch = ahrs.getPitch();
 		//SmartDashboard.putNumber("Max pitch", maxPitch);

@@ -8,6 +8,7 @@ import org.usfirst.frc.team2521.robot.commands.Spin;
 import org.usfirst.frc.team2521.robot.commands.MoveToDistance;
 import org.usfirst.frc.team2521.robot.commands.TeleopPitch;
 import org.usfirst.frc.team2521.robot.commands.TargetPitch;
+import org.usfirst.frc.team2521.robot.commands.TargetPitchBaseline;
 import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2521.robot.subsystems.DrivetrainPID;
 import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
@@ -54,7 +55,7 @@ public class Robot extends IterativeRobot {
 	public static FlyWheels flyWheels;
 	public static Sensors sensors;
 	public static Pitch pitch;
-	public static Yaw yaw;
+	public static YawPID yaw;
 	//public static TalonLeft talonLeft;
 //	public static TalonRight talonRight;
 	//public static Lock lock;
@@ -63,6 +64,7 @@ public class Robot extends IterativeRobot {
 	
 	Command auto;
 	Command teleop;
+	Command pitchInit;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -82,7 +84,7 @@ public class Robot extends IterativeRobot {
 		manipulator = new Manipulator();
 		flyWheels = new FlyWheels();
 		pitch = new Pitch();
-		yaw = new Yaw();
+		yaw = new YawPID();
 		///lock = new Lock();
 		
 		sensors = new Sensors();
@@ -90,6 +92,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		auto = new Autonomous();
+		pitchInit = new TargetPitchBaseline(); 
 		//teleop = new Spin(180);
 		//sensors.setInitYaw(); 
 	}
@@ -121,6 +124,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		//teleop.cancel();
 		auto.start();
+		pitchInit.start();
 	}
 	
 	/**

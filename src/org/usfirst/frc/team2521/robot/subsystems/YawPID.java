@@ -26,9 +26,10 @@ public class YawPID extends PIDSubsystem {
 	}
 	
     public void autoInit(){
-     	yaw.changeControlMode(TalonControlMode.Position);
-		yaw.setPID(RobotMap.YAW_P, RobotMap.YAW_I, RobotMap.YAW_D);
+     	//yaw.changeControlMode(TalonControlMode.Position);
+		//yaw.setPID(RobotMap.YAW_P, RobotMap.YAW_I, RobotMap.YAW_D);
 		enable();
+		setSetpoint(0);
     }
     
     public void autoEnd(){

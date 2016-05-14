@@ -1,3 +1,6 @@
+
+
+
 package org.usfirst.frc.team2521.robot.commands;
 
 import org.usfirst.frc.team2521.robot.OI;
@@ -33,13 +36,13 @@ public class TargetPitchBaseline extends Command {
     	//double value = Robot.pitch.getEncoderMin()+1000;//4*RobotMap.ENCODER_RANGE/13;//409.449;
     	//value = value*(RobotMap.ENCODER_RANGE)+Robot.pitch.getEncoderMin();
     	//SmartDashboard.putNumber("Encoder value", value);*/
-    	//Robot.pitch.set(value);
+    	Robot.pitch.set(792);
     	//SmartDashboard.putNumber("Motor value", Robot.pitch.getMotorValue());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;//Robot.yaw.getOnTarget();
+        return false;//Robot.yaw.getOnTarget();
     }
 
     // Called once after isFinished returns true

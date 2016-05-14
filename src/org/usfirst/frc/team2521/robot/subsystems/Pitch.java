@@ -84,6 +84,7 @@ public class Pitch extends Subsystem {
 	
 	public void set(double value){
 		SmartDashboard.putNumber("Value from in set", value);
+		value = value + encoderMin;
 		pitch.set(value);
 		SmartDashboard.putNumber("Get from in set", pitch.get());
 	}
