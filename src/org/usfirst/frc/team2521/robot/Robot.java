@@ -123,7 +123,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		//teleop.cancel();
-		auto.start();
+		//auto.start();
 		pitchInit.start();
 	}
 	

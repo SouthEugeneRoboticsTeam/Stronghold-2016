@@ -39,6 +39,10 @@ public class Pitch extends Subsystem {
 		pitch.reverseOutput(true);
 	}
 	
+	public void autoEnd(){
+		pitch.changeControlMode(TalonControlMode.PercentVbus);
+	}
+	
 	public double getEncoderPosition(){
 		return pitch.getEncPosition();
 	}

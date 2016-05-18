@@ -22,7 +22,7 @@ public class TargetPitchBaseline extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//Robot.pitch.autoInit();
+    	Robot.pitch.autoInit();
     	SmartDashboard.putString("Current command:", "Baseline");
     }
 
@@ -36,7 +36,7 @@ public class TargetPitchBaseline extends Command {
     	//double value = Robot.pitch.getEncoderMin()+1000;//4*RobotMap.ENCODER_RANGE/13;//409.449;
     	//value = value*(RobotMap.ENCODER_RANGE)+Robot.pitch.getEncoderMin();
     	//SmartDashboard.putNumber("Encoder value", value);*/
-    	Robot.pitch.set(792);
+    	Robot.pitch.set(50);
     	//SmartDashboard.putNumber("Motor value", Robot.pitch.getMotorValue());
     }
 
@@ -47,10 +47,12 @@ public class TargetPitchBaseline extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.pitch.autoEnd();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.pitch.autoEnd();
     }
 }
