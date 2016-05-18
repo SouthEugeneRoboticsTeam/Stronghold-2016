@@ -88,7 +88,9 @@ public class Pitch extends Subsystem {
 	
 	public void set(double value){
 		SmartDashboard.putNumber("Value from in set", value);
-		value = value + encoderMin;
+		if(pitch.getControlMode() == CANTalon.TalonControlMode.Position){
+			value = value*RobotMap.ENCODER_RANGE + encoderMin;
+		}
 		pitch.set(value);
 		SmartDashboard.putNumber("Get from in set", pitch.get());
 	}
