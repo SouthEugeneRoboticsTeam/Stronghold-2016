@@ -104,7 +104,7 @@ public class RobotMap {
 
 	public static final float TRAVERSE_DEGREES = 12;
 	
-	public static final double ENCODER_RANGE = 1300;
+	public static final double ENCODER_RANGE = 1400;
 	public static final double YAW_ENCODER_RANGE = 4042;
 	
 	// Thresholds
@@ -118,7 +118,7 @@ public class RobotMap {
 	public static final double LIDAR_OUTER_WORKS_THRESHOLD = 1200; //uses .getValue()
 	public static final double LIDAR_WALL_THRESHOLD = 2300; //uses .getValue()
 	
-	public static final double YAW_P = 0.1;
+	public static final double YAW_P = 0.5;
 	public static final double YAW_I = 0;
 	public static final double YAW_D = 0;
 	

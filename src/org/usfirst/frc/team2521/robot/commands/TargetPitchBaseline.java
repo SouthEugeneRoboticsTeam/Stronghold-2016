@@ -36,7 +36,7 @@ public class TargetPitchBaseline extends Command {
     	//double value = Robot.pitch.getEncoderMin()+1000;//4*RobotMap.ENCODER_RANGE/13;//409.449;
     	//value = value*(RobotMap.ENCODER_RANGE)+Robot.pitch.getEncoderMin();
     	//SmartDashboard.putNumber("Encoder value", value);*/
-    	Robot.pitch.set(0.5);
+    	Robot.pitch.set(0.55);
     	//SmartDashboard.putNumber("Motor value", Robot.pitch.getMotorValue());
     }
 

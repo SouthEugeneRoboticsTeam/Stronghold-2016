@@ -23,17 +23,17 @@ public class Intake extends Subsystem {
 	
 	public void in() {
 		intake.set(1);
-		SmartDashboard.putNumber("Intake val", intake.get());
+	//	SmartDashboard.putNumber("Intake val", intake.get());
 	}
 	
 	public void out() {
 		intake.set(-1);
-		SmartDashboard.putNumber("Intake val", intake.get());
+		//SmartDashboard.putNumber("Intake val", intake.get());
 	}
 	
 	public void set(double speed){
 		intake.set(speed);
-		SmartDashboard.putNumber("Intake val", intake.get());
+		//SmartDashboard.putNumber("Intake val", intake.get());
 	}
 	
 	public void stop(){

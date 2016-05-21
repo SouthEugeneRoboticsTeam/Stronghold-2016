@@ -47,6 +47,10 @@ public class Pitch extends Subsystem {
 		return pitch.getEncPosition();
 	}
 	
+	public double getSetpoint(){
+		return pitch.getSetpoint();
+	}
+	
 	public double getEncoderMax(){
 		return encoderMax;
 	}
@@ -87,12 +91,14 @@ public class Pitch extends Subsystem {
     }
 	
 	public void set(double value){
-		SmartDashboard.putNumber("Value from in set", value);
+		SmartDashboard.putNumber("Pitch set: raw val", value);
 		if(pitch.getControlMode() == CANTalon.TalonControlMode.Position){
 			value = value*RobotMap.ENCODER_RANGE + encoderMin;
 		}
+		SmartDashboard.putNumber("Pitch set: adjusted val", value);
 		pitch.set(value);
-		SmartDashboard.putNumber("Get from in set", pitch.get());
+		SmartDashboard.putNumber("Pitch set: val from get", value);
+		//SmartDashboard.putNumber("Get from in set", pitch.get());
 	}
 	
 	public void teleopInit(){

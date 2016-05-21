@@ -18,14 +18,14 @@ public class TargetYaw extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-//    	Robot.yaw.autoInit(); 
+    	Robot.yaw.autoInit(); 
     	//Robot.yaw.enable();
     	SmartDashboard.putString("Current command:", "Target yaw");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() { 
-    	//Robot.yaw.setSetpoint(0);
+    	Robot.yaw.setSetpoint(0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
