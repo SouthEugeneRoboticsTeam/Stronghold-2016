@@ -71,7 +71,7 @@ public class Pitch extends Subsystem {
     }*/
     
     public boolean getOnTarget() {
-    	return (Math.abs(pitch.getError()) < RobotMap.PITCH_ERROR_THRESHOLD);
+    	return (Math.abs(pitch.getSetpoint() - pitch.getEncPosition()) < RobotMap.PITCH_ERROR_THRESHOLD);
     }
     
    public double getTargetEncoderPosition(){
@@ -98,7 +98,7 @@ public class Pitch extends Subsystem {
 		SmartDashboard.putNumber("Pitch set: adjusted val", value);
 		pitch.set(value);
 		SmartDashboard.putNumber("Pitch set: val from get", value);
-		//SmartDashboard.putNumber("Get from in set", pitch.get());
+		SmartDashboard.putNumber("Current", pitch.getOutputCurrent());
 	}
 	
 	public void teleopInit(){

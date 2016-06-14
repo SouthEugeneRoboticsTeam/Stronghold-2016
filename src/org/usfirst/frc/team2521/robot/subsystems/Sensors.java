@@ -28,6 +28,7 @@ public class Sensors extends Subsystem {
 	private AHRS ahrs;
 	private AnalogInput intakeLidar;
 	private AnalogInput longLidar;
+	private AnalogInput aimLidar;
 	private NetworkTable table;
 	
 	private double deltaX = 0;
@@ -52,6 +53,7 @@ public class Sensors extends Subsystem {
 		ahrs.reset();
 		intakeLidar = new AnalogInput(RobotMap.INTAKE_LIDAR_PORT);
 		longLidar = new AnalogInput(RobotMap.LONG_LIDAR_PORT);
+		aimLidar = new AnalogInput(RobotMap.AIM_LIDAR_PORT);
 		table = NetworkTable.getTable("SmartDashboard");
 	}
  
@@ -64,53 +66,18 @@ public class Sensors extends Subsystem {
 	}
 	
 	public void display() {	
-		SmartDashboard.putNumber("Pitch enc val", Robot.pitch.getEncoderPosition());
-		/*SmartDashboard.putNumber("Lidar Value", longLidar.getValue());
-		SmartDashboard.putNumber("Pitch", ahrs.getPitch());
-		SmartDashboard.putNumber("Roll", ahrs.getRoll());
-		SmartDashboard.putNumber("Yaw", getYaw());
-		SmartDashboard.putBoolean("Traversing", isTraversing);
-		SmartDashboard.putNumber("Error", Robot.drivetrain.getError());
-		SmartDashboard.putNumber("Mot val", Robot.drivetrain.getLargestMotorVal());
-		SmartDashboard.putNumber("Manipulator encoder", Robot.manipulator.getEncoderPosition());
-		*/
-		//SmartDashboard.putBoolean("Target visible", targetVisible);
-		//SmartDashboard.putBoolean("On target", Robot.pitch.getOnTarget() && Robot.yaw.getVisionOnTarget());
-		
-		//SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
-		//SmartDashboard.putBoolean("Auto aim on", autoAimOn);
-		//SmartDashboard.putBoolean("Auto fire on", autoFireOn);
-		
-		/*SmartDashboard.putNumber("Lidar distance", getLidarDistance());
-		SmartDashboard.putNumber("Lidar value", intakeLidar.getValue());
-		SmartDashboard.putBoolean("Ball in bot", ballInBot());
-		SmartDashboard.putBoolean("Ball in shooter", ballInShooter());
-		SmartDashboard.putNumber("Yaw", ahrs.getYaw());
-		
-		SmartDashboard.putNumber("Fixed yaw", getYaw());
-		SmartDashboard.putString("Defense", OI.getInstance().getDefense().toString());
-		SmartDashboard.putNumber("Setpoint", Robot.drivetrain.getSetpoint());
-		SmartDashboard.putBoolean("Is traversing", isTraversing());*/
-		//System.out.println("Pitch" + ahrs.getPitch());
-		//System.out.println("Traversing" + isTraversing());
-		/*//if (Math.abs(maxPitch) < Math.abs(ahrs.getPitch())) maxPitch = ahrs.getPitch();
-		//SmartDashboard.putNumber("Max pitch", maxPitch);
-		//SmartDashboard.putNumber("Long lidar", longLidar.getValue());
-		//SmartDashboard.putNumber("Last yaw", lastYaw);
-		//SmartDashboard.putBoolean("Outerworks distance", longLidar.getValue() < RobotMap.LIDAR_OUTER_WORKS_THRESHOLD);
-		//setLights();
-		SmartDashboard.putNumber("Encoder position", Robot.pitch.getEncoderPosition());
-		//SmartDashboard.putNumber("Height", getHeight()); 
-		SmartDashboard.putBoolean("Target visible", targetVisible);
-		SmartDashboard.putNumber("Wheel enc speed", Robot.flyWheels.getEncVelocity());
-		SmartDashboard.putNumber("Target enc position", Robot.pitch.getTargetEncoderPosition());*/
-		//SmartDashboard.putNumber("Delta X", getDeltaX());
+		SmartDashboard.putNumber("Aim lidar", getAimLidar());
+		SmartDashboard.putNumber("Delta X", getDeltaX());
 	}
 	
 	public void setLights(){
 		OI.getInstance().setLight(RobotMap.INTAKE_LIGHT, ballInBot());
 		//OI.getInstance().setLight(RobotMap.WHEELS_LIGHT, Robot.flyWheels.getUpToSpeed());
 		OI.getInstance().setLight(RobotMap.VISION_LIGHT, false);
+	}
+	
+	public double getAimLidar(){
+		return aimLidar.getValue();
 	}
 	
 	public double getYaw(){

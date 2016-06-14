@@ -38,6 +38,7 @@ public class RobotMap {
 	//Lidar
 	public static final int INTAKE_LIDAR_PORT = 0;
 	public static final int LONG_LIDAR_PORT = 1;
+	public static final int AIM_LIDAR_PORT = 2;
 	
 	//Encoder
 	public static final int LEFT_ENCODER_A = 0;
@@ -111,7 +112,7 @@ public class RobotMap {
 	public static final int FINISHED_SPIN_UP_THRESHOLD = 100;
 	public static final int YAW_VISION_ERROR_THRESHOLD = 1;
 	public static final int YAW_ERROR_THRESHOLD = 1;
-	public static final int PITCH_ERROR_THRESHOLD = 1;
+	public static final int PITCH_ERROR_THRESHOLD = 0;
 	
 	public static final double LIDAR_IN_BOT_THRESHOLD = 720; //uses .getValue()
 	public static final double LIDAR_IN_SHOOTER_THRESHOLD = 3440; //uses .getValue()
@@ -122,11 +123,11 @@ public class RobotMap {
 	public static final double YAW_I = 0;
 	public static final double YAW_D = 0;
 	
-	public static final double YAW_VISION_P = 0.0025;
+	public static final double YAW_VISION_P = 0.001;
 	public static final double YAW_VISION_I = 0;
 	public static final double YAW_VISION_D = 0;
 	
-	public static final double PITCH_P = 0.5;
+	public static final double PITCH_P = 0.7;
 	public static final double PITCH_I = 0;
 	public static final double PITCH_D = 0;
 	

@@ -37,7 +37,6 @@ public class TargetYaw extends Command {
     protected void end() {
     //	Robot.yaw.autoEnd();
     	//Robot.yaw.disable();
-    	SmartDashboard.putBoolean("Target yaw running", false);
     }
 
     // Called when another command which requires one or more of the same

@@ -42,7 +42,7 @@ public class TargetPitchBaseline extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;//Robot.yaw.getOnTarget();
+        return false; //Robot.pitch.getOnTarget();
     }
 
     // Called once after isFinished returns true

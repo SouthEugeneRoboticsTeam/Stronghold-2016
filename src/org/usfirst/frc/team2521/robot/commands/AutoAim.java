@@ -11,9 +11,8 @@ import edu.wpi.first.wpilibj.Timer;
 public class AutoAim extends CommandGroup {
     
     public  AutoAim() {
-    	addSequential(new TargetPitchBaseline(), 1);
-    	Timer.delay(1);
-    	//addParallel(new TargetYaw());
+    	addSequential(new TargetPitchBaseline());
+    	//addSequential(new TargetYaw());
     	//Robot.sensors.autoAimOn = false;
     }
 }

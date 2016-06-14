@@ -93,7 +93,6 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		auto = new AutoAim();
-		pitchInit = new TargetPitchBaseline(); 
 		//teleop = new Spin(180);
 		//sensors.setInitYaw(); 
 	}
@@ -124,8 +123,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousInit() {
 		//teleop.cancel();
-		//auto.start();
-		pitchInit.start();
+		auto.start();
+		//pitchInit.start();
 	}
 	
 	/**

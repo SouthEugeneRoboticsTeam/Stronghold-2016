@@ -51,11 +51,9 @@ public class YawPID extends PIDSubsystem {
     }
     
     public boolean getOnTarget(){
-       	return (Math.abs(yaw.get() - yaw.getEncPosition()) < RobotMap.YAW_ERROR_THRESHOLD);
-    }
-    
-    public void printEncPos(){
-    	
+       	return false;//Math.abs(yaw.getCurrent())
+       			
+       			// (Math.abs(yaw.get() - yaw.getEncPosition()) < RobotMap.YAW_ERROR_THRESHOLD);
     }
     
     public void initDefaultCommand() {
