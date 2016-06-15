@@ -46,6 +46,9 @@ public class OI {
 	private int fieldPosition;
 	private Defense defense;
 	private AutoMode auto;
+	private boolean slowMode;
+	private double slowModeFactor;
+	private boolean arcadeMode;
 	
 	public OI() {
 		secondary = new Joystick(RobotMap.SECONDARY_STICK_PORT);
@@ -59,6 +62,9 @@ public class OI {
 	public void setPrefs(){
 		prefs = Preferences.getInstance();
 		fieldPosition = prefs.getInt("Field Position", 3);
+		slowMode = prefs.getBoolean("Slow mode?", false);
+		arcadeMode = prefs.getBoolean("Arcade mode?", false);
+		slowModeFactor = prefs.getDouble("Slow mode factor", 0.5);
 		switch(prefs.getInt("Defense", 0)){
 		case 1: defense = Defense.portcullis;
 			break;
@@ -118,6 +124,18 @@ public class OI {
 	
 	public int getFieldPosition(){
 		return fieldPosition;
+	}
+	
+	public boolean getSlowMode(){
+		return slowMode;
+	}
+	
+	public boolean getArcadeMode(){
+		return arcadeMode;
+	}
+	
+	public double getSlowModeFactor(){
+		return slowModeFactor;
 	}
 	
 	public static OI getInstance() {

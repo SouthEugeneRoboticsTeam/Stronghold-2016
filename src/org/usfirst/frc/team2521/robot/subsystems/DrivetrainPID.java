@@ -52,6 +52,10 @@ public class DrivetrainPID extends PIDSubsystem {
     public void tankDrive() {
 		double left = OI.getInstance().getLeftStick().getY();
 		double right = OI.getInstance().getRightStick().getY();
+		if(OI.getInstance().getSlowMode()){
+			left *= OI.getInstance().getSlowModeFactor();
+			right *= OI.getInstance().getSlowModeFactor();
+		}
 		if(OI.getInstance().getRightStick().getRawButton(1)){
 			left *= -1;
 			right *= -1;
@@ -73,9 +77,13 @@ public class DrivetrainPID extends PIDSubsystem {
 	
 	public void arcadeDrive() {
 		Joystick left = OI.getInstance().getLeftStick();
-		
-		frontDrive.arcadeDrive(left);
-		rearDrive.arcadeDrive(left);
+		if(OI.getInstance().getSlowMode()){
+			frontDrive.arcadeDrive(left.getY()*OI.getInstance().getSlowModeFactor(), left.getX()*OI.getInstance().getSlowModeFactor());
+			rearDrive.arcadeDrive(left.getY()*OI.getInstance().getSlowModeFactor(), left.getX()*OI.getInstance().getSlowModeFactor());
+		}else{
+			frontDrive.arcadeDrive(left);
+			rearDrive.arcadeDrive(left);
+		}
 	}
 	
 	public double getLargestMotorVal(){
@@ -96,12 +104,15 @@ public class DrivetrainPID extends PIDSubsystem {
 	}
 	
 	public void teleoperatedDrive() {
+		SmartDashboard.putBoolean("Teleop drive called?", true);
 		frontLeft.changeControlMode(TalonControlMode.PercentVbus);
 		frontRight.changeControlMode(TalonControlMode.PercentVbus);
 		rearLeft.changeControlMode(TalonControlMode.PercentVbus);
 		rearRight.changeControlMode(TalonControlMode.PercentVbus);
 		
-		tankDrive();
+		if(OI.getInstance().getArcadeMode()){
+			arcadeDrive();
+		} else tankDrive();
 	}
 	
 	/*public void setPosition(int leftPosition, int rightPosition) {
