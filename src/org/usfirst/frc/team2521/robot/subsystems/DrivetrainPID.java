@@ -44,9 +44,6 @@ public class DrivetrainPID extends PIDSubsystem {
 		
 		frontDrive = new RobotDrive(rearLeft, rearRight);
 		rearDrive = new RobotDrive(rearLeft, rearRight);
-		
-		SmartDashboard.putNumber("Front right", 0);
-		SmartDashboard.putNumber("Front left", 0);
     }
     
     public void tankDrive() {

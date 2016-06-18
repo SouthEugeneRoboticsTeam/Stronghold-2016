@@ -47,6 +47,10 @@ public class Pitch extends Subsystem {
 		return pitch.getEncPosition();
 	}
 	
+	public double getRelativeEncoderPosition(){
+		return pitch.getEncPosition() - encoderMin;
+	}
+	
 	public double getSetpoint(){
 		return pitch.getSetpoint();
 	}
@@ -98,7 +102,6 @@ public class Pitch extends Subsystem {
 		SmartDashboard.putNumber("Pitch set: adjusted val", value);
 		pitch.set(value);
 		SmartDashboard.putNumber("Pitch set: val from get", value);
-		SmartDashboard.putNumber("Current", pitch.getOutputCurrent());
 	}
 	
 	public void teleopInit(){

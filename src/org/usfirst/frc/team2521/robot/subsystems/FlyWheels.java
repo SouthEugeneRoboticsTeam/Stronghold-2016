@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -36,6 +37,8 @@ public class FlyWheels extends Subsystem {
 	
 		wheelSwitch = new DigitalInput(RobotMap.FLYWHEEL_ENCODER_SWITCH);
 		counter = new Counter(wheelSwitch);
+		SmartDashboard.putBoolean("In called", false);
+		SmartDashboard.putBoolean("Out called", false);
 	}
 	
 	public boolean getUpToSpeed(){
@@ -58,6 +61,7 @@ public class FlyWheels extends Subsystem {
 	}
 	
 	public void stop() {
+		SmartDashboard.putBoolean("Stop fun called", true);
 		left.set(0);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}

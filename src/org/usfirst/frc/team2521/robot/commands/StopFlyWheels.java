@@ -3,6 +3,7 @@ package org.usfirst.frc.team2521.robot.commands;
 import org.usfirst.frc.team2521.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -30,7 +31,7 @@ public class StopFlyWheels extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	//Robot.flyWheels.stop();
+    	Robot.flyWheels.stop();
     }
 
     // Called when another command which requires one or more of the same

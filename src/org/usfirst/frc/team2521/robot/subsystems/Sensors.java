@@ -45,6 +45,9 @@ public class Sensors extends Subsystem {
 	private double lastYaw = 0;
 	private double yawOffset = 0; 
 	
+	private double lidarCount = 0;
+	private double lidarSum = 0;
+	
 	public boolean autoFireOn = false;
 	public boolean autoAimOn = false;
 	
@@ -57,6 +60,12 @@ public class Sensors extends Subsystem {
 		table = NetworkTable.getTable("SmartDashboard");
 	}
  
+	public double avgLidar(){
+		lidarSum += aimLidar.getValue();
+		lidarCount++;
+		return lidarSum / lidarCount;
+	}
+	
 	public boolean ballInBot() { //get if we have the ball in the bot
 		return intakeLidar.getValue() > RobotMap.LIDAR_IN_BOT_THRESHOLD;
 	}
@@ -67,7 +76,9 @@ public class Sensors extends Subsystem {
 	
 	public void display() {	
 		SmartDashboard.putNumber("Aim lidar", getAimLidar());
-		SmartDashboard.putNumber("Delta X", getDeltaX());
+		SmartDashboard.putNumber("Avg aim lidar", avgLidar());
+		SmartDashboard.putNumber("Pitch Relative Encoder Position", Robot.pitch.getRelativeEncoderPosition());
+		SmartDashboard.putNumber("Pitch Absolute Encoder Position", Robot.pitch.getEncoderPosition());
 	}
 	
 	public void setLights(){

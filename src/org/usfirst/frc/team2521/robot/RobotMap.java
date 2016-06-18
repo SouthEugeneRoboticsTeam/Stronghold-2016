@@ -73,6 +73,8 @@ public class RobotMap {
 	public static final int SPIN_BUTTON_FRONT = 5;
 	public static final int SPIN_BUTTON_BACK = 4;
 	
+	public static final int GOTO_PITCH_AIM_BUTTON = 11; // whileheld command for aiming the head
+	
 	//Lights
 	public static final int INTAKE_LIGHT = 0;
 	public static final int WHEELS_LIGHT = 1;
