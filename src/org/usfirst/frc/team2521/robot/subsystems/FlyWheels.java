@@ -39,6 +39,8 @@ public class FlyWheels extends Subsystem {
 		counter = new Counter(wheelSwitch);
 		SmartDashboard.putBoolean("In called", false);
 		SmartDashboard.putBoolean("Out called", false);
+		SmartDashboard.putBoolean("Stop method called", false);
+		SmartDashboard.putBoolean("Stop command called", false);
 	}
 	
 	public boolean getUpToSpeed(){
@@ -61,7 +63,7 @@ public class FlyWheels extends Subsystem {
 	}
 	
 	public void stop() {
-		SmartDashboard.putBoolean("Stop fun called", true);
+		SmartDashboard.putBoolean("Stop method called", true);
 		left.set(0);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
