@@ -43,13 +43,22 @@ public class Drivetrain extends Subsystem {
 		double left = OI.getInstance().getLeftStick().getY();
 		double right = OI.getInstance().getRightStick().getY();
 		
-		frontDrive.tankDrive(right, left); // Switched to make it work
-		rearDrive.tankDrive(right, left);
+		if(OI.getInstance().getSlowMode()){
+			left *= OI.getInstance().getSlowModeFactor();
+			right *= OI.getInstance().getSlowModeFactor();
+		}else{
+			frontDrive.tankDrive(right, left); // Switched to make it work
+			rearDrive.tankDrive(right, left);
+		}
 	}
 	
 	public void arcadeDrive() {
 		Joystick left = OI.getInstance().getLeftStick();
 		
+		if(OI.getInstance().getSlowMode()){
+			frontDrive.arcadeDrive(left.getY()*OI.getInstance().getSlowModeFactor(), left.getX()*OI.getInstance().getSlowModeFactor());
+			rearDrive.arcadeDrive(left.getY()*OI.getInstance().getSlowModeFactor(), left.getX()*OI.getInstance().getSlowModeFactor());
+		}
 		frontDrive.arcadeDrive(left);
 		rearDrive.arcadeDrive(left);
 	}

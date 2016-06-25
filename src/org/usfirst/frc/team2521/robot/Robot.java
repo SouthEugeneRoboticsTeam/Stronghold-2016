@@ -136,6 +136,9 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void teleopInit() {
+		SmartDashboard.putBoolean("Tank drive called?", false);
+		SmartDashboard.putBoolean("Teleop drive called?", false);
+		SmartDashboard.putBoolean("Teleop drivetrain called?", false);
 		//drivetrain.set(0, 0);
 		auto.cancel();
 		Command stopDrivetrain = new DisableDrivetrainPID();
@@ -153,7 +156,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Delta x", sensors.getDeltaX());
+		SmartDashboard.putBoolean("Slo mode",(OI.getInstance().getSlowMode()));
+		SmartDashboard.putDouble("Slo mode factor", OI.getInstance().getSlowModeFactor());
 	}
 	
 	/**
