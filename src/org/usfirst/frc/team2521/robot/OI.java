@@ -43,6 +43,8 @@ public class OI {
 	
 	private JoystickButton gotoAimPosButton;
 	
+	private JoystickButton aimYawButton;
+	
 	private static OI instance;
 	
 	private int fieldPosition;
@@ -177,6 +179,7 @@ public class OI {
 			spinFrontButton = new JoystickButton(right, RobotMap.SPIN_BUTTON_FRONT);
 			spinBackButton = new JoystickButton(right, RobotMap.SPIN_BUTTON_BACK);
 		}
+		aimYawButton = new JoystickButton(secondary, RobotMap.AIM_YAW_BUTTON);
 		//autoIntakeButton = new JoystickButton(secondary, RobotMap.AUTO_INTAKE_BUTTON);
 		//pusherButton = new JoystickButton(secondary, RobotMap.PUSHER_BUTTON);
 		//driveIntakeOut = new JoystickButton(secondary, RobotMap.INTAKE_BUTTON_OUT);
@@ -209,6 +212,7 @@ public class OI {
 			pusherButton.whenPressed(new SetPusher(true));
 			pusherButton.whenReleased(new SetPusher(false));
 			gotoAimPosButton.whileHeld(new TargetPitchBaseline());
+			aimYawButton.whileHeld(new TargetYaw());
 		} else{
 			manipulatorUp.whenPressed(new ManipulatorUp());
 			manipulatorDown.whenPressed(new ManipulatorDown());
