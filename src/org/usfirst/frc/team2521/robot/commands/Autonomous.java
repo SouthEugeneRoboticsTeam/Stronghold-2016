@@ -51,6 +51,12 @@ public class Autonomous extends CommandGroup {
     		addSequential(new ToAngle(0));
     		addSequential(new SetDrivetrain(0));
     		break;
+    	case traverseAndHighGoal:
+    		SmartDashboard.putString("Auto", "High Goal");
+    		addSequential(new Traverse());
+    		addParallel(new TargetYaw());
+    		Timer.delay(2);
+    		addParallel(new SetPitch(1));
     	default: break;
     	}
     }

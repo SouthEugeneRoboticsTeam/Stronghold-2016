@@ -114,6 +114,7 @@ public class OI {
 		traverseOnly,
 		traverseAndReturn,
 		traverseAndLowGoal,
+		traverseAndHighGoal,
 		none
 	}
 	
