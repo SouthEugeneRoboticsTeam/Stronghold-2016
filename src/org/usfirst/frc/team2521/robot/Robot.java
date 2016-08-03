@@ -72,6 +72,7 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
+		SmartDashboard.putString("Current command:", "None");
 //		prefs = Preferences.getInstance();
 //		YAW_P = prefs.getInt("Yaw P", 1);
 //		YAW_I = prefs.getInt("Yaw I", 0);
@@ -93,7 +94,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		auto = new AutoAim();
-		//teleop = new Spin(180);
+		//teleop = new AutoAim();
 		//sensors.setInitYaw(); 
 	}
 	
@@ -140,9 +141,10 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Teleop drive called?", false);
 		SmartDashboard.putBoolean("Teleop drivetrain called?", false);
 		//drivetrain.set(0, 0);
-		auto.cancel();
+		//auto.cancel();
 		Command stopDrivetrain = new DisableDrivetrainPID();
 		stopDrivetrain.start();
+		//teleop.start();
 		//teleop.start();
 		//teleop.start();
 		// This makes sure that the autonomous stops running when

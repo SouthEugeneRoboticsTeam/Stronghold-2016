@@ -19,6 +19,7 @@ public class TeleopPitch extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	SmartDashboard.putString("Current command:", "Target Pitch");
     	//Robot.pitch.autoInit();
     }
 

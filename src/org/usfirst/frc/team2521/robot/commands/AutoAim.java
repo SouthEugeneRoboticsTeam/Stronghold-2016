@@ -11,7 +11,10 @@ import edu.wpi.first.wpilibj.Timer;
 public class AutoAim extends CommandGroup {
     
     public  AutoAim() {
-    	addSequential(new TargetPitchBaseline());
+    	//addSequential(new SetPitch(0), 0.5);
+    	addParallel(new ZeroLidar());
+    	addSequential(new TargetPitchBaseline(), 10);
+    	addSequential(new TargetPitch(), 1);
     	//addSequential(new TargetYaw());
     	//Robot.sensors.autoAimOn = false;
     }

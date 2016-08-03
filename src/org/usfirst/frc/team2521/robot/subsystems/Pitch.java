@@ -41,6 +41,7 @@ public class Pitch extends Subsystem {
 	
 	public void autoEnd(){
 		pitch.changeControlMode(TalonControlMode.PercentVbus);
+		pitch.set(0);
 	}
 	
 	public double getEncoderPosition(){
@@ -81,11 +82,15 @@ public class Pitch extends Subsystem {
    public double getTargetEncoderPosition(){
 	   //double angle = getTargetAngleRadians();
 	   //return (angle*RobotMap.ENC_COUNTS_PER_RADIAN);
-	   double h = Robot.sensors.getHeight();
-	   SmartDashboard.putNumber("h", h);
+	   //double h = Robot.sensors.getHeight();
+	   //SmartDashboard.putNumber("h", h);
 	   //return 13*Math.pow(height, 2.348)+900+encoderMin; 
 	   //return 540.9/(Math.pow((h-17.84),2))+19.92*(h+26.41)-4.661;
-	   return Math.pow(h, 2)*9.355+-543.3*h+8952;
+	   //return Math.pow(h, 2)*9.355+-543.3*h+8952;
+	   double lidarVal = Robot.sensors.avgLidar();
+	   lidarVal = 0.005184*(Math.pow(lidarVal, 2)) + -10.97*lidarVal + 7140;
+	   SmartDashboard.putNumber("Target enc pos", lidarVal);
+	   return lidarVal;
    }
     
     private double getTargetAngleRadians(){
@@ -97,7 +102,7 @@ public class Pitch extends Subsystem {
 	public void set(double value){
 		SmartDashboard.putNumber("Pitch set: raw val", value);
 		if(pitch.getControlMode() == CANTalon.TalonControlMode.Position){
-			value = value*RobotMap.ENCODER_RANGE + encoderMin;
+			value = value + encoderMin;
 		}
 		SmartDashboard.putNumber("Pitch set: adjusted val", value);
 		pitch.set(value);

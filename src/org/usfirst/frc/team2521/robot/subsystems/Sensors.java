@@ -66,6 +66,11 @@ public class Sensors extends Subsystem {
 		return lidarSum / lidarCount;
 	}
 	
+	public void zeroLidar() {
+		lidarSum = 0;
+		lidarCount = 0;
+	}
+	
 	public boolean ballInBot() { //get if we have the ball in the bot
 		return intakeLidar.getValue() > RobotMap.LIDAR_IN_BOT_THRESHOLD;
 	}

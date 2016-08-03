@@ -58,7 +58,7 @@ public class YawPID extends PIDSubsystem {
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new TeleopYaw());
+        setDefaultCommand(new TeleopYaw());
     	//setDefaultCommand(new TargetYaw());
     }
     
