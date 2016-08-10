@@ -87,7 +87,7 @@ public class Pitch extends Subsystem {
 	   //return 13*Math.pow(height, 2.348)+900+encoderMin; 
 	   //return 540.9/(Math.pow((h-17.84),2))+19.92*(h+26.41)-4.661;
 	   //return Math.pow(h, 2)*9.355+-543.3*h+8952;
-	   double lidarVal = Robot.sensors.avgLidar();
+	   double lidarVal = Robot.sensors.getAvgLidar();
 	   lidarVal = 0.005184*(Math.pow(lidarVal, 2)) + -10.97*lidarVal + 7140;
 	   SmartDashboard.putNumber("Target enc pos", lidarVal);
 	   return lidarVal;

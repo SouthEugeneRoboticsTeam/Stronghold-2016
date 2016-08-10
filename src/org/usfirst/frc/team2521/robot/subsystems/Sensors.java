@@ -60,9 +60,13 @@ public class Sensors extends Subsystem {
 		table = NetworkTable.getTable("SmartDashboard");
 	}
  
-	public double avgLidar(){
+	public double updateAvgLidar(){
 		lidarSum += aimLidar.getValue();
 		lidarCount++;
+		return lidarSum / lidarCount;
+	}
+	
+	public double getAvgLidar(){
 		return lidarSum / lidarCount;
 	}
 	
@@ -81,7 +85,7 @@ public class Sensors extends Subsystem {
 	
 	public void display() {	
 		SmartDashboard.putNumber("Aim lidar", getAimLidar());
-		SmartDashboard.putNumber("Avg aim lidar", avgLidar());
+		SmartDashboard.putNumber("Avg aim lidar", getAvgLidar());
 		SmartDashboard.putNumber("Pitch Relative Encoder Position", Robot.pitch.getRelativeEncoderPosition());
 		SmartDashboard.putNumber("Pitch Absolute Encoder Position", Robot.pitch.getEncoderPosition());
 	}
