@@ -20,21 +20,11 @@ public class ToAngle extends Command {
     public ToAngle(double angle) {
     	//this.auto = auto;
     	this.angle = angle;
-    	//this.relative = relative;
-    	SmartDashboard.putBoolean("ToAngle called", true);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	initTime = Timer.getFPGATimestamp();
-    	/*if(relative){
-    		angle = (Robot.sensors.getYaw() + angle);
-    		if(angle > 360) angle -= 360;
-    	}*/
-    	SmartDashboard.putNumber("Target angle", angle);
-    	//Timer.delay(5);
     	Robot.drivetrain.enable();
     	Robot.drivetrain.setSetpoint(0);
     	
@@ -43,16 +33,12 @@ public class ToAngle extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putNumber("Setpoint", Robot.drivetrain.getSetpoint());
-    	//SmartDashboard.putString("Current command", "Align right");
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         //return hasTraversed && !Robot.sensors.isTraversing;
-    	return /*(auto || !((OI.getInstance().getRightStick().getRawButton(RobotMap.SPIN_BUTTON_BACK)) 
-    			|| (OI.getInstance().getRightStick().getRawButton(RobotMap.SPIN_BUTTON_FRONT)))) || */
-    			(Robot.drivetrain.getLargestMotorVal() < 0.5 && (Timer.getFPGATimestamp() - initTime) > 0.5);//false;//Robot.drivetrain.onTarget();
+    	return (Robot.drivetrain.getLargestMotorVal() < 0.5 && (Timer.getFPGATimestamp() - initTime) > 0.5);//false;//Robot.drivetrain.onTarget();
     }
 
     // Called once after isFinished returns true
@@ -64,6 +50,5 @@ public class ToAngle extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.drivetrain.disable();
-    	SmartDashboard.putBoolean("ToAngle called", false);
     }
 }

@@ -17,17 +17,13 @@ public class YawPID extends PIDSubsystem {
 	CANTalon yaw;
 	double yawZero;
 	
-    // Initialize your subsystem here
     public YawPID() {
     	super(RobotMap.YAW_VISION_P, RobotMap.YAW_VISION_I, RobotMap.YAW_VISION_D);
     	yaw = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
-		//yaw.enableControl();
 		yawZero = yaw.getEncPosition();
 	}
 	
     public void autoInit(){
-     	//yaw.changeControlMode(TalonControlMode.Position);
-		//yaw.setPID(RobotMap.YAW_P, RobotMap.YAW_I, RobotMap.YAW_D);
 		enable();
 		setSetpoint(0);
     }
@@ -38,7 +34,6 @@ public class YawPID extends PIDSubsystem {
     }
     
 	public double getZero(){
-		
 		return yawZero;
 	}
     
@@ -51,9 +46,7 @@ public class YawPID extends PIDSubsystem {
     }
     
     public boolean getOnTarget(){
-       	return false;//Math.abs(yaw.getCurrent())
-       			
-       			// (Math.abs(yaw.get() - yaw.getEncPosition()) < RobotMap.YAW_ERROR_THRESHOLD);
+       	return false;
     }
     
     public void initDefaultCommand() {
@@ -63,17 +56,14 @@ public class YawPID extends PIDSubsystem {
     }
     
     protected double returnPIDInput() {
-        // Return your input value for the PID loop
-        // e.g. a sensor, like a potentiometer:
-        // yourPot.getAverageVoltage() / kYourMaxVoltage;
     	return Robot.sensors.getDeltaX();
-    	//return 0;
        	
     }
     
     protected void usePIDOutput(double output) {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
+    	SmartDashboard.putNumber("Output", output);
        	yaw.set(-output);
     }
 }

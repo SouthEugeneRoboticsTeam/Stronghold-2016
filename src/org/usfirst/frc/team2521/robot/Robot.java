@@ -72,14 +72,6 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-		SmartDashboard.putString("Current command:", "None");
-//		prefs = Preferences.getInstance();
-//		YAW_P = prefs.getInt("Yaw P", 1);
-//		YAW_I = prefs.getInt("Yaw I", 0);
-//		YAW_D = prefs.getInt("Yaw D", 0);
-//		YAW_VISION_P = prefs.getInt("Yaw Vision P", 1);
-//		YAW_VISION_I = prefs.getInt("Yaw Vision I", 0);
-//		YAW_VISION_D = prefs.getInt("Yaw Vision D", 0);
 		RobotMap.setMotors();
 		drivetrain = new DrivetrainPID();
 		intake = new Intake();
@@ -137,20 +129,8 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void teleopInit() {
-		SmartDashboard.putBoolean("Tank drive called?", false);
-		SmartDashboard.putBoolean("Teleop drive called?", false);
-		SmartDashboard.putBoolean("Teleop drivetrain called?", false);
-		//drivetrain.set(0, 0);
-		//auto.cancel();
 		Command stopDrivetrain = new DisableDrivetrainPID();
 		stopDrivetrain.start();
-		//teleop.start();
-		//teleop.start();
-		//teleop.start();
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
 	}
 	
 	/**
@@ -158,8 +138,6 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putBoolean("Slo mode",(OI.getInstance().getSlowMode()));
-		SmartDashboard.putDouble("Slo mode factor", OI.getInstance().getSlowModeFactor());
 	}
 	
 	/**

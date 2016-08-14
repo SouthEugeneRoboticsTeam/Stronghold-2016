@@ -21,7 +21,6 @@ public class SetPitch extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.pitch.autoInit();
-    	SmartDashboard.putString("Current command:", "Baseline");
     }
 
     // Called repeatedly when this Command is scheduled to run

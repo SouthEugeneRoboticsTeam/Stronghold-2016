@@ -13,7 +13,6 @@ public class Spin extends CommandGroup {
     public  Spin(double angle) {
     	counter++;
     	angle = (Robot.sensors.getYaw() + angle) % 360;
-    	SmartDashboard.putNumber("Spin counter", counter);
     	//addSequential(new ToAngle(angle, false, true));
         // Add Commands here:
         // e.g. addSequential(new Command1());

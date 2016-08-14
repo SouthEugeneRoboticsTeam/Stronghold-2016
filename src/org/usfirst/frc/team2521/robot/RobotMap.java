@@ -87,15 +87,12 @@ public class RobotMap {
 	public static final double PITCH_VISION_BASELINE = 600;
 	public static final double FIND_TARGET_DELAY = 5;
 	public static final double HEIGHT_TO_DISTANCE_FACTOR = 4138.375054; //calculated from measured data
-	//public static final double VISION_SETPOINT = 0;
 	public static final double IMAGE_WIDTH = 320; //Change if you crop!
 	public static final int CAMERA_HEIGHT = 38; //in inches; needs to be fixed
 	
 	//LIDAR
 	public static final double LIDAR_FACTOR = 10940; //Calculated
 	public static final double LIDAR_OFFSET = 145.2; //Calculated
-	
-	//public static final double ENC_COUNTS_PER_RADIAN = 121/(0.5*Math.PI);//measured
 	
 	public static final double YAW_SENSITIVITY = 0.25;
 	
@@ -126,8 +123,8 @@ public class RobotMap {
 	public static final double YAW_I = 0;
 	public static final double YAW_D = 0;
 	
-	public static final double YAW_VISION_P = 0.001;
-	public static final double YAW_VISION_I = 0;
+	public static final double YAW_VISION_P = 0.005;
+	public static final double YAW_VISION_I = 0.0001;
 	public static final double YAW_VISION_D = 0;
 	
 	public static final double PITCH_P = 0.7;

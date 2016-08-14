@@ -21,7 +21,6 @@ public class Traverse extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	SmartDashboard.putBoolean("End Called", false);
     	if(OI.getInstance().getDefense() == OI.Defense.ramparts){
     		Robot.drivetrain.enable();
         	Robot.drivetrain.setSetpoint(0);
@@ -52,10 +51,7 @@ public class Traverse extends Command {
     			
     		}
     	}
-		SmartDashboard.putBoolean("Has traversed", hasTraversed);
 		Robot.sensors.updateTraversing();
-		SmartDashboard.putString("Current command", "Traversing");
-    	SmartDashboard.putBoolean("End condition", hasTraversed && !Robot.sensors.isTraversing());
     }
 
     // Make this return true when this Command no longer needs to run execute()

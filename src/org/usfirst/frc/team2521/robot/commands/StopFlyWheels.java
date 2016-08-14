@@ -31,7 +31,6 @@ public class StopFlyWheels extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	SmartDashboard.putBoolean("Stop command called", true);
     	Robot.flyWheels.stop();
     }
 

@@ -88,11 +88,12 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putNumber("Avg aim lidar", getAvgLidar());
 		SmartDashboard.putNumber("Pitch Relative Encoder Position", Robot.pitch.getRelativeEncoderPosition());
 		SmartDashboard.putNumber("Pitch Absolute Encoder Position", Robot.pitch.getEncoderPosition());
+		SmartDashboard.putNumber("Delta x", getDeltaX());
+		SmartDashboard.putNumber("Motor pitch val", Robot.pitch.getMotorValue());
 	}
 	
 	public void setLights(){
 		OI.getInstance().setLight(RobotMap.INTAKE_LIGHT, ballInBot());
-		//OI.getInstance().setLight(RobotMap.WHEELS_LIGHT, Robot.flyWheels.getUpToSpeed());
 		OI.getInstance().setLight(RobotMap.VISION_LIGHT, false);
 	}
 	

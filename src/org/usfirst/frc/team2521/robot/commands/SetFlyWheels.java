@@ -21,7 +21,6 @@ public class SetFlyWheels extends Command {
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		SmartDashboard.putBoolean("Set fly wheels", true);
 		//FileManager.currentCommand = getClass().toString();
 	}
 	

@@ -18,12 +18,11 @@ public class ZeroLidar extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	SmartDashboard.putString("Current command:", "Zero");
-    	Timer.delay(5);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	SmartDashboard.putString("Auto place","Zero");
     	Robot.sensors.updateAvgLidar();
     }
 

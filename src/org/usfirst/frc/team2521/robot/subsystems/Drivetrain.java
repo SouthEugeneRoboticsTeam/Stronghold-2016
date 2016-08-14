@@ -89,11 +89,9 @@ public class Drivetrain extends Subsystem {
 		frontRight.set(value);
 		frontLeft.set(value);
 		
-		SmartDashboard.putNumber("Front right", frontRight.get());
 		rearRight.changeControlMode(TalonControlMode.Follower);
 		rearRight.set(RobotMap.FRONT_RIGHT_MOTOR);
 		
-		SmartDashboard.putNumber("Front left", frontLeft.get());
 		rearLeft.changeControlMode(TalonControlMode.Follower);
 		rearLeft.set(RobotMap.FRONT_LEFT_MOTOR);
 	}

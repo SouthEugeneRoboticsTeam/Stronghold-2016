@@ -101,7 +101,6 @@ public class DrivetrainPID extends PIDSubsystem {
 	}
 	
 	public void teleoperatedDrive() {
-		SmartDashboard.putBoolean("Teleop drive called?", true);
 		frontLeft.changeControlMode(TalonControlMode.PercentVbus);
 		frontRight.changeControlMode(TalonControlMode.PercentVbus);
 		rearLeft.changeControlMode(TalonControlMode.PercentVbus);

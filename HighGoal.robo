@@ -9,7 +9,7 @@
   <compression_index>5</compression_index>
   <contrast_value>50</contrast_value>
   <exposure_value>50</exposure_value>
-  <ip_address>10.25.21.11</ip_address>
+  <ip_address>10.25.21.31</ip_address>
   <is_active>TRUE</is_active>
   <mirrot>FALSE</mirrot>
   <password>FRC</password>
@@ -32,7 +32,7 @@
   <image_width>320</image_width>
   <scale>1000.0</scale>
 </Radial_Distortion>
-<RGB_Filter disabled>
+<RGB_Filter>
   <channel>2</channel>
   <hue_value>50</hue_value>
   <hysteresis>0</hysteresis>
@@ -43,7 +43,7 @@
   <filter_size>50</filter_size>
   <max_threshold>255</max_threshold>
   <mean_offset>0</mean_offset>
-  <min_threshold>200</min_threshold>
+  <min_threshold>50</min_threshold>
 </Adaptive_Threshold>
 <Marker>
   <include_graphics>0</include_graphics>

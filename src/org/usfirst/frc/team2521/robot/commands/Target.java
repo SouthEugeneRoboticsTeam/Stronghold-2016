@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Target extends CommandGroup {
     
     public  Target() {
-    	addParallel(new TargetPitchBaseline());
+    	addParallel(new TargetPitchBaseline(false));
     	Timer.delay(2);
     	addSequential(new TargetYaw(), 2);
     	addSequential(new TargetPitch(), 2);

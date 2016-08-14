@@ -21,19 +21,14 @@ public class Manipulator extends Subsystem {
     
     public void up() {
     	manipulator.set(RobotMap.MANIPULATOR_SPEED);
-    	SmartDashboard.putBoolean("Man up?", true);
-    	SmartDashboard.putNumber("Man speed", manipulator.get());
     }
     
     public void down() {
     	manipulator.set(-RobotMap.MANIPULATOR_SPEED);
-    	SmartDashboard.putBoolean("Man up?", false);
-    	SmartDashboard.putNumber("Man speed", manipulator.get());
     }
 
     public void stop() {
     	manipulator.set(0);
-    	SmartDashboard.putNumber("Man speed", manipulator.get());
     }
     
     public double getEncoderPosition(){

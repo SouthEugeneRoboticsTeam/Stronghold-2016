@@ -19,22 +19,12 @@ public class TeleopPitch extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	SmartDashboard.putString("Current command:", "Target Pitch");
-    	//Robot.pitch.autoInit();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double value = -OI.getInstance().getSecondaryStick().getY();
-    	//SmartDashboard.putNumber("Pitch set", value);
-    	//double value = 1;//= -OI.getInstance().getSecondaryStick().getZ();
-    	//value = 0.5*(value + 1); //transforms to be 0 to 1
-    	//SmartDashboard.putNumber("Relative encoder position", value*(RobotMap.ENCODER_RANGE));
-    	//value = Robot.pitch.getEncoderMin()+600;//4*RobotMap.ENCODER_RANGE/13;//409.449;
-    	//value = value*(RobotMap.ENCODER_RANGE)+Robot.pitch.getEncoderMin();
-    	//SmartDashboard.putNumber("Encoder value", value);*/
     	Robot.pitch.set(value);
-    	//SmartDashboard.putNumber("Motor value", Robot.pitch.getMotorValue());
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -212,7 +212,7 @@ public class OI {
 			shooterButtonOut.whenReleased(new StopFlyWheels());
 			pusherButton.whenPressed(new SetPusher(true));
 			pusherButton.whenReleased(new SetPusher(false));
-			gotoAimPosButton.whileHeld(new TargetPitchBaseline());
+			gotoAimPosButton.whileHeld(new TargetPitchBaseline(false));
 			aimYawButton.whileHeld(new TargetYaw());
 		} else{
 			manipulatorUp.whenPressed(new ManipulatorUp());

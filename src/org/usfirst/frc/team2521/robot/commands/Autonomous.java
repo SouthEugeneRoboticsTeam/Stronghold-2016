@@ -16,7 +16,6 @@ public class Autonomous extends CommandGroup {
     public  Autonomous() {
     	switch(OI.getInstance().getAutoMode()){
     	case traverseOnly: 
-    		SmartDashboard.putString("Auto", "Only");
     		addSequential(new Traverse());
     		addSequential(new SetDrivetrain(0));
     		//addSequential(new ToAngle(0));
@@ -26,7 +25,6 @@ public class Autonomous extends CommandGroup {
     		} else addSequential(new ToAngle(0));*/
     		break;
     	case traverseAndReturn:
-    		SmartDashboard.putString("Auto", "Return");
     		addSequential(new Traverse());
     		addSequential(new SetDrivetrain(1), 1);
     		addSequential(new SetDrivetrain(0));
@@ -38,7 +36,6 @@ public class Autonomous extends CommandGroup {
     		addSequential(new SetDrivetrain(0));
     		break;
     	case traverseAndLowGoal: 
-    		SmartDashboard.putString("Auto", "Low Goal");
     		addSequential(new Traverse());
     		addSequential(new SetDrivetrain(RobotMap.AUTO_SPEED), 0.5);
     		addSequential(new MoveToLidar(RobotMap.LIDAR_WALL_THRESHOLD));
@@ -52,7 +49,6 @@ public class Autonomous extends CommandGroup {
     		addSequential(new SetDrivetrain(0));
     		break;
     	case traverseAndHighGoal:
-    		SmartDashboard.putString("Auto", "High Goal");
     		addSequential(new Traverse());
     		addParallel(new TargetYaw());
     		Timer.delay(2);
