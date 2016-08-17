@@ -26,14 +26,7 @@ public class SetPusher extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (out) {
-    		//return Robot.sensors.ballInShooter();
-    		//return Robot.flyWheels.upToSpeed();
-    		return true;
-    	} else {
-    		//return !Robot.sensors.ballInBot();
-    		return true;
-    	}
+    	return true;
     }
 
     // Called once after isFinished returns true

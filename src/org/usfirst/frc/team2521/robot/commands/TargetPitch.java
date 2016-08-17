@@ -19,7 +19,6 @@ public class TargetPitch extends Command {
     protected void initialize() {
     	setpoint = Robot.pitch.getTargetEncoderPosition();
     	Robot.pitch.autoInit();
-    	Robot.pitch.reverseOutput(false);
     }
 
     protected void execute() {
@@ -32,10 +31,8 @@ public class TargetPitch extends Command {
     }
 
     protected void end() {
-    	Robot.pitch.autoEnd();
     }
 
     protected void interrupted() {
-    	Robot.pitch.autoEnd();
     }
 }

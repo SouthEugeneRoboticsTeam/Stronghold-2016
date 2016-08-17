@@ -22,6 +22,5 @@ public class AutoAim extends CommandGroup {
     	addParallel(new TargetPitchBaseline(veryClose), 10.5);
     	addSequential(new TargetYaw(), 7);
     	addSequential(new ZeroLidar(), 3);
-    	addSequential(new TargetPitch());
     }
 }

@@ -25,8 +25,12 @@ public class TargetPitchBaseline extends Command {
 
     protected void execute() {
     	SmartDashboard.putString("Auto place","Target pitch baseline " + high);
-    	if (high) Robot.pitch.set(0.75*RobotMap.ENCODER_RANGE);
-    	else Robot.pitch.set(0.55*RobotMap.ENCODER_RANGE);
+    	if (high) {
+    		Robot.pitch.set(0.75*RobotMap.ENCODER_RANGE);
+    	}
+    	else {
+    		Robot.pitch.set(0.55*RobotMap.ENCODER_RANGE);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -35,10 +39,8 @@ public class TargetPitchBaseline extends Command {
     }
 
     protected void end() {
-    	Robot.pitch.autoEnd();
     }
 
     protected void interrupted() {
-    	Robot.pitch.autoEnd();
     }
 }

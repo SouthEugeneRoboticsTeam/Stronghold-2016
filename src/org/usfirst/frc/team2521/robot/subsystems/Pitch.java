@@ -34,7 +34,7 @@ public class Pitch extends Subsystem {
 		pitch.changeControlMode(TalonControlMode.Position);
 		pitch.setPID(RobotMap.PITCH_P, RobotMap.PITCH_I, RobotMap.PITCH_D);
 		pitch.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		reverseOutput(false);
+		pitch.reverseOutput(true);
 	}
 	
 	public void autoEnd(){
@@ -86,6 +86,7 @@ public class Pitch extends Subsystem {
 		if(pitch.getControlMode() == CANTalon.TalonControlMode.Position){
 			value = value + encoderMin;
 		}
+		SmartDashboard.putNumber("Set value", value);
 		pitch.set(value);
 	}
 	
@@ -94,7 +95,7 @@ public class Pitch extends Subsystem {
 	}
 
 	public void reverseOutput(boolean state) {
-		pitch.reverseOutput(false);
+		pitch.reverseOutput(state);
 	}
 	
     public void initDefaultCommand() {

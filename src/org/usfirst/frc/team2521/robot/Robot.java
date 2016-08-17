@@ -3,6 +3,7 @@ package org.usfirst.frc.team2521.robot;
 
 import org.usfirst.frc.team2521.robot.commands.Autonomous;
 import org.usfirst.frc.team2521.robot.commands.AutoAim;
+import org.usfirst.frc.team2521.robot.commands.AutoShoot;
 import org.usfirst.frc.team2521.robot.commands.DisableDrivetrainPID;
 import org.usfirst.frc.team2521.robot.commands.SetDrivetrain;
 import org.usfirst.frc.team2521.robot.commands.Spin;
@@ -85,7 +86,7 @@ public class Robot extends IterativeRobot {
 		
 		oi = new OI();
 		
-		auto = new AutoAim();
+		auto = new AutoShoot();
 		//teleop = new AutoAim();
 		//sensors.setInitYaw(); 
 	}
