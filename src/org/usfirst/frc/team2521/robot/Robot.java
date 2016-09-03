@@ -89,6 +89,9 @@ public class Robot extends IterativeRobot {
 		auto = new AutoShoot();
 		//teleop = new AutoAim();
 		//sensors.setInitYaw(); 
+
+		SmartDashboard.putBoolean("Set fly wheels called?", false);
+		SmartDashboard.putBoolean("Target running?", false);
 	}
 	
 	/**

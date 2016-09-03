@@ -40,6 +40,7 @@ public class SetFlyWheels extends Command {
 		} else {
 			Robot.flyWheels.in();
 		}
+		Timer.delay(7);
 	}
 	
 	// Called when another command which requires one or more of the same

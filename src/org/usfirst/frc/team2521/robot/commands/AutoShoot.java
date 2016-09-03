@@ -13,9 +13,8 @@ public class AutoShoot extends CommandGroup {
     public  AutoShoot() {
     	addSequential(new AutoAim());
     	addParallel(new TargetPitch());
-    	Timer.delay(10);
-    	addSequential(new SetFlyWheels(false), 2);
-        addSequential(new SetFlyWheels(true), 7);
+        addSequential(new SetFlyWheels(true));
+        Timer.delay(7);
     	addSequential(new SetPusher(true));
     	Timer.delay(1);
     }

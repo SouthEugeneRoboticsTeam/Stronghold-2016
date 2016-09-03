@@ -54,6 +54,7 @@ public class FlyWheels extends Subsystem {
 	}
 	
 	public void out() {
+		SmartDashboard.putBoolean("Set fly wheels called?", true);
 		left.set(1);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}

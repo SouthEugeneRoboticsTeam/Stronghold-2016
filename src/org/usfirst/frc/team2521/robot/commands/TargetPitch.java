@@ -17,6 +17,7 @@ public class TargetPitch extends Command {
     }
 
     protected void initialize() {
+    	SmartDashboard.putBoolean("Target running?", true);
     	setpoint = Robot.pitch.getTargetEncoderPosition();
     	Robot.pitch.autoInit();
     }
@@ -31,6 +32,7 @@ public class TargetPitch extends Command {
     }
 
     protected void end() {
+    	SmartDashboard.putBoolean("Target running?", false);
     }
 
     protected void interrupted() {
