@@ -67,6 +67,7 @@ public class Robot extends IterativeRobot {
 	Command auto;
 	Command teleop;
 	Command pitchInit;
+	Command aim;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -87,8 +88,6 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		auto = new AutoShoot();
-		//teleop = new AutoAim();
-		//sensors.setInitYaw(); 
 
 		SmartDashboard.putBoolean("Set fly wheels called?", false);
 		SmartDashboard.putBoolean("Target running?", false);
@@ -119,9 +118,7 @@ public class Robot extends IterativeRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	public void autonomousInit() {
-		//teleop.cancel();
 		auto.start();
-		//pitchInit.start();
 	}
 	
 	/**
@@ -133,6 +130,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void teleopInit() {
+		auto.cancel();
 		Command stopDrivetrain = new DisableDrivetrainPID();
 		stopDrivetrain.start();
 	}

@@ -18,6 +18,7 @@ public class TargetYaw extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	SmartDashboard.putNumber("Auto num", 2);
     	Robot.yaw.autoInit(); 
     }
 

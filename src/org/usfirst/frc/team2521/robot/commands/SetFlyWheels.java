@@ -15,13 +15,19 @@ public class SetFlyWheels extends Command {
 	boolean out;
 	
 	public SetFlyWheels(boolean out  /** true means shoot, false means intake **/) {
-		//requires(Robot.flyWheels);
 		this.out = out;
 	}
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
+
+    	SmartDashboard.putNumber("Auto num", 5);
 		//FileManager.currentCommand = getClass().toString();
+    	if (out) {
+			Robot.flyWheels.out();
+		} else {
+			Robot.flyWheels.in();
+		}
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
@@ -35,12 +41,6 @@ public class SetFlyWheels extends Command {
 	
 	// Called once after isFinished returns true
 	protected void end() {
-		if (out) {
-			Robot.flyWheels.out();
-		} else {
-			Robot.flyWheels.in();
-		}
-		Timer.delay(7);
 	}
 	
 	// Called when another command which requires one or more of the same

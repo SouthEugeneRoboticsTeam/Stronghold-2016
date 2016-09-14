@@ -14,17 +14,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class TargetPitchBaseline extends Command {
+	static int counter = 0;
 	boolean high;
     public TargetPitchBaseline(boolean high) {
     	this.high = high;
+    	counter++;
+    	SmartDashboard.putNumber("Counter", counter);
     }
 
     protected void initialize() {
+    	SmartDashboard.putNumber("Auto num", 1);
     	Robot.pitch.autoInit();
     }
 
     protected void execute() {
-    	SmartDashboard.putString("Auto place","Target pitch baseline " + high);
+    	SmartDashboard.putNumber("Baseline counter", counter);
     	if (high) {
     		Robot.pitch.set(0.75*RobotMap.ENCODER_RANGE);
     	}
