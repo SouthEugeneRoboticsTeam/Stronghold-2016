@@ -127,7 +127,7 @@ public class RobotMap {
 	public static final double YAW_VISION_I = 0.0001;
 	public static final double YAW_VISION_D = 0;
 	
-	public static final double PITCH_P = 0.7;
+	public static final double PITCH_P = 0.5;
 	public static final double PITCH_I = 0;
 	public static final double PITCH_D = 0;
 	
