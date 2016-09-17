@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoIntake extends CommandGroup {
     
     public  AutoIntake() {
-    	addSequential(new ResetShooter());
     	addSequential(new IntakeWithLidar());
     }
 }

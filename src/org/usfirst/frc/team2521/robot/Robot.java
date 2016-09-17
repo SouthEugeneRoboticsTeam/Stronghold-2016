@@ -1,34 +1,13 @@
 
 package org.usfirst.frc.team2521.robot;
 
-import org.usfirst.frc.team2521.robot.commands.Autonomous;
-import org.usfirst.frc.team2521.robot.commands.AutoAim;
-import org.usfirst.frc.team2521.robot.commands.AutoShoot;
-import org.usfirst.frc.team2521.robot.commands.DisableDrivetrainPID;
-import org.usfirst.frc.team2521.robot.commands.SetDrivetrain;
-import org.usfirst.frc.team2521.robot.commands.Spin;
-import org.usfirst.frc.team2521.robot.commands.MoveToDistance;
-import org.usfirst.frc.team2521.robot.commands.TeleopPitch;
-import org.usfirst.frc.team2521.robot.commands.TargetPitch;
-import org.usfirst.frc.team2521.robot.commands.TargetPitchBaseline;
-import org.usfirst.frc.team2521.robot.subsystems.Drivetrain;
-import org.usfirst.frc.team2521.robot.subsystems.DrivetrainPID;
-import org.usfirst.frc.team2521.robot.subsystems.FlyWheels;
-import org.usfirst.frc.team2521.robot.subsystems.Intake;
-import org.usfirst.frc.team2521.robot.subsystems.Lock;
-import org.usfirst.frc.team2521.robot.subsystems.Manipulator;
-import org.usfirst.frc.team2521.robot.subsystems.Sensors;
-import org.usfirst.frc.team2521.robot.subsystems.TalonLeft;
-import org.usfirst.frc.team2521.robot.subsystems.TalonRight;
-import org.usfirst.frc.team2521.robot.subsystems.YawPID;
-import org.usfirst.frc.team2521.robot.subsystems.Yaw;
-import org.usfirst.frc.team2521.robot.subsystems.Pitch;
+import org.usfirst.frc.team2521.robot.commands.*;
+import org.usfirst.frc.team2521.robot.subsystems.*;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -58,16 +37,12 @@ public class Robot extends IterativeRobot {
 	public static Sensors sensors;
 	public static Pitch pitch;
 	public static YawPID yaw;
-	//public static TalonLeft talonLeft;
-//	public static TalonRight talonRight;
-	//public static Lock lock;
 	
 	public static OI oi;
 	
 	Command auto;
 	Command teleop;
-	Command pitchInit;
-	Command aim;
+	Command reset;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -81,13 +56,13 @@ public class Robot extends IterativeRobot {
 		flyWheels = new FlyWheels();
 		pitch = new Pitch();
 		yaw = new YawPID();
-		///lock = new Lock();
 		
 		sensors = new Sensors();
 		
 		oi = new OI();
 		
 		auto = new AutoShoot();
+		reset = new Reset();
 
 		SmartDashboard.putBoolean("Set fly wheels called?", false);
 		SmartDashboard.putBoolean("Target running?", false);
@@ -131,6 +106,7 @@ public class Robot extends IterativeRobot {
 	
 	public void teleopInit() {
 		auto.cancel();
+		reset.start();
 		Command stopDrivetrain = new DisableDrivetrainPID();
 		stopDrivetrain.start();
 	}
