@@ -39,6 +39,9 @@ public class RobotMap {
 	public static final int INTAKE_LIDAR_PORT = 0;
 	public static final int LONG_LIDAR_PORT = 1;
 	public static final int AIM_LIDAR_PORT = 2;
+	//Measurements used to calculate the constant:
+	//Distances: 67.5 in, 83 in, 1.65 in
+	//Voltages: 1.9 V, 1.8 V, 1.65 V
 	
 	//Encoder
 	public static final int LEFT_ENCODER_A = 0;

@@ -31,7 +31,7 @@ public class TargetPitch extends Command {
     protected void execute() {
     	SmartDashboard.putNumber("Baseline counter", counter);
     	if (counter < baselineCounter) {
-    		Robot.pitch.set(0.5*RobotMap.ENCODER_RANGE);
+    		Robot.pitch.set(0.7*RobotMap.ENCODER_RANGE);
     		SmartDashboard.putString("Target pitch mode", "Baseline");
     	} else {
     		Robot.pitch.set(setpoint);

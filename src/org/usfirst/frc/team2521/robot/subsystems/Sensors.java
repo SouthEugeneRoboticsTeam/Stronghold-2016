@@ -28,7 +28,7 @@ public class Sensors extends Subsystem {
 	private AHRS ahrs;
 	private AnalogInput intakeLidar;
 	private AnalogInput longLidar;
-	private AnalogInput aimLidar;
+	private AnalogInput aimLidar; // Sharp GP2Y0A710K0F
 	private NetworkTable table;
 	
 	private double deltaX = 0;
@@ -58,6 +58,7 @@ public class Sensors extends Subsystem {
 		longLidar = new AnalogInput(RobotMap.LONG_LIDAR_PORT);
 		aimLidar = new AnalogInput(RobotMap.AIM_LIDAR_PORT);
 		table = NetworkTable.getTable("SmartDashboard");
+		SmartDashboard.putNumber("BOX_ASPECT_RATIO", 0);
 	}
  
 	public double updateAvgLidar(){
@@ -68,6 +69,10 @@ public class Sensors extends Subsystem {
 	
 	public double getAvgLidar(){
 		return lidarSum / lidarCount;
+	}
+	
+	public double getLidarVoltage(){
+		return aimLidar.getVoltage();
 	}
 	
 	public void zeroLidar() {
@@ -90,6 +95,8 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putNumber("Pitch Absolute Encoder Position", Robot.pitch.getEncoderPosition());
 		SmartDashboard.putNumber("Delta x", getDeltaX());
 		SmartDashboard.putNumber("Motor pitch val", Robot.pitch.getMotorValue());
+		SmartDashboard.putNumber("Aspect Ratio", getAspectRatio());
+		SmartDashboard.putNumber("Output voltage", getLidarVoltage());
 	}
 	
 	public void setLights(){
@@ -100,6 +107,7 @@ public class Sensors extends Subsystem {
 	public double getAimLidar(){
 		return aimLidar.getValue();
 	}
+	
 	
 	public double getYaw(){
 		double angle = ahrs.getYaw() - initYaw; //- RobotMap.RIGHT_ANGLE;
@@ -149,6 +157,17 @@ public class Sensors extends Subsystem {
     	
     	return height;
     }
+	public double getAspectRatio(){
+		double aspect_ratio = table.getNumber("BOX_ASPECT_RATIO", 0);
+    	if (aspect_ratio == 0) {
+    		try{
+    			aspect_ratio = SmartDashboard.getNumber("BOX_ASPECT_RATIO");
+    		}catch(@SuppressWarnings("deprecation") NetworkTableKeyNotDefined e){
+    			System.out.print(e.getStackTrace());
+    		}
+    	}
+    	return aspect_ratio;
+	}
 	
 	public double getLongLidar(){
 		return longLidar.getValue();
