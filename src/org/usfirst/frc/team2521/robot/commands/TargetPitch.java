@@ -36,6 +36,7 @@ public class TargetPitch extends Command {
     	} else {
     		Robot.pitch.set(setpoint);
     		SmartDashboard.putString("Target pitch mode", "Aim");
+    		Robot.yaw.disable();
     	}
     	SmartDashboard.putString("Auto place", "Target Pitch");
     	counter++;
