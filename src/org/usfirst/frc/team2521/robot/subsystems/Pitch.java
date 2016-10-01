@@ -65,22 +65,12 @@ public class Pitch extends Subsystem {
 		return pitch.getOutputVoltage();
 	}
     
-    public boolean getOnTarget() {
-    	return (Math.abs(pitch.getSetpoint() - pitch.getEncPosition()) < RobotMap.PITCH_ERROR_THRESHOLD);
-    }
-    
    public double getTargetEncoderPosition(){
 	   double lidarVal = Robot.sensors.getAvgLidar();
 	   lidarVal = 0.005184*(Math.pow(lidarVal, 2)) + -10.97*lidarVal + 7140;
 	   SmartDashboard.putNumber("Target pos", lidarVal);
 	   return lidarVal;
    }
-    
-    private double getTargetAngleRadians(){
-    	double adj = Robot.sensors.getCameraDistance();
-    	double opp = 85 - RobotMap.CAMERA_HEIGHT;
-    	return Math.atan(opp/adj);
-    }
 	
 	public void set(double value){
 		if(pitch.getControlMode() == CANTalon.TalonControlMode.Position){

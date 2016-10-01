@@ -7,14 +7,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Shoots into the goal autonomously...about half the time
  */
 public class AutoShoot extends CommandGroup {
     
     public  AutoShoot() {
-    	SmartDashboard.putString("Auto place","Start");
-    	SmartDashboard.putNumber("Auto num", 0);
+    	//500 is how many iterations pitch will stay at its baseline position
     	addParallel(new TargetPitch(500));
+    	
     	addSequential(new ZeroLidar(), 1);
     	addSequential(new TargetYaw(), 10);
         addSequential(new SetFlyWheels(true));

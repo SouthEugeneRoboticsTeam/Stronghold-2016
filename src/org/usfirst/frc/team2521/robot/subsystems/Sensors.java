@@ -54,8 +54,6 @@ public class Sensors extends Subsystem {
 	public Sensors() {
 		ahrs = new AHRS(SPI.Port.kMXP);
 		ahrs.reset();
-		intakeLidar = new AnalogInput(RobotMap.INTAKE_LIDAR_PORT);
-		longLidar = new AnalogInput(RobotMap.LONG_LIDAR_PORT);
 		aimLidar = new AnalogInput(RobotMap.AIM_LIDAR_PORT);
 		table = NetworkTable.getTable("SmartDashboard");
 		SmartDashboard.putNumber("BOX_ASPECT_RATIO", 0);
@@ -80,14 +78,6 @@ public class Sensors extends Subsystem {
 		lidarCount = 0;
 	}
 	
-	public boolean ballInBot() { //get if we have the ball in the bot
-		return intakeLidar.getValue() > RobotMap.LIDAR_IN_BOT_THRESHOLD;
-	}
-	
-	public boolean ballInShooter() { //get if we have the ball in the shooter
-		return intakeLidar.getValue() > RobotMap.LIDAR_IN_SHOOTER_THRESHOLD;
-	}
-	
 	public void display() {	
 		SmartDashboard.putNumber("Aim lidar", getAimLidar());
 		SmartDashboard.putNumber("Avg aim lidar", getAvgLidar());
@@ -97,11 +87,6 @@ public class Sensors extends Subsystem {
 		SmartDashboard.putNumber("Motor pitch val", Robot.pitch.getMotorValue());
 		SmartDashboard.putNumber("Aspect Ratio", getAspectRatio());
 		SmartDashboard.putNumber("Output voltage", getLidarVoltage());
-	}
-	
-	public void setLights(){
-		OI.getInstance().setLight(RobotMap.INTAKE_LIGHT, ballInBot());
-		OI.getInstance().setLight(RobotMap.VISION_LIGHT, false);
 	}
 	
 	public double getAimLidar(){
@@ -122,20 +107,12 @@ public class Sensors extends Subsystem {
 		return initYaw;
 	}
 	
-	public double getCameraDistance() {
-    	return RobotMap.HEIGHT_TO_DISTANCE_FACTOR/(getHeight());
-    }
-	
 	public double getDeltaX() {
-		//SmartDashboard.putBoolean("Delta x called", true);
 		double[] blobs = getBlobs();
 		if (blobs.length > 0) { //makes sure that there is a blob, then calculates distance off center
-			//SmartDashboard.putNumber("X", blobs[0]);
 			deltaX = blobs[0] - RobotMap.IMAGE_WIDTH/2;
-			//lastDeltaX = deltaX;
-			//SmartDashboard.putBoolean("Target seeen", true);
 		} else {
-			deltaX = 0;//RobotMap.VISION_SETPOINT;
+			deltaX = 0;
 			SmartDashboard.putBoolean("Target seeen", false);
 		}
 		
@@ -173,45 +150,13 @@ public class Sensors extends Subsystem {
 		return longLidar.getValue();
 	}
 	
-	public double getLidarDistance() {
-		double raw = intakeLidar.getValue();
-		return RobotMap.LIDAR_FACTOR/(raw - RobotMap.LIDAR_OFFSET);
-	}
-	
 	private double[] getBlobs() {
 		double[] blobs = table.getNumberArray("BLOBS", blobs_default);
 		return blobs;
 	}
 	
-	/*public double getWidth() {
-		double width = table.getNumber("WIDTH", 0);
-    	if (width == 0) {
-    		try{
-    			width = SmartDashboard.getNumber("Width");
-    		}catch(@SuppressWarnings("deprecation") NetworkTableKeyNotDefined e){
-    			System.out.print(e.getStackTrace());
-    			SmartDashboard.putNumber("Width", table.getNumber("WIDTH", 0));
-    		}
-    	}
-    	return width;	
-	}*/
-	
 	public double getPitch(){
 		return ahrs.getPitch();
-	}
-	
-	public void updateTraversing() {
-		//switch(OI.getInstance().getDefense()){
-		//case moat:
-			if (ahrs.getRoll() >= RobotMap.TRAVERSE_DEGREES) {
-				isTraversing = true;
-			} else if (ahrs.getRoll() <= /*-RobotMap.MOAT_TRAVERSE_DEGREES*/ 0) {
-				isTraversing = false;
-			}
-			//break;
-		//default: isTraversing = false;
-		//	break;
-		//}
 	}
 	
 	public void setInitYaw(){

@@ -18,7 +18,7 @@ public class YawPID extends PIDSubsystem {
 	double yawZero;
 	
     public YawPID() {
-    	super(RobotMap.YAW_VISION_P, RobotMap.YAW_VISION_I, RobotMap.YAW_VISION_D);
+    	super(RobotMap.YAW_P, RobotMap.YAW_I, RobotMap.YAW_D);
     	yaw = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
 		yawZero = yaw.getEncPosition();
 	}
@@ -41,10 +41,6 @@ public class YawPID extends PIDSubsystem {
 		yaw.set(value);
 	}
 	
-    public boolean getVisionOnTarget(){
-        return (Math.abs(getSetpoint() - Robot.sensors.getDeltaX()) < RobotMap.YAW_VISION_ERROR_THRESHOLD);
-    }
-    
     public boolean getOnTarget(){
        	return false;
     }

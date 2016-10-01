@@ -1,6 +1,5 @@
 package org.usfirst.frc.team2521.robot.commands;
 
-import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TeleopIntake extends Command {
+public class StopDrivetrainPID extends Command {
 
-    public TeleopIntake() {
-    	requires(Robot.intake);
+    public StopDrivetrainPID() {
+    	//requires(Robot.drivetrain);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -22,16 +21,16 @@ public class TeleopIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.set(OI.getInstance().getSecondaryStick().getY());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.drivetrain.disable();
     }
 
     // Called when another command which requires one or more of the same

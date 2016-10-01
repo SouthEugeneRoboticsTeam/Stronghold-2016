@@ -61,12 +61,7 @@ public class DrivetrainPID extends PIDSubsystem {
 			left = right;
 			right = sub;
 		}
-		if(Robot.test_platform){
-			left = -left;
-			right = -right;
-			frontDrive.tankDrive(left, right); // Switched to make it work
-			rearDrive.tankDrive(left, right);
-		} else{
+		else{
 			frontDrive.tankDrive(right, left); // Switched to make it work
 			rearDrive.tankDrive(right, left);
 		}
@@ -111,11 +106,6 @@ public class DrivetrainPID extends PIDSubsystem {
 		} else tankDrive();
 	}
 	
-	/*public void setPosition(int leftPosition, int rightPosition) {
-		Robot.talonLeft.setSetpoint(leftPosition);
-		Robot.talonRight.setSetpoint(rightPosition);
-	}*/
-	
 	private void setLeft(double value){
 		frontLeft.set(value);
 		rearLeft.changeControlMode(TalonControlMode.Follower);
@@ -129,13 +119,10 @@ public class DrivetrainPID extends PIDSubsystem {
 	}
 	
 	public void set(double leftValue, double rightValue) {
-		if(Robot.test_platform){
-			frontRight.set(-leftValue); 
-			frontLeft.set(rightValue);
-		} else{
-			frontRight.set(leftValue); 
-			frontLeft.set(-rightValue);
-		}
+		
+		frontRight.set(leftValue); 
+		frontLeft.set(-rightValue);
+		
 		rearRight.changeControlMode(TalonControlMode.Follower);
 		rearRight.set(RobotMap.FRONT_RIGHT_MOTOR);
 		
