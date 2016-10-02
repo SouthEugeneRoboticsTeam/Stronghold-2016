@@ -11,44 +11,44 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Subsystem for controlling yaw motor
  */
 public class YawPID extends PIDSubsystem {
 	CANTalon yaw;
-	double yawZero;
 	
     public YawPID() {
     	super(RobotMap.YAW_P, RobotMap.YAW_I, RobotMap.YAW_D);
     	yaw = new CANTalon(RobotMap.TARGETING_YAW_MOTOR);
-		yawZero = yaw.getEncPosition();
 	}
 	
+    // Public methods
+    /**
+     * Start PID loop
+     */
     public void autoInit(){
 		enable();
 		setSetpoint(0);
     }
     
-    public void autoEnd(){
+    /**
+     * End PID loop
+     */
+    public void teleopEnd(){
     	disable();
     	yaw.changeControlMode(TalonControlMode.PercentVbus);
     }
     
-	public double getZero(){
-		return yawZero;
-	}
-    
+    /**
+     * Set yaw motor to a specified value
+     * @param value the value to be passed to the yaw motor
+     */
 	public void set(double value){
 		yaw.set(value);
 	}
-	
-    public boolean getOnTarget(){
-       	return false;
-    }
     
+	// Overloaded methods
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
         setDefaultCommand(new TeleopYaw());
-    	//setDefaultCommand(new TargetYaw());
     }
     
     protected double returnPIDInput() {
@@ -57,9 +57,6 @@ public class YawPID extends PIDSubsystem {
     }
     
     protected void usePIDOutput(double output) {
-        // Use output to drive your system, like a motor
-        // e.g. yourMotor.set(output);
-    	SmartDashboard.putNumber("Output", output);
        	yaw.set(-output);
     }
 }

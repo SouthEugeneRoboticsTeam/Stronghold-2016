@@ -3,7 +3,6 @@ package org.usfirst.frc.team2521.robot.subsystems;
 import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
 import org.usfirst.frc.team2521.robot.commands.TeleopPitch;
-import org.usfirst.frc.team2521.robot.commands.TargetPitch;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
@@ -14,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.lang.Math;
 
 /**
- *
+ * Subsystem for controlling shooter's pitch
  */
 public class Pitch extends Subsystem {
 	private CANTalon pitch;
@@ -26,10 +25,17 @@ public class Pitch extends Subsystem {
 		pitch = new CANTalon(RobotMap.TARGETING_PITCH_MOTOR);
 		pitch.reset();
 		pitch.enableControl();
+		
+		// When set using encoders, a relative system is used to ensure
+		// consistency, so the baselines must first be set
 		encoderMin = pitch.getEncPosition();
 		encoderMax = encoderMin + RobotMap.ENCODER_RANGE;
 	}
 	
+	// Public methods
+	/**
+	 * Change CANTalon modes to be ready for auto
+	 */
 	public void autoInit(){
 		pitch.changeControlMode(TalonControlMode.Position);
 		pitch.setPID(RobotMap.PITCH_P, RobotMap.PITCH_I, RobotMap.PITCH_D);
@@ -37,41 +43,63 @@ public class Pitch extends Subsystem {
 		pitch.reverseOutput(true);
 	}
 	
-	public void autoEnd(){
-		pitch.changeControlMode(TalonControlMode.PercentVbus);
-	}
-	
+	/**
+	 * Getter for the current absolute encoder position
+	 * @return the current pitch absolute encoder position
+	 */
 	public double getEncoderPosition(){
 		return pitch.getEncPosition();
 	}
 	
-	public double getRelativeEncoderPosition(){
-		return pitch.getEncPosition() - encoderMin;
-	}
-	
-	public double getSetpoint(){
-		return pitch.getSetpoint();
-	}
-	
+	/**
+	 * Getter for encoder max determines at init
+	 * @return the max encoder position in the relative system
+	 */
 	public double getEncoderMax(){
 		return encoderMax;
 	}
 	
+	/**
+	 * Getter for encoder min determines at init
+	 * @return the min encoder position in the relative system
+	 */
 	public double getEncoderMin(){
 		return encoderMin;
 	}
 	
-	public double getMotorValue(){
-		return pitch.getOutputVoltage();
+	/**
+	 * Getter for the current relative encoder position
+	 * @return the current pitch relative encoder position
+	 */
+	public double getRelativeEncoderPosition(){
+		return pitch.getEncPosition() - encoderMin;
 	}
-    
-   public double getTargetEncoderPosition(){
-	   double lidarVal = Robot.sensors.getAvgLidar();
-	   lidarVal = 0.005184*(Math.pow(lidarVal, 2)) + -10.97*lidarVal + 7140;
-	   SmartDashboard.putNumber("Target pos", lidarVal);
-	   return lidarVal;
-   }
 	
+	/**
+	 * Getter for setpoint of the current PID loop
+	 * @return the current PID loop setpoint
+	 */
+	public double getSetpoint(){
+		return pitch.getSetpoint();
+	}
+	
+	
+	/**
+	 * Calculate the optimal encoder position based on the lidar reading
+	 * @return the max encoder position in the relative system
+	 */
+	public double getTargetEncoderPosition(){
+		double lidarVal = Robot.sensors.getAvgLidar();
+		lidarVal = RobotMap.LIDAR_A*(Math.pow(lidarVal, 2)) + RobotMap.LIDAR_B*lidarVal + RobotMap.LIDAR_C;
+		SmartDashboard.putNumber("Target pos", lidarVal);
+		return lidarVal;
+	}
+	
+	/**
+	 * Set motor to the given value, taking into account its mode
+	 * 
+	 * @param value	the value that will be passed to the motor
+	 */
 	public void set(double value){
 		if(pitch.getControlMode() == CANTalon.TalonControlMode.Position){
 			value = value + encoderMin;
@@ -80,14 +108,14 @@ public class Pitch extends Subsystem {
 		pitch.set(value);
 	}
 	
+	/**
+	 * Change CANTalon modes to be ready for teleop
+	 */
 	public void teleopInit(){
 		pitch.changeControlMode(TalonControlMode.PercentVbus);
 	}
-
-	public void reverseOutput(boolean state) {
-		pitch.reverseOutput(state);
-	}
 	
+	// Overloaded methods
     public void initDefaultCommand() {
     	setDefaultCommand(new TeleopPitch());
     }

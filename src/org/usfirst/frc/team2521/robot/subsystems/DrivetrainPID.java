@@ -3,35 +3,30 @@ package org.usfirst.frc.team2521.robot.subsystems;
 import org.usfirst.frc.team2521.robot.OI;
 import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
-import org.usfirst.frc.team2521.robot.commands.TeleopDrivetrain;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * PID version of the Drivetrain subsystem. The PID is for turning
+ * to specific angles using the gyro of the navx.
  */
 public class DrivetrainPID extends PIDSubsystem {
 	private RobotDrive frontDrive;
 	private RobotDrive rearDrive;
-	private boolean clockwise = false;
 	
-	private final double traverseOffset = 0.1;
-	
+	// Will be set later
 	private double targetAngle = 0; 
-	private boolean onTarget = false;
-	
 	private double error = 0;
 	
 	private CANTalon frontLeft, frontRight, rearLeft, rearRight;
 
-    // Initialize your subsystem here
     public DrivetrainPID() {
     	super(RobotMap.DRIVE_TURN_P, RobotMap.DRIVE_TURN_I, RobotMap.DRIVE_TURN_D);
+    	
     	frontLeft = new CANTalon(RobotMap.FRONT_LEFT_MOTOR);
 		frontRight = new CANTalon(RobotMap.FRONT_RIGHT_MOTOR);
 		rearLeft = new CANTalon(RobotMap.REAR_LEFT_MOTOR);
@@ -46,13 +41,20 @@ public class DrivetrainPID extends PIDSubsystem {
 		rearDrive = new RobotDrive(rearLeft, rearRight);
     }
     
+    // Public methods
+    /**
+	 * Drive robot using two joysticks (one on each side)
+	 */
     public void tankDrive() {
 		double left = OI.getInstance().getLeftStick().getY();
 		double right = OI.getInstance().getRightStick().getY();
+		
 		if(OI.getInstance().getSlowMode()){
 			left *= OI.getInstance().getSlowModeFactor();
 			right *= OI.getInstance().getSlowModeFactor();
 		}
+		
+		// If the trigger is held, the directions on the joinstick are switched
 		if(OI.getInstance().getRightStick().getRawButton(1)){
 			left *= -1;
 			right *= -1;
@@ -60,52 +62,69 @@ public class DrivetrainPID extends PIDSubsystem {
 			sub = left;
 			left = right;
 			right = sub;
-		}
-		else{
-			frontDrive.tankDrive(right, left); // Switched to make it work
+		} else {
+			frontDrive.tankDrive(right, left); 
 			rearDrive.tankDrive(right, left);
 		}
 	}
 	
+    
+    /**
+	 * Drive robot using one joystick
+	 */
 	public void arcadeDrive() {
 		Joystick left = OI.getInstance().getLeftStick();
 		if(OI.getInstance().getSlowMode()){
 			frontDrive.arcadeDrive(left.getY()*OI.getInstance().getSlowModeFactor(), left.getX()*OI.getInstance().getSlowModeFactor());
 			rearDrive.arcadeDrive(left.getY()*OI.getInstance().getSlowModeFactor(), left.getX()*OI.getInstance().getSlowModeFactor());
-		}else{
+		} else {
 			frontDrive.arcadeDrive(left);
 			rearDrive.arcadeDrive(left);
 		}
 	}
 	
-	public double getLargestMotorVal(){
-		double largest = frontLeft.get();
-		if (largest < frontRight.get()) largest = frontRight.get();
-		if (largest < rearRight.get()) largest = rearRight.get();
-		if (largest < rearLeft.get()) largest = rearLeft.get();
-		return largest;
-	}
-	
-	public boolean getOnTarget(){
-		///SmartDashboard.putBoolean("On target", onTarget());
-		return super.onTarget();
-	}
-	
-	public double getError(){
-		return error;
-	}
-	
+	/**
+	 * Method that will be called during TeleopDrivetrain command
+	 */
 	public void teleoperatedDrive() {
 		frontLeft.changeControlMode(TalonControlMode.PercentVbus);
 		frontRight.changeControlMode(TalonControlMode.PercentVbus);
 		rearLeft.changeControlMode(TalonControlMode.PercentVbus);
 		rearRight.changeControlMode(TalonControlMode.PercentVbus);
 		
-		if(OI.getInstance().getArcadeMode()){
+		if(OI.getInstance().getArcadeMode()) {
 			arcadeDrive();
 		} else tankDrive();
 	}
 	
+	/**
+	 * Set master motors to the given value regardless of mode, then
+	 * switch the slaves to follower mode and have them follow the 
+	 * masters.
+	 * 
+	 * @param value	the value that will be passed to the master motors
+	 */
+	public void set(double leftValue, double rightValue) {
+		frontRight.set(leftValue); 
+		frontLeft.set(-rightValue);
+		
+		rearRight.changeControlMode(TalonControlMode.Follower);
+		rearRight.set(RobotMap.FRONT_RIGHT_MOTOR);
+		
+		rearLeft.changeControlMode(TalonControlMode.Follower);
+		rearLeft.set(RobotMap.FRONT_LEFT_MOTOR);
+	}
+	
+	/**
+	 * Set the setpoint for angle PID loop
+	 * @param angle	the absolute angle (determined by the navx)
+	 *  in degrees to turn to
+	 */
+	public void setTargetAngle(double angle){
+		targetAngle = angle;
+	}
+    
+	// Private methods
 	private void setLeft(double value){
 		frontLeft.set(value);
 		rearLeft.changeControlMode(TalonControlMode.Follower);
@@ -118,35 +137,13 @@ public class DrivetrainPID extends PIDSubsystem {
 		rearRight.set(RobotMap.FRONT_RIGHT_MOTOR);
 	}
 	
-	public void set(double leftValue, double rightValue) {
-		
-		frontRight.set(leftValue); 
-		frontLeft.set(-rightValue);
-		
-		rearRight.changeControlMode(TalonControlMode.Follower);
-		rearRight.set(RobotMap.FRONT_RIGHT_MOTOR);
-		
-		rearLeft.changeControlMode(TalonControlMode.Follower);
-		rearLeft.set(RobotMap.FRONT_LEFT_MOTOR);
-	}
-	
-	public void setTargetAngle(double angle){
-		targetAngle = angle;
-	}
-    
-    public void initDefaultCommand() {
-    	//setDefaultCommand(new TeleopDrivetrain());
-        // Set the default command for a subsystem here.
-    }
+	// Overloaded methods
+    public void initDefaultCommand() {}
     
     protected double returnPIDInput() {
-        // Return your input value for the PID loop
-        // e.g. a sensor, like a potentiometer:
-        // yourPot.getAverageVoltage() / kYourMaxVoltage;
     	double a = targetAngle - Robot.sensors.getYaw();
     	a = (a + 180) % 360 - 180;
     	error = a;
-    	onTarget = a < 5;
     	return a;
     }
     
@@ -154,9 +151,5 @@ public class DrivetrainPID extends PIDSubsystem {
     	System.out.println(output);
     	setRight(output);
     	setLeft(output);
-   // 		setRight(output);
-    //		setLeft(output);
-        // Use output to drive your system, like a motor
-        // e.g. yourMotor.set(output);
     }
 }

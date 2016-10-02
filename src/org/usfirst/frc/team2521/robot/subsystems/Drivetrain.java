@@ -1,8 +1,6 @@
-
 package org.usfirst.frc.team2521.robot.subsystems;
 
 import org.usfirst.frc.team2521.robot.OI;
-import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
 import org.usfirst.frc.team2521.robot.commands.TeleopDrivetrain;
 
@@ -11,13 +9,13 @@ import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Subsystem for controlling drivetrain. Generally DrivetrainPUD
+ * should be used since it has the automated turning commands,
+ * but this subsystem can serve as a simpler fallback for testing
  */
 public class Drivetrain extends Subsystem {
-	// Configured for rhino
 	
 	private RobotDrive frontDrive;
 	private RobotDrive rearDrive;
@@ -38,20 +36,11 @@ public class Drivetrain extends Subsystem {
 		frontDrive = new RobotDrive(rearLeft, rearRight);
 		rearDrive = new RobotDrive(rearLeft, rearRight);
 	}
-	
-	public void tankDrive() {
-		double left = OI.getInstance().getLeftStick().getY();
-		double right = OI.getInstance().getRightStick().getY();
-		
-		if(OI.getInstance().getSlowMode()){
-			left *= OI.getInstance().getSlowModeFactor();
-			right *= OI.getInstance().getSlowModeFactor();
-		}else{
-			frontDrive.tankDrive(right, left); // Switched to make it work
-			rearDrive.tankDrive(right, left);
-		}
-	}
-	
+
+	// Public methods
+	/**
+	 * Drive robot using one joystick
+	 */
 	public void arcadeDrive() {
 		Joystick left = OI.getInstance().getLeftStick();
 		
@@ -63,6 +52,25 @@ public class Drivetrain extends Subsystem {
 		rearDrive.arcadeDrive(left);
 	}
 	
+	/**
+	 * Drive robot using two joysticks (one on each side)
+	 */
+	public void tankDrive() {
+		double left = OI.getInstance().getLeftStick().getY();
+		double right = OI.getInstance().getRightStick().getY();
+		
+		if(OI.getInstance().getSlowMode()){
+			left *= OI.getInstance().getSlowModeFactor();
+			right *= OI.getInstance().getSlowModeFactor();
+		} else {
+			frontDrive.tankDrive(right, left);
+			rearDrive.tankDrive(right, left);
+		}
+	}
+	
+	/**
+	 * Method that will be called during TeleopDrivetrain command
+	 */
 	public void teleoperatedDrive() {
 		frontLeft.changeControlMode(TalonControlMode.PercentVbus);
 		frontRight.changeControlMode(TalonControlMode.PercentVbus);
@@ -72,6 +80,30 @@ public class Drivetrain extends Subsystem {
 		tankDrive();
 	}
 	
+	/**
+	 * Set master motors to the given value regardless of mode, then
+	 * switch the slaves to follower mode and have them follow the 
+	 * masters.
+	 * 
+	 * @param value	the value that will be passed to the master motors
+	 */
+	public void set(double value) {
+		frontRight.set(value);
+		frontLeft.set(value);
+		
+		rearRight.changeControlMode(TalonControlMode.Follower);
+		rearRight.set(RobotMap.FRONT_RIGHT_MOTOR);
+		
+		rearLeft.changeControlMode(TalonControlMode.Follower);
+		rearLeft.set(RobotMap.FRONT_LEFT_MOTOR);
+	}
+	
+	/**
+	 * Switch talon control modes to use encoder position, then pass
+	 * the encoder position to every motor
+	 *  
+	 * @param encoderPosition	the encoder position to be set
+	 */
 	public void setPosition(int encoderPosition) {
 		frontLeft.changeControlMode(TalonControlMode.Position);
 		frontRight.changeControlMode(TalonControlMode.Position);
@@ -84,18 +116,7 @@ public class Drivetrain extends Subsystem {
 		rearRight.set(encoderPosition);
 	}
 	
-	public void set(double value) {
-		
-		frontRight.set(value);
-		frontLeft.set(value);
-		
-		rearRight.changeControlMode(TalonControlMode.Follower);
-		rearRight.set(RobotMap.FRONT_RIGHT_MOTOR);
-		
-		rearLeft.changeControlMode(TalonControlMode.Follower);
-		rearLeft.set(RobotMap.FRONT_LEFT_MOTOR);
-	}
-	
+	// Overloaded methods
 	public void initDefaultCommand() {
 		setDefaultCommand(new TeleopDrivetrain());
 	}

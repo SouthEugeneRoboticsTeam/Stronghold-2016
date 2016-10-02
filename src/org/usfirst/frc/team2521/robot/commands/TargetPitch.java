@@ -3,12 +3,11 @@ package org.usfirst.frc.team2521.robot.commands;
 import org.usfirst.frc.team2521.robot.Robot;
 import org.usfirst.frc.team2521.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Sets pitch to encoder position calculated based on lidar
  */
 public class TargetPitch extends Command {
 	double setpoint;
@@ -19,11 +18,11 @@ public class TargetPitch extends Command {
     	this.baselineCounter = baselineCounter;
     }
     
+    // Allows us to call target pitch with no arguments if we want,
+    // which sets the baseline counter to zero
     public TargetPitch() {}
 
     protected void initialize() {
-    	SmartDashboard.putBoolean("Target running?", true);
-    	SmartDashboard.putNumber("Auto num", 4);
     	setpoint = Robot.pitch.getTargetEncoderPosition();
     	Robot.pitch.autoInit();
     }
@@ -38,7 +37,6 @@ public class TargetPitch extends Command {
     		SmartDashboard.putString("Target pitch mode", "Aim");
     		Robot.yaw.disable();
     	}
-    	SmartDashboard.putString("Auto place", "Target Pitch");
     	counter++;
     	
     }
@@ -47,10 +45,7 @@ public class TargetPitch extends Command {
         return false;
     }
 
-    protected void end() {
-    	SmartDashboard.putBoolean("Target running?", false);
-    }
+    protected void end() {}
 
-    protected void interrupted() {
-    }
+    protected void interrupted() {}
 }

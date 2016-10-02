@@ -1,18 +1,15 @@
-
 package org.usfirst.frc.team2521.robot.subsystems;
 
 import org.usfirst.frc.team2521.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.Counter;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Subsystem for controlling the shooter's fly wheels
+ * Also controls pneumatic pusher
  */
 public class FlyWheels extends Subsystem {
 	
@@ -20,9 +17,6 @@ public class FlyWheels extends Subsystem {
 	private CANTalon right;
 	
 	private DoubleSolenoid pusher;
-	
-	private DigitalInput wheelSwitch;
-	private Counter counter;
 	
 	public FlyWheels() {
 		left = new CANTalon(RobotMap.LEFT_SHOOTER_MOTOR);
@@ -34,31 +28,37 @@ public class FlyWheels extends Subsystem {
 		right.reverseOutput(true);
 		
 		pusher = new DoubleSolenoid(RobotMap.PUSHER_OUT_PORT, RobotMap.PUSHER_IN_PORT);
-		counter = new Counter(wheelSwitch);
-	}
-
-	// get rid of this later
-	public double getEncVelocity(){
-		return counter.getRate();
 	}
 	
+	// Public methods
+	/**
+	 * Set flywheels to intake
+	 */
 	public void in() {
 		left.set(-1);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
 	
+	/**
+	 * Set flywheels to shoot
+	 */
 	public void out() {
-		SmartDashboard.putBoolean("Set fly wheels called?", true);
 		left.set(1);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
 	
+	/**
+	 * Set flywheels to stop
+	 */
 	public void stop() {
 		left.set(0);
 		right.set(RobotMap.LEFT_SHOOTER_MOTOR);
 	}
 
 	
+	/**
+	 * Set the pusher value
+	 */
 	public void setPusher(boolean on) {
 		if (on) {
 			pusher.set(Value.kForward);
@@ -67,6 +67,6 @@ public class FlyWheels extends Subsystem {
 		}
 	}
 	
-	public void initDefaultCommand() {
-	}
+	// Overloaded methods
+	public void initDefaultCommand() {}
 }

@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * This command does nothing! It just lets us put in a delay after a command without
- * editing the command itself, which sacrificies generality
+ * editing the command itself, which sacrifices generality
  */
 public class Delay extends Command {
 

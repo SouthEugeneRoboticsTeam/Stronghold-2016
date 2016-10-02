@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team2521.robot;
 
 import org.usfirst.frc.team2521.robot.commands.*;
@@ -9,7 +8,6 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 	Preferences prefs;
@@ -37,7 +35,7 @@ public class Robot extends IterativeRobot {
 	Command stopDrivetrain;
 
 	public void robotInit() {
-		//Initialize subsystems
+		// Initialize subsystems
 		flyWheels = new FlyWheels();
 		pitch = new Pitch();
 		yaw = new YawPID();
@@ -46,10 +44,10 @@ public class Robot extends IterativeRobot {
 			drivetrain = new DrivetrainPID();
 		}
 		
-		//Initialize OI
+		// Initialize OI
 		oi = new OI();
 		
-		//Initialize commands
+		// Initialize commands
 		auto = new AutoShoot();
 		reset = new Reset();
 		stopDrivetrain = new StopDrivetrainPID();
@@ -70,7 +68,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void teleopInit() {
-		//Stop all autonomous action
+		// Stop all autonomous action
 		auto.cancel();
 		reset.start();
 		if(drivetrain_attached) {
