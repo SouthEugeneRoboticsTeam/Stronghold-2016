@@ -1,4 +1,4 @@
-
+	
 package org.usfirst.frc.team2521.robot;
 
 /**
@@ -154,10 +154,10 @@ public class RobotMap {
 			TARGETING_YAW_MOTOR = 40;
 			
 		} else {
-			FRONT_LEFT_MOTOR = 46; //Real
-			FRONT_RIGHT_MOTOR = 48; //Real
-			REAR_LEFT_MOTOR = 47; //Real
-			REAR_RIGHT_MOTOR = 49; //Real
+			FRONT_RIGHT_MOTOR = 46; //Real
+			FRONT_LEFT_MOTOR = 48; //Real
+			REAR_RIGHT_MOTOR = 47; //Real
+			REAR_LEFT_MOTOR = 49; //Real
 			
 			TARGETING_PITCH_MOTOR = 41; //Real
 			LEFT_SHOOTER_MOTOR = 50;

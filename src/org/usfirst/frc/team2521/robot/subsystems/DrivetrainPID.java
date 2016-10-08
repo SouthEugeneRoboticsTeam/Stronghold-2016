@@ -16,8 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class DrivetrainPID extends PIDSubsystem {
-	private RobotDrive frontDrive;
-	private RobotDrive rearDrive;
+	private RobotDrive oneDrive;
 	private boolean clockwise = false;
 	
 	private final double traverseOffset = 0.1;
@@ -42,9 +41,7 @@ public class DrivetrainPID extends PIDSubsystem {
 		rearLeft.enableControl();
 		rearRight.enableControl();
 		
-		frontDrive = new RobotDrive(rearLeft, rearRight);
-		rearDrive = new RobotDrive(rearLeft, rearRight);
-		
+		oneDrive = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
 		SmartDashboard.putNumber("Front right", 0);
 		SmartDashboard.putNumber("Front left", 0);
     }
@@ -64,25 +61,15 @@ public class DrivetrainPID extends PIDSubsystem {
 			left = right;
 			right = sub;
 		}
-		if(Robot.test_platform){
-			left = -left;
-			right = -right;
-			frontDrive.tankDrive(left, right); // Switched to make it work
-			rearDrive.tankDrive(left, right);
-		} else{
-			frontDrive.tankDrive(right, left); // Switched to make it work
-			rearDrive.tankDrive(right, left);
-		}
+		oneDrive.tankDrive(-left, -right);
 	}
 	
 	public void arcadeDrive() {
 		Joystick left = OI.getInstance().getLeftStick();
 		if(OI.getInstance().getSlowMode()){
-			frontDrive.arcadeDrive(left.getY()*OI.getInstance().getSlowModeFactor(), left.getX()*OI.getInstance().getSlowModeFactor());
-			rearDrive.arcadeDrive(left.getY()*OI.getInstance().getSlowModeFactor(), left.getX()*OI.getInstance().getSlowModeFactor());
+			oneDrive.arcadeDrive(left.getY()*OI.getInstance().getSlowModeFactor(), left.getX()*OI.getInstance().getSlowModeFactor());
 		}else{
-			frontDrive.arcadeDrive(left);
-			rearDrive.arcadeDrive(left);
+			oneDrive.arcadeDrive(left);
 		}
 	}
 	
