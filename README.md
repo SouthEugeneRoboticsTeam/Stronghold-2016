@@ -1,5 +1,33 @@
 # Stronghold-2016
 
-If you want to make changes to the code, create a branch with your initials followed by what the branch's purpose is (intake subsystem, fixing some method in drivetrain, etc.) all in lowercase with dashes for spaces. When you're ready, create a pull request and Dani will review it at the next meeting.
+![Team 2521](https://img.shields.io/badge/team-2521-7d26cd.svg?style=flat-square)
 
-If you want something to do, take a look at the issues and assign yourself to one that's not taken. Ones with the label "rookie" are great for beginners.
+SERT's 2016 Stronghold robot code.
+
+## Contributing
+
+### Branches
+
+If you would like to contribute to this repository, create a fork and a branch
+named after the branch's purpose, limiting it to about 12 characters. For
+example, if you are creating the intake subsystem, name your branch
+`intake-sub`.
+
+### Issues
+
+If you're looking to fix an issue, assign yourself to that issue or have
+someone assign you.
+
+If you are a new team member, issues labeled
+[`rookie`](https://github.com/SouthEugeneRoboticsTeam/Stronghold-2016/issues?q=is%3Aissue+is%3Aopen+label%3Arookie)
+are a great way to get started!
+
+### Pull Requests
+
+Make sure your code follows
+[SERT's Style Guide](https://github.com/SouthEugeneRoboticsTeam/Style-Guidelines)
+before making a pull request to merge your changes.
+
+Pull-requests should be approved by at least one peer before being merged into
+`master`. If you have extra time or are bored, review some PR's using GitHub's
+[pull request reviewal system](https://help.github.com/articles/about-pull-request-reviews/).
