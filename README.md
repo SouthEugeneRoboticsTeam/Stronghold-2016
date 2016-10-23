@@ -1,6 +1,7 @@
 # Stronghold-2016
 
 ![Team 2521](https://img.shields.io/badge/team-2521-7d26cd.svg?style=flat-square)
+![License](https://img.shields.io/github/license/SouthEugeneRoboticsTeam/Stronghold-2016.svg?style=flat-square)
 
 SERT's 2016 Stronghold robot code.
 
