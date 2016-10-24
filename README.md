@@ -1,7 +1,7 @@
 # Stronghold-2016
 
-![Team 2521](https://img.shields.io/badge/team-2521-7d26cd.svg?style=flat-square)
-![License](https://img.shields.io/github/license/SouthEugeneRoboticsTeam/Stronghold-2016.svg?style=flat-square)
+[![Team 2521][team-img]][team-url]
+[![License][license-img]][license-url]
 
 SERT's 2016 Stronghold robot code.
 
@@ -32,3 +32,10 @@ before making a pull request to merge your changes.
 Pull-requests should be approved by at least one peer before being merged into
 `master`. If you have extra time or are bored, review some PR's using GitHub's
 [pull request reviewal system](https://help.github.com/articles/about-pull-request-reviews/).
+
+<!-- Badge URLs -->
+
+[team-img]:      https://img.shields.io/badge/team-2521-7d26cd.svg?style=flat-square
+[team-url]:      https://sert2521.org
+[license-img]:   https://img.shields.io/npm/dm/hltv-livescore.svg?style=flat-square
+[license-url]:   https://github.com/SouthEugeneRoboticsTeam/Stronghold-2016/blob/master/LICENSE
