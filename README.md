@@ -2,6 +2,7 @@
 
 [![Team 2521][team-img]][team-url]
 [![License][license-img]][license-url]
+[![Codacy][codacy-img]][codacy-url]
 
 SERT's 2016 Stronghold robot code.
 
@@ -39,3 +40,5 @@ Pull-requests should be approved by at least one peer before being merged into
 [team-url]:     https://sert2521.org
 [license-img]:  https://img.shields.io/github/license/SouthEugeneRoboticsTeam/Stronghold-2016.svg?style=flat-square
 [license-url]:  https://github.com/SouthEugeneRoboticsTeam/Stronghold-2016/blob/master/LICENSE
+[codacy-img]:   https://img.shields.io/codacy/grade/252dcab7927747d6b19d44c4b4d2ef38.svg?style=flat-square
+[codacy-url]:   https://www.codacy.com/app/Team2521/Stronghold-2016
