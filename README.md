@@ -35,7 +35,7 @@ Pull-requests should be approved by at least one peer before being merged into
 
 <!-- Badge URLs -->
 
-[team-img]:      https://img.shields.io/badge/team-2521-7d26cd.svg?style=flat-square
-[team-url]:      https://sert2521.org
-[license-img]:   https://img.shields.io/npm/dm/hltv-livescore.svg?style=flat-square
-[license-url]:   https://github.com/SouthEugeneRoboticsTeam/Stronghold-2016/blob/master/LICENSE
+[team-img]:     https://img.shields.io/badge/team-2521-7d26cd.svg?style=flat-square
+[team-url]:     https://sert2521.org
+[license-img]:  https://img.shields.io/github/license/SouthEugeneRoboticsTeam/Stronghold-2016.svg?style=flat-square
+[license-url]:  https://github.com/SouthEugeneRoboticsTeam/Stronghold-2016/blob/master/LICENSE
